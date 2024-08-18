@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
+
+import { dir } from "i18next";
+import { cn } from "@/lib/utils";
 import initTranslations from "@/lib/i18n";
+import { i18nConfig } from "@/config/i18next.config";
+import { TranslationsProvider } from "@/components/app/providers/TranslationsProvider";
+
 import type { Props } from "./interface";
 import "./globals.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito = Nunito({
+	subsets: ["cyrillic"],
+	variable: "--font-nunito",
+	weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 export async function generateMetadata({
 	params: { locale },
@@ -16,7 +26,6 @@ export async function generateMetadata({
 		manifest: "/manifest.json",
 		title: t("metadata:title.default"),
 		description: t("metadata:description.default"),
-		icons: "/icon.ico",
 		alternates: {
 			canonical: "/",
 			languages: {
@@ -52,21 +61,30 @@ export async function generateMetadata({
 					type: "image/png",
 				},
 			],
+			type: "website",
 		},
 	};
 }
 
-export default function RootLayout({
+export function generateStaticParams() {
+	return i18nConfig.locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({
 	children,
+	params: { locale },
 }: Readonly<{
 	children: React.ReactNode;
-}>) {
+}> &
+	Props) {
+	const { resources } = await initTranslations({ locale });
+
 	return (
-		<html lang="en">
-			<body className={inter.className}>
-				<main className="h-screen p-4 flex flex-col items-center justify-center">
+		<html lang={locale} dir={dir(locale)}>
+			<body className={cn("flex flex-col min-h-dvh", nunito.variable)}>
+				<TranslationsProvider locale={locale} resources={resources}>
 					{children}
-				</main>
+				</TranslationsProvider>
 			</body>
 		</html>
 	);

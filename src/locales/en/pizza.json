@@ -1,3 +1,17 @@
 {
-    "pizza": "Pizza"
+	"page": {
+		"home": {
+			"title": "All pizzas"
+		}
+	},
+
+	"header": {
+		"logoAlt": "Logo",
+		"title": "Next Pizza",
+		"subtitle": "can't get any tastier",
+		"login": "Login"
+	},
+	"search": {
+		"placeholder": "Find pizza..."
+	}
 }

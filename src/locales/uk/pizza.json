@@ -1,3 +1,17 @@
 {
-    "pizza": "Піца"
+	"page": {
+		"home": {
+			"title": "Усі піци"
+		}
+	},
+	"header": {
+		"logoAlt": "Логотип",
+		"title": "Next Pizza",
+		"subtitle": "смачніше вже нікуди",
+		"login": "Увійти"
+	},
+
+	"search": {
+		"placeholder": "Знайти піцу..."
+	}
 }
