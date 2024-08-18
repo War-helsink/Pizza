@@ -1,0 +1,13 @@
+{
+	"title": {
+		"default": "Pizza | Home"
+	},
+	"description": {
+		"default": "Pizza delivery"
+	},
+	"openGraph": {
+		"title": "Pizza",
+		"siteName": "Pizza",
+		"description": "Pizza shop, the most delicious pizza!"
+	}
+}

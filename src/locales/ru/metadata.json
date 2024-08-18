@@ -1,0 +1,13 @@
+{
+	"title": {
+		"default": "Пицца | Главная"
+	},
+	"description": {
+		"default": "Доставка пиццы"
+	},
+	"openGraph": {
+		"title": "Пицца",
+		"siteName": "Пицца",
+		"description": "Магазин пиццы, самая вкусная пицца!"
+	}
+}
