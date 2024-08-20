@@ -1,4 +1,7 @@
 export interface Props {
 	params: { locale: string };
-	searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export interface RootLayoutProps extends Props {
+	children: React.ReactNode;
 }

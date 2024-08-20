@@ -1,7 +1,13 @@
 import clsx from "clsx";
 import { createElement } from "react";
 
-import type { TitleProps } from "../../model/props";
+type TitleSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+
+interface TitleProps {
+	size?: TitleSize;
+	className?: string;
+	text: string;
+}
 
 export const Title: React.FC<TitleProps> = ({
 	text,

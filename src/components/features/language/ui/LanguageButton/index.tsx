@@ -42,7 +42,7 @@ export const LanguageButton: FC = () => {
 			<SelectTrigger className="border-0 text-primary">
 				<Languages />
 			</SelectTrigger>
-			<SelectContent className="text-primary">
+			<SelectContent>
 				<SelectGroup>
 					<SelectItem className="focus:text-primary cursor-pointer" value="en">
 						{t("en")}

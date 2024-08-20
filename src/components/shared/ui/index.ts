@@ -1,5 +1,6 @@
 export * from "./container";
 export * from "./count-button";
+export * from "./title";
 export * from "./button";
 export * from "./checkbox";
 export * from "./dialog";

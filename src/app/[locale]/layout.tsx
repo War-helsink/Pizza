@@ -7,7 +7,7 @@ import initTranslations from "@/lib/i18n";
 import { i18nConfig } from "@/config/i18next.config";
 import { TranslationsProvider } from "@/components/app/providers/TranslationsProvider";
 
-import type { Props } from "./interface";
+import type {RootLayoutProps, Props } from "./interface";
 import "./globals.scss";
 
 const nunito = Nunito({
@@ -73,10 +73,7 @@ export function generateStaticParams() {
 export default async function RootLayout({
 	children,
 	params: { locale },
-}: Readonly<{
-	children: React.ReactNode;
-}> &
-	Props) {
+}: RootLayoutProps) {
 	const { resources } = await initTranslations({ locale });
 
 	return (
