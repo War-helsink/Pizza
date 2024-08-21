@@ -10,8 +10,24 @@
 		"subtitle": "смачніше вже нікуди",
 		"login": "Увійти"
 	},
-
 	"search": {
 		"placeholder": "Знайти піцу..."
+	},
+	"categories": {
+		"pizza": "Піци",
+		"combo": "Комбо",
+		"appetizers": "Закуски",
+		"cocktails": "Коктейлі",
+		"coffee": "Кава",
+		"drinks": "Напої",
+		"desserts": "Десерти"
+	},
+	"sort": {
+		"label": "Сортування:",
+		"popular": "популярне",
+		"sortByPopular": "Спочатку популярні",
+		"sortByCheap": "Спочатку недорогі",
+		"sortByExpensive": "Спочатку дорогі",
+		"sortByRating": "З найкращою оцінкою"
 	}
 }

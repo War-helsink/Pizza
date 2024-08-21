@@ -10,8 +10,24 @@
 		"subtitle": "вкусней уже некуда",
 		"login": "Войти"
 	},
-
 	"search": {
 		"placeholder": "Найти пиццу..."
+	},
+	"categories": {
+		"pizza": "Пиццы",
+		"combo": "Комбо",
+		"appetizers": "Закуски",
+		"cocktails": "Коктейли",
+		"coffee": "Кофе",
+		"drinks": "Напитки",
+		"desserts": "Десерты"
+	},
+	"sort": {
+		"label": "Сортировка:",
+		"popular": "популярное",
+		"sortByPopular": "Сначала популярное",
+		"sortByCheap": "Сначала недорогие",
+		"sortByExpensive": "Сначала дорогие",
+		"sortByRating": "С лучшей оценкой"
 	}
 }

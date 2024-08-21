@@ -1,5 +1,5 @@
 export interface GroceryItemProps {
-	imageUrl?: string;
+	imageUrl: string;
 	name?: string;
 	price?: number;
 	className?: string;

@@ -9,7 +9,6 @@ export interface FilterChecboxProps {
 export  interface CheckboxFiltersGroupProps {
   title: string;
   items: FilterChecboxProps[];
-  defaultItems?: FilterChecboxProps[];
   limit?: number;
   searchInputPlaceholder?: string;
   className?: string;

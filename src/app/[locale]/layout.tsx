@@ -6,8 +6,9 @@ import { cn } from "@/lib/utils";
 import initTranslations from "@/lib/i18n";
 import { i18nConfig } from "@/config/i18next.config";
 import { TranslationsProvider } from "@/components/app/providers/TranslationsProvider";
+import { StoreProvider } from "@/components/app/providers/StoreProvider";
 
-import type {RootLayoutProps, Props } from "./interface";
+import type { RootLayoutProps, Props } from "./interface";
 import "./globals.scss";
 
 const nunito = Nunito({
@@ -79,9 +80,11 @@ export default async function RootLayout({
 	return (
 		<html lang={locale} dir={dir(locale)}>
 			<body className={cn("flex flex-col min-h-dvh", nunito.variable)}>
-				<TranslationsProvider locale={locale} resources={resources}>
-					{children}
-				</TranslationsProvider>
+				<StoreProvider>
+					<TranslationsProvider locale={locale} resources={resources}>
+						{children}
+					</TranslationsProvider>
+				</StoreProvider>
 			</body>
 		</html>
 	);

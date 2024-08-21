@@ -2,7 +2,7 @@ import {
 	FilterCheckbox,
 	CheckboxFiltersGroup,
 } from "@/components/entities/filters";
-import { Input, Title, Slider } from "@/components/shared/ui";
+import { Input, Title, RangeSlider } from "@/components/shared/ui";
 
 import type { FiltersProps } from "../../model/props";
 
@@ -28,39 +28,13 @@ export const Filters: React.FC<FiltersProps> = ({ className }) => {
 					/>
 					<Input type="number" min={100} max={30000} placeholder="30000" />
 				</div>
-				<Slider min={0} max={5000} step={10} value={[0, 5000]} />
+				<RangeSlider min={0} max={5000} step={10} value={[0, 5000]} />
 			</div>
 
 			<CheckboxFiltersGroup
 				className="mt-5"
 				title="Формат"
 				limit={6}
-				defaultItems={[
-					{
-						text: "Сырный соус",
-						value: "1",
-					},
-					{
-						text: "Моццарелла",
-						value: "2",
-					},
-					{
-						text: "Чеснок",
-						value: "3",
-					},
-					{
-						text: "Солённые огурчики",
-						value: "4",
-					},
-					{
-						text: "Красный лук",
-						value: "5",
-					},
-					{
-						text: "Томаты",
-						value: "6",
-					},
-				]}
 				items={[
 					{
 						text: "Сырный соус",
@@ -88,27 +62,27 @@ export const Filters: React.FC<FiltersProps> = ({ className }) => {
 					},
 					{
 						text: "Сырный соус",
-						value: "1",
+						value: "7",
 					},
 					{
 						text: "Моццарелла",
-						value: "2",
+						value: "8",
 					},
 					{
 						text: "Чеснок",
-						value: "3",
+						value: "9",
 					},
 					{
 						text: "Солённые огурчики",
-						value: "4",
+						value: "10",
 					},
 					{
 						text: "Красный лук",
-						value: "5",
+						value: "11",
 					},
 					{
 						text: "Томаты",
-						value: "6",
+						value: "12",
 					},
 				]}
 			/>

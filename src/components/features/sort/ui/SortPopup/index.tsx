@@ -1,5 +1,8 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { ArrowUpDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
 	Popover,
 	PopoverContent,
@@ -9,6 +12,8 @@ import {
 import type { SortPopupProps } from "../../model/props";
 
 export const SortPopup: React.FC<SortPopupProps> = ({ className }) => {
+	const { t } = useTranslation();
+
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
@@ -19,24 +24,24 @@ export const SortPopup: React.FC<SortPopupProps> = ({ className }) => {
 					)}
 				>
 					<ArrowUpDown className="w-4 h-4" />
-					<b>Сортировка:</b>
+					<b>{t("sort.label")}</b>
 
-					<b className="text-primary">популярное</b>
+					<b className="text-primary">{t("sort.popular")}</b>
 				</div>
 			</PopoverTrigger>
 			<PopoverContent className="w-[240px]">
-				<ul>
-					<li className="hover:bg-secondary hover:text-primary p-2 px-4 cursor-pointer rounded-md">
-						Сначала популярное
+				<ul className="*:rounded-md *:cursor-pointer *:px-4">
+					<li className="hover:bg-secondary hover:text-primary p-2">
+						{t("sort.sortByPopular")}
 					</li>
-					<li className="hover:bg-secondary hover:text-primary p-2 px-4 cursor-pointer rounded-md">
-						Сначала недорогие
+					<li className="hover:bg-secondary hover:text-primary p-2">
+						{t("sort.sortByCheap")}
 					</li>
-					<li className="hover:bg-secondary hover:text-primary p-2 px-4 cursor-pointer rounded-md">
-						Сначала дорогие
+					<li className="hover:bg-secondary hover:text-primary p-2">
+						{t("sort.sortByExpensive")}
 					</li>
-					<li className="hover:bg-secondary hover:text-primary p-2 px-4 cursor-pointer rounded-md">
-						С лучшей оценкой
+					<li className="hover:bg-secondary hover:text-primary p-2">
+						{t("sort.sortByRating")}
 					</li>
 				</ul>
 			</PopoverContent>

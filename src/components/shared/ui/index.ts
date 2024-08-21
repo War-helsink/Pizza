@@ -1,5 +1,6 @@
 export * from "./container";
 export * from "./count-button";
+export * from "./range-slider";
 export * from "./title";
 export * from "./button";
 export * from "./checkbox";
@@ -8,5 +9,3 @@ export * from "./input";
 export * from "./popover";
 export * from "./select";
 export * from "./sheet";
-export * from "./skeleton";
-export * from "./slider";
