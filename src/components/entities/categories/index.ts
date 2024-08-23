@@ -1,3 +1,7 @@
-import categoriesReducer, { setCategoryId } from "./model/slice";
+import categoriesReducer, { setCategoryId, setCategories } from "./model/slice";
 
-export { categoriesReducer, setCategoryId };
+export { categoriesApi, useGetCategoriesQuery } from "./api/api";
+
+export type { Category } from "./model/types";
+
+export { categoriesReducer, setCategoryId, setCategories };

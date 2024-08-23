@@ -14,15 +14,6 @@
 	"search": {
 		"placeholder": "Find pizza..."
 	},
-	"categories": {
-		"pizza": "Pizzas",
-		"combo": "Combos",
-		"appetizers": "Appetizers",
-		"cocktails": "Cocktails",
-		"coffee": "Coffee",
-		"drinks": "Drinks",
-		"desserts": "Desserts"
-	},
 	"sort": {
 		"label": "Sort by:",
 		"popular": "popular",

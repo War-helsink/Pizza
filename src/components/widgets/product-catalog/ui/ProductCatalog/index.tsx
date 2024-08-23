@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
 import { useAppSelector } from "@/components/app/store";
 import { Filters } from "@/components/features/filters";
 import { Pagination } from "@/components/features/pagination";
@@ -9,7 +8,6 @@ import { Container } from "@/components/shared/ui";
 
 export const ProductCatalog: React.FC = () => {
 	const categories = useAppSelector((state) => state.category.categories);
-	const { t } = useTranslation();
 
 	return (
 		<Container>
@@ -21,9 +19,9 @@ export const ProductCatalog: React.FC = () => {
 					<div className="flex flex-col gap-16">
 						{categories.map((category) => (
 							<ProductsGroupList
-								key={category}
-								title={t(`categories.${category}`)}
-								categoryId={category}
+								key={category.id}
+								title={category.name}
+								categoryId={category.id}
 								items={[1, 2, 3, 4, 5]}
 							/>
 						))}

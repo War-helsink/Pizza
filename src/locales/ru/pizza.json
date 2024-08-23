@@ -13,15 +13,6 @@
 	"search": {
 		"placeholder": "Найти пиццу..."
 	},
-	"categories": {
-		"pizza": "Пиццы",
-		"combo": "Комбо",
-		"appetizers": "Закуски",
-		"cocktails": "Коктейли",
-		"coffee": "Кофе",
-		"drinks": "Напитки",
-		"desserts": "Десерты"
-	},
 	"sort": {
 		"label": "Сортировка:",
 		"popular": "популярное",

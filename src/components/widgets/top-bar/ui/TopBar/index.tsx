@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 import { Categories } from "@/components/features/categories";
 import { SortPopup } from "@/components/features/sort";

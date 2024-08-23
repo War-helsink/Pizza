@@ -1,4 +1,4 @@
-import initTranslations from "@/lib/i18n";
+import initTranslations from "@/libs/i18n";
 import { Header } from "@/components/widgets/header";
 import { TopBar } from "@/components/widgets/top-bar";
 import { PromoGallery } from "@/components/widgets/promo-gallery";

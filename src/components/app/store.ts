@@ -1,12 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useSelector, useDispatch, useStore } from "react-redux";
 
+import { userApi } from "@/components/entities/user";
+import { categoriesApi } from "@/components/entities/categories";
+
 import { rootReducer } from "./reducer";
 
 export const makeStore = () => {
 	return configureStore({
 		reducer: rootReducer,
-		// middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware().concat(
+				userApi.middleware,
+				categoriesApi.middleware,
+			),
 	});
 };
 

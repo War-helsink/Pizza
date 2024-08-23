@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { ArrowUpDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {

@@ -13,15 +13,6 @@
 	"search": {
 		"placeholder": "Знайти піцу..."
 	},
-	"categories": {
-		"pizza": "Піци",
-		"combo": "Комбо",
-		"appetizers": "Закуски",
-		"cocktails": "Коктейлі",
-		"coffee": "Кава",
-		"drinks": "Напої",
-		"desserts": "Десерти"
-	},
 	"sort": {
 		"label": "Сортування:",
 		"popular": "популярне",

@@ -1,6 +1,6 @@
 export interface ProductsGroupListProps {
 	title: string;
-	categoryId: string;
+	categoryId: number;
 
 	items: any[];
 	className?: string;

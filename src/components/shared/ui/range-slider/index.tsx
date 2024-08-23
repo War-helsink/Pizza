@@ -3,7 +3,7 @@
 import { useEffect, useState, forwardRef, Fragment } from "react";
 import { Root, Track, Range, Thumb } from "@radix-ui/react-slider";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 type SliderProps = {
 	className?: string;

@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";

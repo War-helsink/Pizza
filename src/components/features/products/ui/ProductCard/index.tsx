@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { Title, CountButton, Button } from "@/components/shared/ui";
 
 import type { ProductCardProps } from "../../model/props";

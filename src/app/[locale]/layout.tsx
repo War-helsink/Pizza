@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 
 import { dir } from "i18next";
-import { cn } from "@/lib/utils";
-import initTranslations from "@/lib/i18n";
+import { cn } from "@/libs/utils";
+import initTranslations from "@/libs/i18n";
 import { i18nConfig } from "@/config/i18next.config";
 import { TranslationsProvider } from "@/components/app/providers/TranslationsProvider";
 import { StoreProvider } from "@/components/app/providers/StoreProvider";

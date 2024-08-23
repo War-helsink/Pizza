@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/libs/utils';
 import { Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/shared/ui';
 
