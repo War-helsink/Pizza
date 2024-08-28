@@ -4,9 +4,9 @@ import { useRef, useEffect } from "react";
 import { useIntersection } from "react-use";
 import { useAppDispatch } from "@/components/app/store";
 import { setCategoryId } from "@/components/entities/categories";
+import { ProductCard } from "@/components/entities/products";
 
 import { Title } from "@/components/shared/ui";
-import { ProductCard } from "../ProductCard";
 
 import type { ProductsGroupListProps } from "../../model/props";
 
@@ -32,13 +32,14 @@ export const ProductsGroupList: React.FC<ProductsGroupListProps> = ({
 		<div className={className} ref={intersectionRef} id={categoryId.toString()}>
 			<Title text={title} size="lg" className="font-extrabold mb-5" />
 			<div className="grid grid-cols-3 gap-[50px]">
-				{items.map((item, i) => (
+				{items.map((product) => (
 					<ProductCard
-						key={item}
-						name="Маргарита"
-						imageUrl="https://media.dodostatic.net/image/r:292x292/11EE7D610BBEB562BD4D48786AD87270.webp"
-						price={390}
-						count={i % 2}
+						key={product.id}
+						id={product.id}
+						name={product.name}
+						imageUrl={product.imageUrl}
+						price={product.items[0].price}
+						ingredients={product.ingredients}
 					/>
 				))}
 			</div>

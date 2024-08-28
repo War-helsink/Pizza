@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useSelector, useDispatch, useStore } from "react-redux";
 
-import { userApi } from "@/components/entities/user";
-import { categoriesApi } from "@/components/entities/categories";
+import { usersApi } from "@/components/entities/users";
+import { storiesApi } from "@/components/entities/stories";
+import { productsApi } from "@/components/entities/products";
+import { ingredientsApi } from "@/components/entities/ingredients";
 
 import { rootReducer } from "./reducer";
 
@@ -11,8 +13,10 @@ export const makeStore = () => {
 		reducer: rootReducer,
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware().concat(
-				userApi.middleware,
-				categoriesApi.middleware,
+				usersApi.middleware,
+				storiesApi.middleware,
+				productsApi.middleware,
+				ingredientsApi.middleware,
 			),
 	});
 };

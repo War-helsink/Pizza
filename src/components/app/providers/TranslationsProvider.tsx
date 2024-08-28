@@ -6,10 +6,9 @@ import { createInstance } from "i18next";
 
 import type { Resource } from "i18next";
 
-export interface TranslationsProviderProps {
+export interface TranslationsProviderProps extends React.PropsWithChildren {
 	locale: string;
 	resources: Resource;
-	children: React.ReactNode;
 }
 
 export const TranslationsProvider: React.FC<TranslationsProviderProps> = ({

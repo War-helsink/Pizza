@@ -20,5 +20,32 @@
 		"sortByCheap": "Сначала недорогие",
 		"sortByExpensive": "Сначала дорогие",
 		"sortByRating": "С лучшей оценкой"
+	},
+	"filter": {
+		"title": "Фильтрация",
+		"sizes": {
+			"name": "Размеры",
+			"small": "20 см",
+			"medium": "30 см",
+			"large": "40 см"
+		},
+		"pizzaTypes": "Тип теста",
+		"priceRange": "Цена от и до:",
+		"ingredients": "Ингредиенты",
+		"searchPlaceholder": "Поиск...",
+		"showAll": "Показать все",
+		"hide": "Скрыть"
+	},
+	"product": {
+		"small": "Маленькая",
+		"medium": "Средняя",
+		"large": "Большая",
+		"thinCrust": "Тонкое",
+		"traditional": "Традиционное",
+		"textDetaills": "{{size}} см, {{name}} пицца.",
+		"addCartPrice": "Добавить в корзину за {{price}} ₽",
+		"addCart": "Добавить",
+		"from": "от",
+		"currency": "₽"
 	}
 }

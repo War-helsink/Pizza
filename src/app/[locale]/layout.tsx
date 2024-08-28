@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 
 import { dir } from "i18next";
-import { cn } from "@/libs/utils";
 import initTranslations from "@/libs/i18n";
 import { i18nConfig } from "@/config/i18next.config";
 import { TranslationsProvider } from "@/components/app/providers/TranslationsProvider";
@@ -25,7 +24,6 @@ export async function generateMetadata({
 	return {
 		metadataBase: null,
 		manifest: "/manifest.json",
-		title: t("metadata:title.default"),
 		description: t("metadata:description.default"),
 		alternates: {
 			canonical: "/",
@@ -79,7 +77,7 @@ export default async function RootLayout({
 
 	return (
 		<html lang={locale} dir={dir(locale)}>
-			<body className={cn("flex flex-col min-h-dvh", nunito.variable)}>
+			<body className={nunito.variable}>
 				<StoreProvider>
 					<TranslationsProvider locale={locale} resources={resources}>
 						{children}

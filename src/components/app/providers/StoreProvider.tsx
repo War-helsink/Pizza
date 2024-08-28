@@ -4,11 +4,7 @@ import { useRef } from "react";
 import { Provider } from "react-redux";
 import { makeStore, type AppStore } from "../store";
 
-export interface StoreProviderProps {
-	children: React.ReactNode;
-}
-
-export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
+export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
 	const storeRef = useRef<AppStore>();
 	if (!storeRef.current) {
 		storeRef.current = makeStore();

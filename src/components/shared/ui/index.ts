@@ -1,5 +1,8 @@
 export * from "./container";
 export * from "./count-button";
+export * from "./count-icon-button";
+export * from "./group-variants";
+export * from "./pizza-image";
 export * from "./range-slider";
 export * from "./title";
 export * from "./button";
@@ -7,5 +10,6 @@ export * from "./checkbox";
 export * from "./dialog";
 export * from "./input";
 export * from "./popover";
+export * from "./skeleton";
 export * from "./select";
 export * from "./sheet";

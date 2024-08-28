@@ -20,5 +20,32 @@
 		"sortByCheap": "Спочатку недорогі",
 		"sortByExpensive": "Спочатку дорогі",
 		"sortByRating": "З найкращою оцінкою"
+	},
+	"filter": {
+		"title": "Фільтрація",
+		"sizes": {
+			"name": "Розміри",
+			"small": "20 см",
+			"medium": "30 см",
+			"large": "40 см"
+		},
+		"pizzaTypes": "Вид тіста",
+		"priceRange": "Ціна від і до:",
+		"ingredients": "Інгредієнти",
+		"searchPlaceholder": "Пошук...",
+		"showAll": "Показати всі",
+		"hide": "Приховати"
+	},
+	"product": {
+		"small": "Маленька",
+		"medium": "Середня",
+		"large": "Велика",
+		"thinCrust": "Тонке",
+		"traditional": "Традиційне",
+		"textDetaills": "{{size}} см, {{name}} піца.",
+		"addCartPrice": "Додати до кошику за {{price}} ₴",
+		"addCart": "Додати",
+		"from": "від",
+		"currency": "₴"
 	}
 }

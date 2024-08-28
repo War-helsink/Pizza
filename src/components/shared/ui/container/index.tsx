@@ -1,10 +1,10 @@
 import { cn } from "@/libs/utils";
 
-interface Props {
+interface Props extends React.PropsWithChildren{
 	className?: string;
 }
 
-export const Container: React.FC<React.PropsWithChildren<Props>> = ({
+export const Container: React.FC<Props> = ({
 	className,
 	children,
 }) => {

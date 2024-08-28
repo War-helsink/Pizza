@@ -6,9 +6,9 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
 import { SearchInput } from "@/components/features/search";
-import { GroceryBasket } from "@/components/features/grocery-basket";
+import { CartButton } from "@/components/features/cart";
 import { LanguageButton } from "@/components/features/language";
-import { ArrowRight, ShoppingCart, User } from "lucide-react";
+import { User } from "lucide-react";
 import { Button, Container } from "@/components/shared/ui";
 
 import type { HeaderProps } from "../../model/props";
@@ -48,18 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
 						<User size={16} />
 						{t("header.login")}
 					</Button>
-
-					<GroceryBasket>
-						<Button className="group relative">
-							<b>520 ₴</b>
-							<span className="h-full w-[1px] bg-white/30 mx-3" />
-							<div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0">
-								<ShoppingCart size={16} strokeWidth={2} />
-								<b>3</b>
-							</div>
-							<ArrowRight size={20} className="absolute right-5 transition duration-300 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" />
-						</Button>
-					</GroceryBasket>
+					<CartButton />
 				</div>
 			</Container>
 		</header>

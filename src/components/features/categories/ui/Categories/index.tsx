@@ -2,19 +2,15 @@
 
 import { cn } from "@/libs/utils";
 import Link from "next/link";
-
-import { useAppSelector, useAppDispatch } from "@/components/app/store";
-import {
-	setCategoryId,
-	useGetCategoriesQuery,
-} from "@/components/entities/categories";
+import { useAppSelector } from "@/components/app/store";
 
 import type { CategoriesProps } from "../../model/props";
 
-export const Categories: React.FC<CategoriesProps> = ({ className }) => {
-	useGetCategoriesQuery(null);
-	const { categories, categoryId } = useAppSelector((state) => state.category);
-	const dispatch = useAppDispatch();
+export const Categories: React.FC<CategoriesProps> = ({
+	className,
+	categories,
+}) => {
+	const categoryId = useAppSelector((state) => state.category.categoryId);
 
 	return (
 		<div
@@ -29,7 +25,6 @@ export const Categories: React.FC<CategoriesProps> = ({ className }) => {
 							"bg-white shadow-md shadow-gray-200 text-primary",
 					)}
 					href={`#${category.id}`}
-					onClick={() => dispatch(setCategoryId(category.id))}
 				>
 					{category.name}
 				</Link>

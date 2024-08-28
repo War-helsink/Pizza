@@ -9,7 +9,7 @@ import {
 	productItems,
 	productItemPrices,
 } from "./constants";
-import { prisma } from "../libs/prisma";
+import { prisma } from "./prisma-client";
 import { hashSync } from "bcrypt";
 
 async function up() {
@@ -225,6 +225,9 @@ async function down() {
 
 	await prisma.$executeRaw`TRUNCATE TABLE "ProductItem" RESTART IDENTITY CASCADE`;
 	await prisma.$executeRaw`TRUNCATE TABLE "ProductItemPrice" RESTART IDENTITY CASCADE`;
+
+	await prisma.$executeRaw`TRUNCATE TABLE "Story" RESTART IDENTITY CASCADE`;
+	await prisma.$executeRaw`TRUNCATE TABLE "StoryItem" RESTART IDENTITY CASCADE`;
 }
 
 async function main() {

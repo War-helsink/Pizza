@@ -1,14 +1,12 @@
-"use client";
-
-import { useAppSelector } from "@/components/app/store";
 import { Filters } from "@/components/features/filters";
-import { Pagination } from "@/components/features/pagination";
 import { ProductsGroupList } from "@/components/features/products";
 import { Container } from "@/components/shared/ui";
 
-export const ProductCatalog: React.FC = () => {
-	const categories = useAppSelector((state) => state.category.categories);
+import type { ProductCatalogProps } from "../../model/props";
 
+export const ProductCatalog: React.FC<ProductCatalogProps> = ({
+	categories,
+}) => {
 	return (
 		<Container>
 			<div className="flex pb-14 gap-[60px]">
@@ -22,14 +20,9 @@ export const ProductCatalog: React.FC = () => {
 								key={category.id}
 								title={category.name}
 								categoryId={category.id}
-								items={[1, 2, 3, 4, 5]}
+								items={category.products}
 							/>
 						))}
-					</div>
-
-					<div className="flex items-center gap-6 mt-12">
-						<Pagination pageCount={3} />
-						<span className="text-sm text-gray-400">5 из 65</span>
 					</div>
 				</div>
 			</div>

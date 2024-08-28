@@ -4,7 +4,6 @@
 			"title": "All pizzas"
 		}
 	},
-
 	"header": {
 		"logoAlt": "Logo",
 		"title": "Next Pizza",
@@ -21,5 +20,32 @@
 		"sortByCheap": "Cheap first",
 		"sortByExpensive": "Expensive first",
 		"sortByRating": "Highest rated"
+	},
+	"filter": {
+		"title": "Filtering",
+		"sizes": {
+			"name": "Dimensions",
+			"small": "20 cm",
+			"medium": "30 cm",
+			"large": "40 cm"
+		},
+		"pizzaTypes": "Type of dough",
+		"priceRange": "Price from and to:",
+		"ingredients": "Ingredients",
+		"searchPlaceholder": "Search...",
+		"showAll": "Show all",
+		"hide": "Hide"
+	},
+	"product": {
+		"small": "Small",
+		"medium": "Medium",
+		"large": "Large",
+		"thinCrust": "Subtle",
+		"traditional": "Traditional",
+		"textDetaills": "{{size}} cm, {{name}} pizza.",
+		"addCartPrice": "Add to cart for {{price}} $",
+		"addCart": "Add",
+		"from": "from",
+		"currency": "$"
 	}
 }
