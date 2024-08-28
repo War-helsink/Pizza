@@ -1,22 +1,52 @@
-import { useEffect } from "react";
 import type { CreateCartItemValues } from "@/components/entities/cart";
 import type { CartStateItem } from "@/libs/get-cart-details";
+import { useAppSelector } from "@/components/app/store";
+
+import {
+	useGetCartItemsQuery,
+	useLazyAddCartItemQuery,
+	useLazyRemoveCartItemQuery,
+	useLazyUpdateItemQuantityQuery,
+} from "@/components/entities/cart";
 
 type ReturnProps = {
 	totalAmount: number;
 	items: CartStateItem[];
-	loading: boolean;
+	isLoading: boolean;
 	updateItemQuantity: (id: number, quantity: number) => void;
 	removeCartItem: (id: number) => void;
 	addCartItem: (values: CreateCartItemValues) => void;
 };
 
 export const useCart = (): ReturnProps => {
-	const cartState = useCartStore((state) => state);
+	const { items, totalAmount } = useAppSelector((state) => state.cart);
+	const [triggerAdd, { isLoading: isLoadingAdd }] = useLazyAddCartItemQuery();
+	const [triggerRemove, { isLoading: isLoadingRemove }] =
+		useLazyRemoveCartItemQuery();
+	const [triggerUpdate, { isLoading: isLoadingUpdate }] =
+		useLazyUpdateItemQuantityQuery();
 
-	useEffect(() => {
-		cartState.fetchCartItems();
-	}, []);
+	const { isLoading: isLoadingGet } = useGetCartItemsQuery(null);
 
-	return cartState;
+	const updateItemQuantity = (id: number, quantity: number) => {
+		triggerUpdate({ id, quantity });
+	};
+
+	const removeCartItem = (id: number) => {
+		triggerRemove({ id });
+	};
+
+	const addCartItem = (values: CreateCartItemValues) => {
+		triggerAdd({ values });
+	};
+
+	return {
+		isLoading:
+			isLoadingGet || isLoadingAdd || isLoadingUpdate || isLoadingRemove,
+		totalAmount,
+		items,
+		updateItemQuantity,
+		removeCartItem,
+		addCartItem,
+	};
 };
