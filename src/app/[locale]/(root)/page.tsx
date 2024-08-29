@@ -7,7 +7,6 @@ import { ProductCatalog } from "@/components/widgets/product-catalog";
 import { Container, Title } from "@/components/shared/ui";
 import { findPizzas } from "@/libs/find-pizzas";
 
-import type { CategoryWithProducts } from "@/@types/entities";
 import type { Props } from "../interface";
 
 export async function generateMetadata({
@@ -24,10 +23,7 @@ export default async function Home({
 	params: { locale },
 	searchParams,
 }: Props) {
-	const categories = (await findPizzas(
-		searchParams,
-		locale,
-	)) as CategoryWithProducts[];
+	const categories = await findPizzas(searchParams, locale);
 	const { t } = await initTranslations({ locale });
 
 	return (

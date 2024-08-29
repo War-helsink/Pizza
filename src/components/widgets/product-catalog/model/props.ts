@@ -1,5 +1,5 @@
-import type { CategoryWithProducts } from "@/@types/entities";
+import type { Category } from "@/@types/entities";
 
 export interface ProductCatalogProps {
-	categories: CategoryWithProducts[];
+	categories: Category[];
 }

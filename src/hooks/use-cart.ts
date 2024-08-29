@@ -13,9 +13,9 @@ type ReturnProps = {
 	totalAmount: number;
 	items: CartStateItem[];
 	isLoading: boolean;
-	updateItemQuantity: (id: number, quantity: number) => void;
-	removeCartItem: (id: number) => void;
-	addCartItem: (values: CreateCartItemValues) => void;
+	updateItemQuantity: (id: number, quantity: number) => Promise<void>;
+	removeCartItem: (id: number) => Promise<void>;
+	addCartItem: (values: CreateCartItemValues) => Promise<void>;
 };
 
 export const useCart = (): ReturnProps => {
@@ -28,17 +28,22 @@ export const useCart = (): ReturnProps => {
 
 	const { isLoading: isLoadingGet } = useGetCartItemsQuery(null);
 
-	const updateItemQuantity = (id: number, quantity: number) => {
-		triggerUpdate({ id, quantity });
+	const updateItemQuantity = async (id: number, quantity: number) => {
+		await triggerUpdate({ id, quantity }).unwrap();
 	};
 
-	const removeCartItem = (id: number) => {
-		triggerRemove({ id });
+	const removeCartItem = async (id: number) => {
+		await triggerRemove({ id }).unwrap();
 	};
 
-	const addCartItem = (values: CreateCartItemValues) => {
-		triggerAdd({ values });
+	const addCartItem = async (values: CreateCartItemValues) => {
+		await triggerAdd({ values }).unwrap();
 	};
+
+	console.log(
+		"isLoading",
+		isLoadingGet || isLoadingAdd || isLoadingUpdate || isLoadingRemove,
+	);
 
 	return {
 		isLoading:

@@ -1,5 +1,9 @@
 import type { ProductPrisma, ProductItemPrisma } from "@/@types/prisma";
-import type { Product, ProductItem } from "@/@types/entities";
+import type {
+	Product,
+	ProductItem,
+	ProductItemVariantType,
+} from "@/@types/entities";
 import { ingredientsConvert } from "./ingredients";
 
 export const productsConvert: (products: ProductPrisma[]) => Product[] = (
@@ -15,8 +19,8 @@ export const productConvert: (product: ProductPrisma) => Product = (
 
 	return {
 		name: translations ? translations[0].name : "",
-		items: items ? productItemsConvert(items) : undefined,
-		ingredients: ingredients ? ingredientsConvert(ingredients) : undefined,
+		items: items ? productItemsConvert(items) : [],
+		ingredients: ingredients ? ingredientsConvert(ingredients) : [],
 		...args,
 	};
 };
@@ -27,9 +31,11 @@ export const productItemsConvert: (
 	return productItems.map((productItem) => productItemConvert(productItem));
 };
 
-export const productItemConvert: (
+export const productItemConvert: <
+	T extends keyof ProductItemVariantType = "base",
+>(
 	productItem: ProductItemPrisma,
-) => ProductItem = (productItem) => {
+) => ProductItem<T> = (productItem) => {
 	const { prices, product, ...args } = productItem;
 	return {
 		product: product ? productConvert(product) : undefined,

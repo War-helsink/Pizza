@@ -15,7 +15,7 @@ export const categoryConvert: (category: CategoryPrisma) => Category = (
 
 	return {
 		name: translations ? translations[0].name : "",
-		products: products ? productsConvert(products) : undefined,
+		products: products ? productsConvert(products) : [],
 		...args,
 	};
 };

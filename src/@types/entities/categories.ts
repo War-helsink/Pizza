@@ -8,8 +8,6 @@ export interface CategoryBase {
 	updatedAt: Date;
 }
 
-export interface CategoryWithProducts extends CategoryBase {
+export interface Category extends CategoryBase {
 	products: Product[];
 }
-
-export type Category = CategoryBase | CategoryWithProducts;

@@ -1,9 +1,11 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Root as VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 import { cn } from "@/libs/utils";
 import type { PizzaSize, PizzaType } from "@/config/pizza";
@@ -12,6 +14,7 @@ import { useCart } from "@/hooks";
 import {
 	Title,
 	Button,
+	buttonVariants,
 	Sheet,
 	SheetClose,
 	SheetContent,
@@ -19,12 +22,14 @@ import {
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
+	SheetDescription,
 } from "@/components/shared/ui";
 import { getCartItemDetails } from "@/libs/get-cart-item-details";
 
 export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
-	const { totalAmount, updateItemQuantity, items, removeCartItem } = useCart();
+	const { totalAmount, items, updateItemQuantity, removeCartItem } = useCart();
 	const [redirecting, setRedirecting] = useState(false);
+	const { t } = useTranslation();
 
 	const onClickCountButton = (
 		id: number,
@@ -40,21 +45,23 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 			<SheetTrigger asChild>{children}</SheetTrigger>
 
 			<SheetContent className="flex flex-col justify-between pb-0 bg-[#F4F1EE]">
+				<SheetHeader>
+					<SheetTitle>
+						{t("cart.title")}{" "}
+						<span className="font-bold">
+							{items.length} {t("cart.items")}
+						</span>
+					</SheetTitle>
+					<VisuallyHidden>
+						<SheetDescription>{t("cart.hiddenDescription")}</SheetDescription>
+					</VisuallyHidden>
+				</SheetHeader>
 				<div
 					className={cn(
-						"flex flex-col h-full",
+						"flex flex-col flex-grow",
 						!totalAmount && "justify-center",
 					)}
 				>
-					{totalAmount > 0 && (
-						<SheetHeader>
-							<SheetTitle>
-								В корзине{" "}
-								<span className="font-bold">{items.length} товара</span>
-							</SheetTitle>
-						</SheetHeader>
-					)}
-
 					{!totalAmount && (
 						<div className="flex flex-col items-center justify-center w-72 mx-auto">
 							<Image
@@ -65,18 +72,21 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 							/>
 							<Title
 								size="sm"
-								text="Корзина пустая"
+								text={t("cart.emptyTitle")}
 								className="text-center font-bold my-2"
 							/>
 							<p className="text-center text-neutral-500 mb-5">
-								Добавьте хотя бы одну пиццу, чтобы совершить заказ
+								{t("cart.emptyDescription")}
 							</p>
 
-							<SheetClose>
-								<Button className="w-56 h-12 text-base" size="lg">
-									<ArrowLeft className="w-5 mr-2" />
-									Вернуться назад
-								</Button>
+							<SheetClose
+								className={cn(
+									buttonVariants({ size: "lg" }),
+									"w-56 h-12 text-base",
+								)}
+							>
+								<ArrowLeft className="w-5 mr-2" />
+								{t("cart.backButton")}
 							</SheetClose>
 						</div>
 					)}
@@ -91,6 +101,7 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 											imageUrl={item.imageUrl}
 											details={getCartItemDetails(
 												item.ingredients,
+												t,
 												item.pizzaType as PizzaType,
 												item.pizzaSize as PizzaSize,
 											)}
@@ -111,11 +122,13 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 								<div className="w-full">
 									<div className="flex mb-4">
 										<span className="flex flex-1 text-lg text-neutral-500">
-											Итого
+											{t("cart.total")}
 											<div className="flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2" />
 										</span>
 
-										<span className="font-bold text-lg">{totalAmount} ₽</span>
+										<span className="font-bold text-lg">
+											{totalAmount} {t("product.currency")}
+										</span>
 									</div>
 
 									<Link href="/checkout">
@@ -125,7 +138,7 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 											type="submit"
 											className="w-full h-12 text-base"
 										>
-											Оформить заказ
+											{t("cart.checkoutButton")}
 											<ArrowRight className="w-5 ml-2" />
 										</Button>
 									</Link>

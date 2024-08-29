@@ -1,21 +1,29 @@
-import { type PizzaSize, type PizzaType, mapPizzaType } from '@/config/pizza';
-import type { CartStateItem } from './get-cart-details';
+import { type PizzaSize, type PizzaType, mapPizzaType } from "@/config/pizza";
+import type { TFunction } from "i18next";
+
+import type { CartStateItem } from "@/libs/get-cart-details";
 
 export const getCartItemDetails = (
-  ingredients: CartStateItem['ingredients'],
-  pizzaType?: PizzaType,
-  pizzaSize?: PizzaSize,
+	ingredients: CartStateItem["ingredients"],
+	translation: TFunction<"translation", undefined>,
+	pizzaType?: PizzaType,
+	pizzaSize?: PizzaSize,
 ): string => {
-  const details = [];
+	const details = [];
 
-  if (pizzaSize && pizzaType) {
-    const typeName = mapPizzaType[pizzaType];
-    details.push(`${typeName} ${pizzaSize} см`);
-  }
+	if (pizzaSize && pizzaType) {
+		const key = mapPizzaType[pizzaType];
+		const textDetaills = translation("product.textDetaills", {
+			size: pizzaSize,
+			name: translation(key),
+		});
 
-  if (ingredients) {
-    details.push(...ingredients.map((ingredient) => ingredient.name));
-  }
+		details.push(textDetaills);
+	}
 
-  return details.join(', ');
+	if (ingredients) {
+		details.push(...ingredients.map((ingredient) => ingredient.name));
+	}
+
+	return details.join(", ");
 };

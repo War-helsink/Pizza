@@ -12,7 +12,7 @@ export const cartConvert: (cart: CartPrisma) => Cart = (cart) => {
 	const { items, ...args } = cart;
 
 	return {
-		items: items ? cartItemsConvert(items) : undefined,
+		items: items ? cartItemsConvert(items) : [],
 		...args,
 	};
 };
@@ -29,8 +29,8 @@ export const cartItemConvert: (cartItem: CartItemPrisma) => CartItem = (
 	const { ingredients, productItem, ...args } = cartItem;
 
 	return {
-		productItem: productItem ? productItemConvert(productItem) : undefined,
-		ingredients: ingredients ? ingredientsConvert(ingredients) : undefined,
+		productItem: productItem ? productItemConvert<"full">(productItem) : undefined,
+		ingredients: ingredients ? ingredientsConvert(ingredients) : [],
 		...args,
 	};
 };

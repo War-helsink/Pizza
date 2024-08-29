@@ -1,6 +1,7 @@
 import { cn } from "@/libs/utils";
-import { CountButton } from "@/components/shared/ui";
 import { Trash2Icon } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { CountButton } from "@/components/shared/ui";
 
 import type { CartItemProps } from "../../model/props";
 
@@ -15,6 +16,8 @@ export const CartItem: React.FC<CartItemProps> = ({
 	onClickRemove,
 	className,
 }) => {
+	const { t } = useTranslation("languages");
+
 	return (
 		<div
 			className={cn(
@@ -43,7 +46,7 @@ export const CartItem: React.FC<CartItemProps> = ({
 					<CountButton onClick={onClickCountButton} value={quantity} />
 
 					<div className="flex items-center gap-3">
-						<h2 className="font-bold">{price} ₽</h2>
+						<h2 className="font-bold">{price} {t("product.currency")}</h2>
 						<Trash2Icon
 							onClick={onClickRemove}
 							className="text-gray-400 cursor-pointer hover:text-gray-600"

@@ -1,3 +1,4 @@
+import type { Locale } from "@/@types/prisma";
 import { prisma } from "@/prisma/prisma-client";
 import { updateCartTotalAmount } from "@/libs/update-cart-total-amount";
 import { type NextRequest, NextResponse } from "next/server";
@@ -7,6 +8,7 @@ export async function PATCH(
 	{ params }: { params: { id: string } },
 ) {
 	try {
+		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 		const id = Number(params.id);
 		const data = (await req.json()) as { quantity: number };
 		const token = req.cookies.get("cartToken")?.value;
@@ -34,7 +36,7 @@ export async function PATCH(
 			},
 		});
 
-		const updatedUserCart = await updateCartTotalAmount(token);
+		const updatedUserCart = await updateCartTotalAmount(token, locale);
 
 		return NextResponse.json(updatedUserCart);
 	} catch (error) {
@@ -51,6 +53,7 @@ export async function DELETE(
 	{ params }: { params: { id: string } },
 ) {
 	try {
+		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 		const id = Number(params.id);
 		const token = req.cookies.get("cartToken")?.value;
 
@@ -74,7 +77,7 @@ export async function DELETE(
 			},
 		});
 
-		const updatedUserCart = await updateCartTotalAmount(token);
+		const updatedUserCart = await updateCartTotalAmount(token, locale);
 
 		return NextResponse.json(updatedUserCart);
 	} catch (error) {

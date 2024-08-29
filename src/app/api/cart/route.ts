@@ -1,13 +1,16 @@
 import { prisma } from "@/prisma/prisma-client";
 import { type NextRequest, NextResponse } from "next/server";
+
 import crypto from "crypto";
+import type { Locale } from "@/@types/prisma";
 import { findOrCreateCart } from "@/libs/find-or-create-cart";
 import { updateCartTotalAmount } from "@/libs/update-cart-total-amount";
-import type { CreateCartItemValues } from "@/components/entities/cart" 
+import type { CreateCartItemValues } from "@/components/entities/cart";
 
 export async function GET(req: NextRequest) {
 	try {
 		const token = req.cookies.get("cartToken")?.value;
+		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 
 		if (!token) {
 			return NextResponse.json({ totalAmount: 0, items: [] });
@@ -29,10 +32,48 @@ export async function GET(req: NextRequest) {
 					include: {
 						productItem: {
 							include: {
-								product: true,
+								product: {
+									include: {
+										translations: {
+											where: {
+												locale: locale,
+											},
+											select: {
+												name: true,
+											},
+										},
+									},
+								},
+								prices: {
+									where: {
+										locale: locale,
+									},
+									select: {
+										price: true,
+									},
+								},
 							},
 						},
-						ingredients: true,
+						ingredients: {
+							include: {
+								translations: {
+									where: {
+										locale: locale,
+									},
+									select: {
+										name: true,
+									},
+								},
+								prices: {
+									where: {
+										locale: locale,
+									},
+									select: {
+										price: true,
+									},
+								},
+							},
+						},
 					},
 				},
 			},
@@ -51,6 +92,7 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
 	try {
 		let token = req.cookies.get("cartToken")?.value;
+		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 
 		if (!token) {
 			token = crypto.randomUUID();
@@ -93,7 +135,7 @@ export async function POST(req: NextRequest) {
 			});
 		}
 
-		const updatedUserCart = await updateCartTotalAmount(token);
+		const updatedUserCart = await updateCartTotalAmount(token, locale);
 
 		const resp = NextResponse.json(updatedUserCart);
 		resp.cookies.set("cartToken", token);

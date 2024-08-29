@@ -1,5 +1,6 @@
 import type { Ingredient } from "./ingredient";
 
+// Product
 export interface ProductBase {
 	id: number;
 	name: string;
@@ -10,19 +11,16 @@ export interface ProductBase {
 	updatedAt: Date;
 }
 
-export interface ProductWithIngredients extends ProductBase {
+export interface Product extends ProductBase {
 	ingredients: Ingredient[];
+	items: ProductItem<"base">[];
 }
 
-export interface ProductWithItems extends ProductBase {
-	items: ProductItem[];
+// ProductItem
+export interface ProductItemVariantType {
+	full: ProductItemWithProduct;
+	base: ProductItemBase;
 }
-
-export type Product =
-	| ProductBase
-	| ProductWithIngredients
-	| ProductWithItems
-	| (ProductWithItems & ProductWithIngredients);
 
 export interface ProductItemBase {
 	id: number;
@@ -32,6 +30,9 @@ export interface ProductItemBase {
 	productId: number;
 }
 
-export interface ProductItem extends ProductItemBase {
-	product?: Product;
+export interface ProductItemWithProduct extends ProductItemBase {
+	product: Product;
 }
+
+export type ProductItem<T extends keyof ProductItemVariantType = "base"> =
+	ProductItemVariantType[T];

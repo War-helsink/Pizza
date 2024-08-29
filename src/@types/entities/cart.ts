@@ -6,22 +6,12 @@ import type {
 import type { Ingredient } from "./ingredient";
 import type { ProductItem } from "./product";
 
-export interface CartWithItems extends CartBase {
+export interface Cart extends CartBase {
 	items: CartItem[];
 }
 
-export type Cart = CartBase | CartWithItems;
+export interface CartItem extends CartItemBase {
+	productItem: ProductItem<"full">;
 
-export interface CartItemtWithProductItem extends CartItemBase {
-	productItem: ProductItem;
-}
-
-export interface CartItemtWithIngredients extends CartItemBase {
 	ingredients: Ingredient[];
 }
-
-export type CartItem =
-	| CartItemBase
-	| CartItemtWithProductItem
-	| CartItemtWithIngredients
-	| (CartItemtWithProductItem & CartItemtWithIngredients);

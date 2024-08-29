@@ -10,8 +10,8 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/components/shared/ui";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-
+import { Root as VisuallyHidden} from "@radix-ui/react-visually-hidden";
+ 
 import { ProductForm } from "@/components/entities/products";
 
 import type { ChooseProductModalProps } from "../../model/props";
@@ -34,7 +34,7 @@ export const ChooseProductModal: React.FC<ChooseProductModalProps> = ({
 					className,
 				)}
 			>
-				<VisuallyHidden.Root>
+				<VisuallyHidden>
 					<DialogHeader>
 						<DialogTitle>
 							{isPizza
@@ -55,7 +55,7 @@ export const ChooseProductModal: React.FC<ChooseProductModalProps> = ({
 									})}
 						</DialogDescription>
 					</DialogHeader>
-				</VisuallyHidden.Root>
+				</VisuallyHidden>
 				<ProductForm
 					isPizza={isPizza}
 					product={product}

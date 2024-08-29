@@ -36,6 +36,17 @@
 		"showAll": "Show all",
 		"hide": "Hide"
 	},
+	"cart": {
+		"title": "In Cart",
+		"items": "items",
+		"hiddenDescription": "Shopping cart, add, change or remove a product.",
+		"emptyImageAlt": "Empty cart",
+		"emptyTitle": "Cart is empty",
+		"emptyDescription": "Add at least one pizza to place an order",
+		"backButton": "Go back",
+		"total": "Total",
+		"checkoutButton": "Checkout"
+	},
 	"product": {
 		"small": "Small",
 		"medium": "Medium",
@@ -47,5 +58,9 @@
 		"addCart": "Add",
 		"from": "from",
 		"currency": "$"
+	},
+	"message": {
+		"product_added": "{{name}} added to cart",
+		"add_to_cart_failed": "Failed to add product to cart"
 	}
 }

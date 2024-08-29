@@ -39,7 +39,7 @@ export const cartsApi = createApi({
 				return {
 					url: `cart/${id}`,
 					method: "PATCH",
-					params: {
+					body: {
 						quantity,
 					},
 				};
@@ -82,7 +82,7 @@ export const cartsApi = createApi({
 				return {
 					url: "cart",
 					method: "POST",
-					params: values,
+					body: values,
 				};
 			},
 			transformResponse: (cart: CartPrisma) => {

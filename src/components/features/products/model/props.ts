@@ -1,14 +1,10 @@
-import type {
-	Product,
-	ProductWithItems,
-	ProductWithIngredients,
-} from "@/@types/entities";
+import type { Product } from "@/@types/entities";
 
 export interface ProductsGroupListProps {
 	title: string;
 	categoryId: number;
 
-	items: (ProductWithItems & ProductWithIngredients)[];
+	items: Product[];
 	className?: string;
 }
 
