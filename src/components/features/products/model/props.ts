@@ -12,7 +12,7 @@ export interface ChooseProductFormProps {
 	imageUrl: string;
 	name: string;
 	price: number;
-	loading?: boolean;
+	isLoading?: boolean;
 	onSubmit?: VoidFunction;
 	className?: string;
 }

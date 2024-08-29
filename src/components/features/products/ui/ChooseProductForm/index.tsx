@@ -12,7 +12,7 @@ export const ChooseProductForm: React.FC<ChooseProductFormProps> = ({
 	price,
 	onSubmit,
 	className,
-	loading,
+	isLoading,
 }) => {
 	const { t } = useTranslation();
 
@@ -31,7 +31,7 @@ export const ChooseProductForm: React.FC<ChooseProductFormProps> = ({
 				<Title text={name} size="md" className="font-extrabold mb-1" />
 
 				<Button
-					loading={loading}
+					isLoading={isLoading}
 					onClick={() => onSubmit?.()}
 					className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10"
 				>

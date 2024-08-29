@@ -53,7 +53,7 @@
 		"large": "Велика",
 		"thinCrust": "Тонке",
 		"traditional": "Традиційне",
-		"textDetaills": "{{size}} см, {{name}} піца.",
+		"textDetaills": "{{size}} см, {{name}} тісто",
 		"addCartPrice": "Додати до кошику за {{price}} ₴",
 		"addCart": "Додати",
 		"from": "від",
@@ -62,5 +62,8 @@
 	"message": {
 		"product_added": "{{name}} додана до кошика",
 		"add_to_cart_failed": "Не вдалося додати товар до кошика"
+	},
+	"checkout": {
+		"title": "Оформлення замовлення"
 	}
 }

@@ -3,11 +3,11 @@
 import { I18nextProvider } from "react-i18next";
 import initTranslations from "@/libs/i18n";
 import { createInstance } from "i18next";
-
 import type { Resource } from "i18next";
+import type { Locale } from "@/@types/prisma";
 
 export interface TranslationsProviderProps extends React.PropsWithChildren {
-	locale: string;
+	locale: Locale;
 	resources: Resource;
 }
 

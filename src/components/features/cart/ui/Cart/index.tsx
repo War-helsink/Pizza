@@ -44,8 +44,8 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 		<Sheet>
 			<SheetTrigger asChild>{children}</SheetTrigger>
 
-			<SheetContent className="flex flex-col justify-between pb-0 bg-[#F4F1EE]">
-				<SheetHeader>
+			<SheetContent className="flex flex-col justify-between pb-0 px-0 bg-[#F4F1EE]">
+				<SheetHeader className="px-6">
 					<SheetTitle>
 						{t("cart.title")}{" "}
 						<span className="font-bold">
@@ -58,7 +58,7 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 				</SheetHeader>
 				<div
 					className={cn(
-						"flex flex-col flex-grow",
+						"flex flex-col flex-grow overflow-hidden",
 						!totalAmount && "justify-center",
 					)}
 				>
@@ -80,12 +80,9 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 							</p>
 
 							<SheetClose
-								className={cn(
-									buttonVariants({ size: "lg" }),
-									"w-56 h-12 text-base",
-								)}
+								className={cn(buttonVariants({ size: "lg" }), "w-56 h-12")}
 							>
-								<ArrowLeft className="w-5 mr-2" />
+								<ArrowLeft className="text-base w-5 mr-2" />
 								{t("cart.backButton")}
 							</SheetClose>
 						</div>
@@ -93,7 +90,7 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 
 					{totalAmount > 0 && (
 						<>
-							<div className="-mx-6 mt-5 overflow-auto flex-1">
+							<div className="mt-5 flex-grow overflow-y-auto">
 								{items.map((item) => (
 									<div key={item.id} className="mb-2">
 										<CartItem
@@ -118,7 +115,7 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 								))}
 							</div>
 
-							<SheetFooter className="-mx-6 bg-white p-8">
+							<SheetFooter className="bg-white p-8">
 								<div className="w-full">
 									<div className="flex mb-4">
 										<span className="flex flex-1 text-lg text-neutral-500">
@@ -134,7 +131,7 @@ export const Cart: React.FC<React.PropsWithChildren> = ({ children }) => {
 									<Link href="/checkout">
 										<Button
 											onClick={() => setRedirecting(true)}
-											loading={redirecting}
+											isLoading={redirecting}
 											type="submit"
 											className="w-full h-12 text-base"
 										>

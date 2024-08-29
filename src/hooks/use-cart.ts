@@ -19,14 +19,14 @@ type ReturnProps = {
 };
 
 export const useCart = (): ReturnProps => {
-	const { items, totalAmount } = useAppSelector((state) => state.cart);
-	const [triggerAdd, { isLoading: isLoadingAdd }] = useLazyAddCartItemQuery();
-	const [triggerRemove, { isLoading: isLoadingRemove }] =
-		useLazyRemoveCartItemQuery();
-	const [triggerUpdate, { isLoading: isLoadingUpdate }] =
-		useLazyUpdateItemQuantityQuery();
+	const { items, totalAmount, isLoading } = useAppSelector(
+		(state) => state.cart,
+	);
+	const [triggerAdd] = useLazyAddCartItemQuery();
+	const [triggerRemove] = useLazyRemoveCartItemQuery();
+	const [triggerUpdate] = useLazyUpdateItemQuantityQuery();
 
-	const { isLoading: isLoadingGet } = useGetCartItemsQuery(null);
+	useGetCartItemsQuery(null);
 
 	const updateItemQuantity = async (id: number, quantity: number) => {
 		await triggerUpdate({ id, quantity }).unwrap();
@@ -40,14 +40,8 @@ export const useCart = (): ReturnProps => {
 		await triggerAdd({ values }).unwrap();
 	};
 
-	console.log(
-		"isLoading",
-		isLoadingGet || isLoadingAdd || isLoadingUpdate || isLoadingRemove,
-	);
-
 	return {
-		isLoading:
-			isLoadingGet || isLoadingAdd || isLoadingUpdate || isLoadingRemove,
+		isLoading,
 		totalAmount,
 		items,
 		updateItemQuantity,

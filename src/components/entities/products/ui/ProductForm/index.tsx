@@ -25,11 +25,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 				productItemId: itemId,
 				ingredients,
 			});
-			toast.success(t("product_added", { name: product.name }));
+			toast.success(t("message.product_added", { name: product.name }));
 
 			_onSubmit?.();
 		} catch (err) {
-			toast.error(t("add_to_cart_failed"));
+			toast.error(t("message.add_to_cart_failed"));
 			console.error(err);
 		}
 	};
@@ -42,7 +42,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 				ingredients={product.ingredients}
 				items={product.items}
 				onSubmit={onSubmit}
-				loading={isLoading}
+				isLoading={isLoading}
 			/>
 		);
 	}
@@ -53,7 +53,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 			name={product.name}
 			onSubmit={onSubmit}
 			price={firstItem.price}
-			loading={isLoading}
+			isLoading={isLoading}
 		/>
 	);
 };

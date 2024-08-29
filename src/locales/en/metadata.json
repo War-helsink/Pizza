@@ -2,12 +2,14 @@
 	"title": {
 		"default": "Pizza | Home",
 		"product": "Pizza | {{productName}}",
-		"pizza": "Pizza {{productName}} - order with home and office delivery"
+		"pizza": "Pizza {{productName}} - order with home and office delivery",
+		"checkout": "Pizza | Cart"
 	},
 	"description": {
 		"default": "Pizza delivery to your home and office from ❤️ &quot; ☝️ Permanent promotions, Discounts. Order delicious pizza online.",
 		"product": "{{productName}} at a bargain price with home and office delivery ➤ Payment by card ✔ Fast delivery Order now!",
-		"pizza": "Pizza Delivery {{productName}} ⭐️ Large portions, Fast and Free delivery to your office or home"
+		"pizza": "Pizza Delivery {{productName}} ⭐️ Large portions, Fast and Free delivery to your office or home",
+		"checkout": "Order creation page."
 	},
 	"openGraph": {
 		"title": "Pizza",

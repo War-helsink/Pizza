@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { cartConvert } from "@/prisma/convert";
+import type { RootState } from "@/components/app/store";
 
 import type { CartPrisma } from "@/@types/prisma";
 import type { Cart } from "@/@types/entities";
 import { getCartDetails } from "@/libs/get-cart-details";
-import { setItems, setTotalAmount } from "../model/slice";
+import { setAll, setItems, setLoading, setTotalAmount } from "../model/slice";
 import type {
 	AddCartItemParams,
 	UpdateItemQuantityParams,
@@ -25,13 +26,14 @@ export const cartsApi = createApi({
 				return cartConvert(cart);
 			},
 			async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+				dispatch(setLoading(true));
+
 				const result = await queryFulfilled;
 				const data = result.data;
 
 				const { items, totalAmount } = getCartDetails(data);
 
-				dispatch(setItems(items));
-				dispatch(setTotalAmount(totalAmount));
+				dispatch(setAll({ items, totalAmount, isLoading: false }));
 			},
 		}),
 		updateItemQuantity: builder.query<Cart, UpdateItemQuantityParams>({
@@ -48,13 +50,14 @@ export const cartsApi = createApi({
 				return cartConvert(cart);
 			},
 			async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+				dispatch(setLoading(true));
+
 				const result = await queryFulfilled;
 				const data = result.data;
 
 				const { items, totalAmount } = getCartDetails(data);
 
-				dispatch(setItems(items));
-				dispatch(setTotalAmount(totalAmount));
+				dispatch(setAll({ items, totalAmount, isLoading: false }));
 			},
 		}),
 		removeCartItem: builder.query<Cart, RemoveCartItemParams>({
@@ -67,14 +70,23 @@ export const cartsApi = createApi({
 			transformResponse: (cart: CartPrisma) => {
 				return cartConvert(cart);
 			},
-			async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+			async onQueryStarted({ id }, { dispatch, queryFulfilled, getState }) {
+				const currentItems = (getState() as RootState).cart.items;
+				dispatch(setLoading(true));
+				dispatch(
+					setItems(
+						currentItems.map((item) =>
+							item.id === id ? { ...item, disabled: true } : item,
+						),
+					),
+				);
+
 				const result = await queryFulfilled;
 				const data = result.data;
 
 				const { items, totalAmount } = getCartDetails(data);
 
-				dispatch(setItems(items));
-				dispatch(setTotalAmount(totalAmount));
+				dispatch(setAll({ items, totalAmount, isLoading: false }));
 			},
 		}),
 		addCartItem: builder.query<Cart, AddCartItemParams>({
@@ -89,13 +101,14 @@ export const cartsApi = createApi({
 				return cartConvert(cart);
 			},
 			async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+				dispatch(setLoading(true));
+
 				const result = await queryFulfilled;
 				const data = result.data;
 
 				const { items, totalAmount } = getCartDetails(data);
 
-				dispatch(setItems(items));
-				dispatch(setTotalAmount(totalAmount));
+				dispatch(setAll({ items, totalAmount, isLoading: false }));
 			},
 		}),
 	}),

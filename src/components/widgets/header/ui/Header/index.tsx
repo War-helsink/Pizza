@@ -13,7 +13,11 @@ import { Button, Container } from "@/components/shared/ui";
 
 import type { HeaderProps } from "../../model/props";
 
-export const Header: React.FC<HeaderProps> = ({ className }) => {
+export const Header: React.FC<HeaderProps> = ({
+	hasSearch = true,
+	hasCart = true,
+	className,
+}) => {
 	const { t } = useTranslation();
 
 	return (
@@ -38,9 +42,11 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
 					</div>
 				</Link>
 
-				<div className="mx-10 flex-1">
-					<SearchInput />
-				</div>
+				{hasSearch && (
+					<div className="mx-10 flex-1">
+						<SearchInput />
+					</div>
+				)}
 
 				<div className="flex items-center gap-3">
 					<LanguageButton />
@@ -48,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
 						<User size={16} />
 						{t("header.login")}
 					</Button>
-					<CartButton />
+					{hasCart && <CartButton />}
 				</div>
 			</Container>
 		</header>

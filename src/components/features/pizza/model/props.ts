@@ -5,7 +5,7 @@ export interface ChoosePizzaFormProps {
 	name: string;
 	ingredients: Ingredient[];
 	items: ProductItem[];
-	loading?: boolean;
+	isLoading?: boolean;
 	onSubmit?: (itemId: number, ingredients: number[]) => void;
 	className?: string;
 }

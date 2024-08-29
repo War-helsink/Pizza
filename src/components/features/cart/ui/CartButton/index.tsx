@@ -16,7 +16,7 @@ export const CartButton: React.FC<CartButtonProps> = ({ className }) => {
 
 	return (
 		<Cart>
-			<Button className={cn("group relative", className)} loading={isLoading}>
+			<Button className={cn("group relative", className)} isLoading={isLoading}>
 				<b>
 					{totalAmount} {t("product.currency")}
 				</b>

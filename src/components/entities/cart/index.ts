@@ -1,3 +1,4 @@
+export type { CartItemProps } from "./model/props"
 export { CartItem } from "./ui/CartItem";
 
 export {
@@ -8,8 +9,13 @@ export {
 	cartsApi,
 } from "./api/api";
 
-import cartsReducer, { setItems, setTotalAmount } from "./model/slice";
+import cartsReducer, {
+	setAll,
+	setItems,
+	setLoading,
+	setTotalAmount,
+} from "./model/slice";
 
-export { cartsReducer, setItems, setTotalAmount };
+export { cartsReducer, setAll, setItems, setLoading, setTotalAmount };
 
 export type { CreateCartItemValues } from "./model/types";

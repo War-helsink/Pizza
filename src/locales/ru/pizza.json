@@ -53,7 +53,7 @@
 		"large": "Большая",
 		"thinCrust": "Тонкое",
 		"traditional": "Традиционное",
-		"textDetaills": "{{size}} см, {{name}} пицца.",
+		"textDetaills": "{{size}} см, {{name}} тесто",
 		"addCartPrice": "Добавить в корзину за {{price}} ₽",
 		"addCart": "Добавить",
 		"from": "от",
@@ -62,5 +62,8 @@
 	"message": {
 		"product_added": "{{name}} добавлена в корзину",
 		"add_to_cart_failed": "Не удалось добавить товар в корзину"
+	},
+	"checkout": {
+		"title": "Оформление заказа"
 	}
 }

@@ -4,8 +4,7 @@ import { Nunito } from "next/font/google";
 import { dir } from "i18next";
 import initTranslations from "@/libs/i18n";
 import { i18nConfig } from "@/config/i18next.config";
-import { TranslationsProvider } from "@/components/app/providers/TranslationsProvider";
-import { StoreProvider } from "@/components/app/providers/StoreProvider";
+import { Providers } from "@/components/app/providers";
 
 import type { RootLayoutProps, Props } from "./interface";
 import "./globals.scss";
@@ -78,11 +77,9 @@ export default async function RootLayout({
 	return (
 		<html lang={locale} dir={dir(locale)}>
 			<body className={nunito.variable}>
-				<StoreProvider>
-					<TranslationsProvider locale={locale} resources={resources}>
-						{children}
-					</TranslationsProvider>
-				</StoreProvider>
+				<Providers locale={locale} resources={resources}>
+					{children}
+				</Providers>
 			</body>
 		</html>
 	);
