@@ -3,8 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import crypto from "crypto";
 import type { Locale } from "@/@types/prisma";
-import { findOrCreateCart } from "@/libs/find-or-create-cart";
-import { updateCartTotalAmount } from "@/libs/update-cart-total-amount";
+import { getCart, getCartId, createCart, findOrCreateCart } from "@/libs/api";
 import type { CreateCartItemValues } from "@/components/entities/cart";
 
 export async function GET(req: NextRequest) {
@@ -13,71 +12,10 @@ export async function GET(req: NextRequest) {
 		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 
 		if (!token) {
-			return NextResponse.json({ totalAmount: 0, items: [] });
+			return NextResponse.json({ items: [] });
 		}
 
-		const userCart = await prisma.cart.findFirst({
-			where: {
-				OR: [
-					{
-						token,
-					},
-				],
-			},
-			include: {
-				items: {
-					orderBy: {
-						createdAt: "desc",
-					},
-					include: {
-						productItem: {
-							include: {
-								product: {
-									include: {
-										translations: {
-											where: {
-												locale: locale,
-											},
-											select: {
-												name: true,
-											},
-										},
-									},
-								},
-								prices: {
-									where: {
-										locale: locale,
-									},
-									select: {
-										price: true,
-									},
-								},
-							},
-						},
-						ingredients: {
-							include: {
-								translations: {
-									where: {
-										locale: locale,
-									},
-									select: {
-										name: true,
-									},
-								},
-								prices: {
-									where: {
-										locale: locale,
-									},
-									select: {
-										price: true,
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		});
+		const userCart = await findOrCreateCart(token, locale);
 
 		return NextResponse.json(userCart);
 	} catch (error) {
@@ -94,17 +32,19 @@ export async function POST(req: NextRequest) {
 		let token = req.cookies.get("cartToken")?.value;
 		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 
+		let id: number;
 		if (!token) {
 			token = crypto.randomUUID();
+			id = await createCart(token);
+		} else {
+			id = await getCartId(token);
 		}
-
-		const userCart = await findOrCreateCart(token);
 
 		const data = (await req.json()) as CreateCartItemValues;
 
 		const findCartItem = await prisma.cartItem.findFirst({
 			where: {
-				cartId: userCart.id,
+				cartId: id,
 				productItemId: data.productItemId,
 				ingredients: {
 					every: {
@@ -127,7 +67,7 @@ export async function POST(req: NextRequest) {
 		} else {
 			await prisma.cartItem.create({
 				data: {
-					cartId: userCart.id,
+					cartId: id,
 					productItemId: data.productItemId,
 					quantity: 1,
 					ingredients: { connect: data.ingredients?.map((id) => ({ id })) },
@@ -135,9 +75,9 @@ export async function POST(req: NextRequest) {
 			});
 		}
 
-		const updatedUserCart = await updateCartTotalAmount(token, locale);
+		const newUserCart = await getCart(token, locale);
 
-		const resp = NextResponse.json(updatedUserCart);
+		const resp = NextResponse.json(newUserCart);
 		resp.cookies.set("cartToken", token);
 		return resp;
 	} catch (error) {

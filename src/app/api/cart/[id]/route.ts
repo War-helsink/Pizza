@@ -1,6 +1,6 @@
 import type { Locale } from "@/@types/prisma";
 import { prisma } from "@/prisma/prisma-client";
-import { updateCartTotalAmount } from "@/libs/update-cart-total-amount";
+import { getCart } from "@/libs/api";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
@@ -36,9 +36,9 @@ export async function PATCH(
 			},
 		});
 
-		const updatedUserCart = await updateCartTotalAmount(token, locale);
+		const userCart = await getCart(token, locale);
 
-		return NextResponse.json(updatedUserCart);
+		return NextResponse.json(userCart);
 	} catch (error) {
 		console.log("[CART_PATCH] Server error", error);
 		return NextResponse.json(
@@ -77,9 +77,9 @@ export async function DELETE(
 			},
 		});
 
-		const updatedUserCart = await updateCartTotalAmount(token, locale);
+		const userCart = await getCart(token, locale);
 
-		return NextResponse.json(updatedUserCart);
+		return NextResponse.json(userCart);
 	} catch (error) {
 		console.log("[CART_DELETE] Server error", error);
 		return NextResponse.json(

@@ -2,6 +2,7 @@
 
 import { cn } from "@/libs/utils";
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { CountButton } from "@/components/shared/ui";
 
 import type { CheckoutItemProps } from "../../model/props";
@@ -17,6 +18,8 @@ export const CheckoutItem: React.FC<CheckoutItemProps> = ({
 	onClickCountButton,
 	onClickRemove,
 }) => {
+	const { t } = useTranslation();
+
 	return (
 		<div
 			className={cn(
@@ -40,7 +43,9 @@ export const CheckoutItem: React.FC<CheckoutItemProps> = ({
 				</div>
 			</div>
 
-			<h2 className="font-bold">{price} ₽</h2>
+			<h2 className="font-bold">
+				{price} {t("product.currency")}
+			</h2>
 
 			<div className="flex items-center gap-5 ml-20">
 				<CountButton onClick={onClickCountButton} value={quantity} />

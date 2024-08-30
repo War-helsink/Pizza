@@ -5,7 +5,7 @@ import { Stories } from "@/components/widgets/stories";
 import { ProductCatalog } from "@/components/widgets/product-catalog";
 
 import { Container, Title } from "@/components/shared/ui";
-import { findPizzas } from "@/libs/find-pizzas";
+import { findPizzas } from "@/libs/api";
 
 import type { Props } from "../interface";
 

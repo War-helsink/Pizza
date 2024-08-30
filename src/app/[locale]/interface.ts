@@ -1,5 +1,5 @@
 import type { Locale } from "@/@types/prisma";
-import type { GetSearchParams } from "@/libs/find-pizzas";
+import type { GetSearchParams } from "@/libs/api";
 
 export interface Props {
 	params: { locale: Locale };

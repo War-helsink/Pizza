@@ -60,10 +60,48 @@
 		"currency": "$"
 	},
 	"message": {
+		"firstName": {
+			"minLength": "First name must be at least 2 characters long"
+		},
+		"lastName": {
+			"minLength": "Last name must be at least 2 characters long"
+		},
+		"email": {
+			"invalid": "Please enter a valid email address"
+		},
+		"phone": {
+			"invalid": "Please enter a valid phone number"
+		},
+		"address": {
+			"invalid": "Please enter a valid address"
+		},
+		"success": {
+			"orderCreated": "Order successfully created! 📝 Redirecting to payment..."
+		},
+		"error": {
+			"orderFailed": "Failed to create order"
+		},
 		"product_added": "{{name}} added to cart",
 		"add_to_cart_failed": "Failed to add product to cart"
 	},
 	"checkout": {
-		"title": "Checkout"
+		"title": "Checkout",
+		"sidebar": {
+			"total": "Total:",
+			"cartPrice": "Cart Price:",
+			"taxes": "Taxes:",
+			"delivery": "Delivery:",
+			"proceedToPayment": "Proceed to Payment"
+		},
+		"form": {
+			"cartTitle": "1. Cart",
+			"personalData": "2. Personal Data",
+			"firstName": "First Name",
+			"lastName": "Last Name",
+			"email": "E-Mail",
+			"phone": "Phone",
+			"deliveryAddress": "3. Delivery Address",
+			"commentPlaceholder": "Order Comment"
+		}
 	}
 }

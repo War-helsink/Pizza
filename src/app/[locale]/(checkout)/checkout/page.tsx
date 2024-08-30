@@ -16,7 +16,7 @@ import { useCart } from "@/hooks";
 
 import {
 	type CheckoutFormValues,
-	checkoutFormSchema,
+	checkoutFormSchemaFn,
 } from "@/config/checkout-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -27,7 +27,7 @@ export default function CheckoutPage() {
 		useCart();
 
 	const form = useForm<CheckoutFormValues>({
-		resolver: zodResolver(checkoutFormSchema),
+		resolver: zodResolver(checkoutFormSchemaFn(t)),
 		defaultValues: {
 			email: "",
 			firstName: "",
@@ -46,7 +46,7 @@ export default function CheckoutPage() {
 
 			console.log("data: ", data);
 
-			toast.error("Заказ успешно оформлен! 📝 Переход на оплату... ", {
+			toast.success(t("message.success.orderCreated"), {
 				icon: "✅",
 			});
 
@@ -56,7 +56,7 @@ export default function CheckoutPage() {
 		} catch (err) {
 			console.log(err);
 			setSubmitting(false);
-			toast.error("Не удалось создать заказ", {
+			toast.error(t("message.error.orderFailed"), {
 				icon: "❌",
 			});
 		}

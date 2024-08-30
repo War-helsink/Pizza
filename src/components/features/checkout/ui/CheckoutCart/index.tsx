@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslation } from "react-i18next";
 import type { PizzaSize, PizzaType } from "@/config/pizza";
 import { getCartItemDetails } from "@/libs/get-cart-item-details";
@@ -19,7 +21,7 @@ export const CheckoutCart: React.FC<CheckoutCartProps> = ({
 	const { t } = useTranslation();
 
 	return (
-		<WhiteBlock title="1. Корзина" className={className}>
+		<WhiteBlock title={t("checkout.form.cartTitle")} className={className}>
 			<div className="flex flex-col gap-5">
 				{isLoading
 					? [...Array(4)].map((_, index) => (

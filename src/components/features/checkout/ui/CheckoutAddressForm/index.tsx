@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { Controller, useFormContext } from "react-hook-form";
 import {
 	WhiteBlock,
@@ -13,10 +14,14 @@ import type { CheckoutAddressFormProps } from "../../model/props";
 export const CheckoutAddressForm: React.FC<CheckoutAddressFormProps> = ({
 	className,
 }) => {
+	const { t } = useTranslation();
 	const { control } = useFormContext();
 
 	return (
-		<WhiteBlock title="3. Адрес доставки" className={className}>
+		<WhiteBlock
+			title={t("checkout.form.deliveryAddress")}
+			className={className}
+		>
 			<div className="flex flex-col gap-5">
 				<Controller
 					control={control}
@@ -34,7 +39,7 @@ export const CheckoutAddressForm: React.FC<CheckoutAddressFormProps> = ({
 				<FormTextarea
 					name="comment"
 					className="text-base"
-					placeholder="Комментарий к заказу"
+					placeholder={t("checkout.form.commentPlaceholder")}
 					rows={5}
 				/>
 			</div>

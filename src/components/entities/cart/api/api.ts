@@ -5,7 +5,7 @@ import type { RootState } from "@/components/app/store";
 import type { CartPrisma } from "@/@types/prisma";
 import type { Cart } from "@/@types/entities";
 import { getCartDetails } from "@/libs/get-cart-details";
-import { setAll, setItems, setLoading, setTotalAmount } from "../model/slice";
+import { setAll, setItems, setLoading } from "../model/slice";
 import type {
 	AddCartItemParams,
 	UpdateItemQuantityParams,
