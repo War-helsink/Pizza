@@ -1,8 +1,12 @@
-export interface Props {
+export interface VerificationUserTemplateProps {
 	code: string;
 }
 
-export const VerificationUserTemplate: React.FC<Props> = ({ code }) => {
+const VERCEL_URL = process.env.VERCEL_URL;
+
+export const VerificationUserTemplate: React.FC<
+	VerificationUserTemplateProps
+> = ({ code }) => {
 	return (
 		<div>
 			<p>
@@ -10,7 +14,7 @@ export const VerificationUserTemplate: React.FC<Props> = ({ code }) => {
 			</p>
 
 			<p>
-				<a href={`http://localhost:3000/api/auth/verify?code=${code}`}>
+				<a href={`${VERCEL_URL}/api/auth/verify?code=${code}`}>
 					Подтвердить регистрацию
 				</a>
 			</p>

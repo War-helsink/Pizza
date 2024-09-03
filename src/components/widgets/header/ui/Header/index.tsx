@@ -1,15 +1,20 @@
 "use client";
 
 import { cn } from "@/libs/utils";
+import toast from "react-hot-toast";
+
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useRouter, useSearchParams } from "next/navigation";
+
 import Link from "next/link";
 import Image from "next/image";
-import { useTranslation } from "react-i18next";
 
 import { AuthButton } from "@/components/features/auth";
 import { CartButton } from "@/components/features/cart";
 import { SearchInput } from "@/components/features/search";
 import { LanguageButton } from "@/components/features/language";
-import {  Container } from "@/components/shared/ui";
+import { Container } from "@/components/shared/ui";
 
 import type { HeaderProps } from "../../model/props";
 
@@ -19,6 +24,29 @@ export const Header: React.FC<HeaderProps> = ({
 	className,
 }) => {
 	const { t } = useTranslation();
+	const router = useRouter();
+	const searchParams = useSearchParams();
+
+	useEffect(() => {
+		let toastMessage = "";
+
+		if (searchParams.has("paid")) {
+			toastMessage = "Заказ успешно оплачен! Информация отправлена на почту.";
+		}
+
+		if (searchParams.has("verified")) {
+			toastMessage = "Почта успешно подтверждена!";
+		}
+
+		if (toastMessage) {
+			setTimeout(() => {
+				router.replace("/");
+				toast.success(toastMessage, {
+					duration: 3000,
+				});
+			}, 1000);
+		}
+	}, [router, searchParams]);
 
 	return (
 		<header className={cn("border border-b", className)}>
