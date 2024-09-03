@@ -6,8 +6,8 @@ import type { Resource } from "i18next";
 import { Toaster } from "react-hot-toast";
 import { TranslationsProvider } from "@/components/app/providers/TranslationsProvider";
 import { StoreProvider } from "@/components/app/providers/StoreProvider";
-// import { SessionProvider } from "next-auth/react";
-// import NextTopLoader from "nextjs-toploader";
+import { SessionProvider } from "next-auth/react";
+import NextTopLoader from "nextjs-toploader";
 
 export interface ProvidersProps extends React.PropsWithChildren {
 	locale: Locale;
@@ -21,14 +21,15 @@ export const Providers: React.FC<ProvidersProps> = ({
 }) => {
 	return (
 		<>
-			<StoreProvider>
-				<TranslationsProvider locale={locale} resources={resources}>
-					{children}
-				</TranslationsProvider>
-			</StoreProvider>
-			{/* <SessionProvider>{children}</SessionProvider> */}
+			<SessionProvider>
+				<StoreProvider>
+					<TranslationsProvider locale={locale} resources={resources}>
+						{children}
+					</TranslationsProvider>
+				</StoreProvider>
+			</SessionProvider>
+			<NextTopLoader />
 			<Toaster />
-			{/* <NextTopLoader /> */}
 		</>
 	);
 };

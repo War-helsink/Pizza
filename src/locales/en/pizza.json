@@ -8,7 +8,8 @@
 		"logoAlt": "Logo",
 		"title": "Next Pizza",
 		"subtitle": "can't get any tastier",
-		"login": "Login"
+		"login": "Login",
+		"profile": "Profile"
 	},
 	"search": {
 		"placeholder": "Find pizza..."
@@ -73,7 +74,8 @@
 			"invalid": "Please enter a valid phone number"
 		},
 		"address": {
-			"invalid": "Please enter a valid address"
+			"invalidCity": "Fill in the city field",
+			"invalidWarehouse": "Select a department"
 		},
 		"success": {
 			"orderCreated": "Order successfully created! 📝 Redirecting to payment..."
@@ -101,6 +103,10 @@
 			"email": "E-Mail",
 			"phone": "Phone",
 			"deliveryAddress": "3. Delivery Address",
+			"selectCity": "Select city",
+			"selectWarehouse": "Select warehouse",
+			"searchWarehouse": "Search warehouse...",
+			"noWarehouseFound": "No warehouse found.",
 			"commentPlaceholder": "Order Comment"
 		}
 	}

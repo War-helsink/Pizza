@@ -15,10 +15,16 @@ export const checkoutFormSchemaFn = (
 		phone: z
 			.string()
 			.min(10, { message: translation("message.phone.invalid") }),
-		address: z
-			.string()
-			.min(5, { message: translation("message.address.invalid") }),
+		address: z.object({
+			cityRef: z
+				.string()
+				.min(5, { message: translation("message.address.invalidCity") }),
+			warehouseRef: z
+				.string()
+				.min(5, { message: translation("message.address.invalidWarehouse") }),
+		}),
 		comment: z.string().optional(),
+		totalPrice: z.number(),
 	});
 };
 

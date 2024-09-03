@@ -1,3 +1,5 @@
+import type { Control } from "react-hook-form";
+import type { CheckoutFormValues } from "@/config/checkout-form-schema";
 import type { CartStateItem } from "@/libs/get-cart-details";
 
 export interface CheckoutCartProps {
@@ -21,6 +23,7 @@ export interface CheckoutAddressFormProps {
 }
 
 export interface CheckoutSidebarProps {
+	control: Control<CheckoutFormValues>;
 	totalAmount: number;
 	isLoading?: boolean;
 	className?: string;

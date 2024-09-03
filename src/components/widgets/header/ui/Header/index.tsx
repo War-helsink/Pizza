@@ -5,11 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
-import { SearchInput } from "@/components/features/search";
+import { AuthButton } from "@/components/features/auth";
 import { CartButton } from "@/components/features/cart";
+import { SearchInput } from "@/components/features/search";
 import { LanguageButton } from "@/components/features/language";
-import { User } from "lucide-react";
-import { Button, Container } from "@/components/shared/ui";
+import {  Container } from "@/components/shared/ui";
 
 import type { HeaderProps } from "../../model/props";
 
@@ -50,10 +50,8 @@ export const Header: React.FC<HeaderProps> = ({
 
 				<div className="flex items-center gap-3">
 					<LanguageButton />
-					<Button className="flex items-center gap-3" variant="outline">
-						<User size={16} />
-						{t("header.login")}
-					</Button>
+
+					<AuthButton />
 					{hasCart && <CartButton />}
 				</div>
 			</Container>

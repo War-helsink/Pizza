@@ -1,10 +1,19 @@
 "use client";
 
-import { useState } from "react";
 import toast from "react-hot-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useCart } from "@/hooks";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useTranslation } from "react-i18next";
 import { FormProvider, useForm } from "react-hook-form";
+
+import {
+	type CheckoutFormValues,
+	checkoutFormSchemaFn,
+} from "@/config/checkout-form-schema";
+import { createOrder } from "@/app/[locale]/actions";
 import {
 	CheckoutCart,
 	CheckoutSidebar,
@@ -12,19 +21,13 @@ import {
 	CheckoutPersonalForm,
 } from "@/components/features/checkout";
 import { Container, Title } from "@/components/shared/ui";
-import { useCart } from "@/hooks";
-
-import {
-	type CheckoutFormValues,
-	checkoutFormSchemaFn,
-} from "@/config/checkout-form-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function CheckoutPage() {
 	const { t } = useTranslation();
 	const [submitting, setSubmitting] = useState(false);
 	const { totalAmount, updateItemQuantity, items, removeCartItem, isLoading } =
 		useCart();
+	const { data: session } = useSession();
 
 	const form = useForm<CheckoutFormValues>({
 		resolver: zodResolver(checkoutFormSchemaFn(t)),
@@ -33,26 +36,37 @@ export default function CheckoutPage() {
 			firstName: "",
 			lastName: "",
 			phone: "",
-			address: "",
+			address: {
+				cityRef: "",
+				warehouseRef: "",
+			},
 			comment: "",
+			totalPrice: 0,
 		},
 	});
+
+	useEffect(() => {
+		if (session?.user) {
+			const [firstName, lastName] = (session.user.name as string).split(" ");
+			form.setValue("firstName", firstName);
+			form.setValue("lastName", lastName);
+			form.setValue("email", session.user.email as string);
+		}
+	}, [session, form]);
 
 	const onSubmit = async (data: CheckoutFormValues) => {
 		try {
 			setSubmitting(true);
 
-			// const url = await createOrder(data);
-
-			console.log("data: ", data);
+			const url = await createOrder({ ...data, totalPrice: totalAmount });
 
 			toast.success(t("message.success.orderCreated"), {
 				icon: "✅",
 			});
 
-			// if (url) {
-			// 	location.href = url;
-			// }
+			if (url) {
+				location.href = url;
+			}
 		} catch (err) {
 			console.log(err);
 			setSubmitting(false);
@@ -87,7 +101,6 @@ export default function CheckoutPage() {
 								items={items}
 								isLoading={isLoading}
 							/>
-
 							<CheckoutPersonalForm
 								className={isLoading ? "opacity-40 pointer-events-none" : ""}
 							/>
@@ -99,6 +112,7 @@ export default function CheckoutPage() {
 
 						<div className="w-[450px]">
 							<CheckoutSidebar
+								control={form.control}
 								totalAmount={totalAmount}
 								isLoading={isLoading || submitting}
 							/>

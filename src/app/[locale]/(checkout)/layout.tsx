@@ -21,7 +21,7 @@ export default function CheckoutLayout({
 	children,
 }: { children: React.ReactNode }) {
 	return (
-		<div className="min-h-screen bg-[#F4F1EE]">
+		<div className="h-screen bg-[#F4F1EE] flex flex-col">
 			<Suspense>
 				<Header
 					hasSearch={false}
@@ -29,7 +29,7 @@ export default function CheckoutLayout({
 					className="border-b-gray-200"
 				/>
 			</Suspense>
-			<main>
+			<main className="flex-grow relative overflow-y-auto">
 				<Container>{children}</Container>
 			</main>
 		</div>

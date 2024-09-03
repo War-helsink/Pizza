@@ -6,8 +6,9 @@ import {
 	WhiteBlock,
 	FormTextarea,
 	ErrorText,
-	AdressInput,
+	NovaPoshtaInput,
 } from "@/components/shared/ui";
+import type { CheckoutFormValues } from "@/config/checkout-form-schema";
 
 import type { CheckoutAddressFormProps } from "../../model/props";
 
@@ -15,7 +16,7 @@ export const CheckoutAddressForm: React.FC<CheckoutAddressFormProps> = ({
 	className,
 }) => {
 	const { t } = useTranslation();
-	const { control } = useFormContext();
+	const { control } = useFormContext<CheckoutFormValues>();
 
 	return (
 		<WhiteBlock
@@ -27,12 +28,23 @@ export const CheckoutAddressForm: React.FC<CheckoutAddressFormProps> = ({
 					control={control}
 					name="address"
 					render={({ field, fieldState }) => (
-						<>
-							<AdressInput onChange={field.onChange} />
-							{fieldState.error?.message && (
-								<ErrorText text={fieldState.error.message} />
-							)}
-						</>
+						<NovaPoshtaInput
+							onChange={field.onChange}
+							errorCity={
+								fieldState.error &&
+								(fieldState.error as any).cityRef && (
+									<ErrorText text={(fieldState.error as any).cityRef.message} />
+								)
+							}
+							errorWarehouse={
+								fieldState.error &&
+								(fieldState.error as any).warehouseRef && (
+									<ErrorText
+										text={(fieldState.error as any).warehouseRef.message}
+									/>
+								)
+							}
+						/>
 					)}
 				/>
 
