@@ -13,7 +13,6 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/shared/ui";
-import { Root as VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 import { LoginForm } from "../LoginForm";
 import { RegisterForm } from "../RegisterForm";
@@ -35,44 +34,30 @@ export const AuthModal: React.FC = () => {
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="w-[450px] bg-white p-10">
-				{type === "login" ? (
-					<DialogHeader>
-						<DialogTitle>Вход в аккаунт</DialogTitle>
-						<DialogDescription>
-							Введите свою почту, чтобы войти в свой аккаунт
-						</DialogDescription>
-					</DialogHeader>
-				) : (
-					<VisuallyHidden>
-						<DialogHeader>
-							<DialogTitle>Вход в аккаунт</DialogTitle>
-							<DialogDescription>
-								Введите свою почту, чтобы войти в свой аккаунт
-							</DialogDescription>
-						</DialogHeader>
-					</VisuallyHidden>
-				)}
+				<DialogHeader>
+					<DialogTitle>
+						{type === "login"
+							? t("auth.login_title")
+							: t("auth.register_title")}
+					</DialogTitle>
+					<DialogDescription>
+						{type === "login"
+							? t("auth.login_description")
+							: t("auth.register_description")}
+					</DialogDescription>
+				</DialogHeader>
 
-				{type === "login" ? (
-					<LoginForm
-						onClose={() => {
-							console.log("onClose LoginForm");
-						}}
-					/>
-				) : (
-					<RegisterForm
-						onClose={() => {
-							console.log("onClose RegisterForm");
-						}}
-					/>
-				)}
+				{type === "login" ? <LoginForm /> : <RegisterForm />}
 
 				<hr />
 				<div className="flex gap-2">
 					<Button
 						variant="secondary"
 						onClick={() =>
-							signIn("github")
+							signIn("github", {
+								callbackUrl: "/",
+								redirect: true,
+							})
 						}
 						type="button"
 						className="gap-2 h-12 p-2 flex-1"
@@ -109,7 +94,7 @@ export const AuthModal: React.FC = () => {
 					type="button"
 					className="h-12"
 				>
-					{type !== "login" ? "Войти" : "Регистрация"}
+					{type === "login" ? t("auth.register") : t("auth.login")}
 				</Button>
 			</DialogContent>
 		</Dialog>

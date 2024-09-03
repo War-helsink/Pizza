@@ -3,6 +3,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { registerUser } from "@/app/[locale]/actions";
 import {
 	type TFormRegisterValues,
@@ -10,11 +11,9 @@ import {
 } from "../../lib/schemas";
 import { Button, FormInput } from "@/components/shared/ui";
 
-import type { RegisterFormProps } from "../../model/props";
+export const RegisterForm: React.FC = () => {
+	const { t } = useTranslation();
 
-export const RegisterForm: React.FC<RegisterFormProps> = ({
-	onClose,
-}) => {
 	const form = useForm<TFormRegisterValues>({
 		resolver: zodResolver(formRegisterSchema),
 		defaultValues: {
@@ -33,13 +32,12 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 				password: data.password,
 			});
 
-			toast.error("Регистрация успешна 📝. Подтвердите свою почту", {
+			toast.success(t("toastMessages.success.register"), {
 				icon: "✅",
 			});
-
-			onClose?.();
 		} catch (error) {
-			return toast.error("Неверный E-Mail или пароль", {
+			console.error("Error [REGISTER]", error);
+			toast.error(t("toastMessages.error.register"), {
 				icon: "❌",
 			});
 		}
@@ -51,12 +49,17 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 				className="flex flex-col gap-5"
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
-				<FormInput name="email" label="E-Mail" required />
-				<FormInput name="fullName" label="Полное имя" required />
-				<FormInput name="password" label="Пароль" type="password" required />
+				<FormInput name="email" label={t("auth.email")} required />
+				<FormInput name="fullName" label={t("auth.full_name")} required />
+				<FormInput
+					name="password"
+					label={t("auth.password")}
+					type="password"
+					required
+				/>
 				<FormInput
 					name="confirmPassword"
-					label="Подтвердите пароль"
+					label={t("auth.confirm_password")}
 					type="password"
 					required
 				/>
@@ -66,7 +69,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 					className="h-12 text-base"
 					type="submit"
 				>
-					Зарегистрироваться
+					{t("auth.register_button")}
 				</Button>
 			</form>
 		</FormProvider>

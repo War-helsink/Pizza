@@ -11,7 +11,7 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import {
 	type CheckoutFormValues,
-	checkoutFormSchemaFn,
+	checkoutFormSchema,
 } from "@/config/checkout-form-schema";
 import { createOrder } from "@/app/[locale]/actions";
 import {
@@ -30,7 +30,7 @@ export default function CheckoutPage() {
 	const { data: session } = useSession();
 
 	const form = useForm<CheckoutFormValues>({
-		resolver: zodResolver(checkoutFormSchemaFn(t)),
+		resolver: zodResolver(checkoutFormSchema),
 		defaultValues: {
 			email: "",
 			firstName: "",
@@ -60,7 +60,7 @@ export default function CheckoutPage() {
 
 			const url = await createOrder({ ...data, totalPrice: totalAmount });
 
-			toast.success(t("message.success.orderCreated"), {
+			toast.success(t("toastMessages.success.order"), {
 				icon: "✅",
 			});
 
@@ -68,9 +68,9 @@ export default function CheckoutPage() {
 				location.href = url;
 			}
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 			setSubmitting(false);
-			toast.error(t("message.error.orderFailed"), {
+			toast.error(t("toastMessages.error.order"), {
 				icon: "❌",
 			});
 		}

@@ -1,21 +1,21 @@
 import { z } from "zod";
 
-export const passwordSchema = z.string().min(4, { message: "Введите корректный пароль" });
+export const passwordSchema = z.string().min(4, { message: "auth.validation.password" });
 
 export const formLoginSchema = z.object({
-	email: z.string().email({ message: "Введите корректную почту" }),
+	email: z.string().email({ message: "auth.validation.email" }),
 	password: passwordSchema,
 });
 
 export const formRegisterSchema = formLoginSchema
 	.merge(
 		z.object({
-			fullName: z.string().min(2, { message: "Введите имя и фамилию" }),
+			fullName: z.string().min(2, { message: "auth.validation.full_name" }),
 			confirmPassword: passwordSchema,
 		}),
 	)
 	.refine((data) => data.password === data.confirmPassword, {
-		message: "Пароли не совпадают",
+		message: "auth.validation.confirm_password",
 		path: ["confirmPassword"],
 	});
 

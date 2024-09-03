@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { useFormContext } from "react-hook-form";
 import { Input, ClearButton, ErrorText } from "../";
 
@@ -17,6 +18,7 @@ export const FormInput: React.FC<Props> = ({
 	required,
 	...props
 }) => {
+	const { t } = useTranslation();
 	const {
 		register,
 		formState: { errors },
@@ -25,7 +27,7 @@ export const FormInput: React.FC<Props> = ({
 	} = useFormContext();
 
 	const value = watch(name);
-	const errorText = errors[name]?.message as string;
+	const errorKey = errors[name]?.message as string;
 
 	const onClickClear = () => {
 		setValue(name, "", { shouldValidate: true });
@@ -45,7 +47,7 @@ export const FormInput: React.FC<Props> = ({
 				{value && <ClearButton onClick={onClickClear} />}
 			</div>
 
-			{errorText && <ErrorText text={errorText} className="mt-2" />}
+			{errorKey && <ErrorText text={t(errorKey)} className="mt-2" />}
 		</div>
 	);
 };

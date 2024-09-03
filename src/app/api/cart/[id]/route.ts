@@ -1,20 +1,24 @@
+import { getCart } from "@/libs/api";
+import initTranslations from "@/libs/i18n";
 import type { Locale } from "@/@types/prisma";
 import { prisma } from "@/prisma/prisma-client";
-import { getCart } from "@/libs/api";
+
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
 	req: NextRequest,
 	{ params }: { params: { id: string } },
 ) {
+	const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
+	const { t } = await initTranslations({ locale });
+
 	try {
-		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 		const id = Number(params.id);
 		const data = (await req.json()) as { quantity: number };
 		const token = req.cookies.get("cartToken")?.value;
 
 		if (!token) {
-			return NextResponse.json({ error: "Cart token not found" });
+			return NextResponse.json({ error: t("sever.errorTokenNotFound") });
 		}
 
 		const cartItem = await prisma.cartItem.findFirst({
@@ -24,7 +28,7 @@ export async function PATCH(
 		});
 
 		if (!cartItem) {
-			return NextResponse.json({ error: "Cart item not found" });
+			return NextResponse.json({ error: t("sever.errorItemNotFound") });
 		}
 
 		await prisma.cartItem.update({
@@ -42,7 +46,7 @@ export async function PATCH(
 	} catch (error) {
 		console.log("[CART_PATCH] Server error", error);
 		return NextResponse.json(
-			{ message: "Не удалось обновить корзину" },
+			{ message: t("sever.errorUpdatingCart") },
 			{ status: 500 },
 		);
 	}
@@ -52,13 +56,15 @@ export async function DELETE(
 	req: NextRequest,
 	{ params }: { params: { id: string } },
 ) {
+	const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
+	const { t } = await initTranslations({ locale });
+
 	try {
-		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 		const id = Number(params.id);
 		const token = req.cookies.get("cartToken")?.value;
 
 		if (!token) {
-			return NextResponse.json({ error: "Cart token not found" });
+			return NextResponse.json({ error: t("sever.errorTokenNotFound") });
 		}
 
 		const cartItem = await prisma.cartItem.findFirst({
@@ -68,7 +74,7 @@ export async function DELETE(
 		});
 
 		if (!cartItem) {
-			return NextResponse.json({ error: "Cart item not found" });
+			return NextResponse.json({ error: t("sever.errorItemNotFound") });
 		}
 
 		await prisma.cartItem.delete({
@@ -83,7 +89,7 @@ export async function DELETE(
 	} catch (error) {
 		console.log("[CART_DELETE] Server error", error);
 		return NextResponse.json(
-			{ message: "Не удалось удалить корзину" },
+			{ message: t("sever.errorDeletingCart") },
 			{ status: 500 },
 		);
 	}

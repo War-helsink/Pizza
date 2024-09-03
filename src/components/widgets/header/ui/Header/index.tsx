@@ -31,11 +31,11 @@ export const Header: React.FC<HeaderProps> = ({
 		let toastMessage = "";
 
 		if (searchParams.has("paid")) {
-			toastMessage = "Заказ успешно оплачен! Информация отправлена на почту.";
+			toastMessage = t("toastMessages.paidOrderSuccess");
 		}
 
 		if (searchParams.has("verified")) {
-			toastMessage = "Почта успешно подтверждена!";
+			toastMessage = t("toastMessages.emailVerified");
 		}
 
 		if (toastMessage) {
@@ -46,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({
 				});
 			}, 1000);
 		}
-	}, [router, searchParams]);
+	}, [t, router, searchParams]);
 
 	return (
 		<header className={cn("border border-b", className)}>

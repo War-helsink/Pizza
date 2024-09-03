@@ -2,6 +2,7 @@
 
 import toast from "react-hot-toast";
 import { signOut } from "next-auth/react";
+import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { updateUserInfo } from "@/app/[locale]/actions";
@@ -14,6 +15,8 @@ import { Container, Title, FormInput, Button } from "@/components/shared/ui";
 import type { ProfileFormProps } from "../../model/props";
 
 export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
+	const { t } = useTranslation();
+
 	const form = useForm({
 		resolver: zodResolver(formRegisterSchema),
 		defaultValues: {
@@ -32,11 +35,11 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 				password: data.password,
 			});
 
-			toast.error("Данные обновлены 📝", {
+			toast.success(t("toastMessages.success.updated"), {
 				icon: "✅",
 			});
 		} catch (error) {
-			return toast.error("Ошибка при обновлении данных", {
+			return toast.error(t("toastMessages.error.updated"), {
 				icon: "❌",
 			});
 		}
@@ -51,7 +54,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 	return (
 		<Container className="my-10">
 			<Title
-				text={`Личные данные | #${data.id}`}
+				text={`${t("profile.personalData")}${data.id}`}
 				size="md"
 				className="font-bold"
 			/>
@@ -61,19 +64,19 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 					className="flex flex-col gap-5 w-96 mt-10"
 					onSubmit={form.handleSubmit(onSubmit)}
 				>
-					<FormInput name="email" label="E-Mail" required />
-					<FormInput name="fullName" label="Полное имя" required />
+					<FormInput name="email" label={t("profile.email")} required />
+					<FormInput name="fullName" label={t("profile.fullName")} required />
 
 					<FormInput
 						type="password"
 						name="password"
-						label="Новый пароль"
+						label={t("profile.newPassword")}
 						required
 					/>
 					<FormInput
 						type="password"
 						name="confirmPassword"
-						label="Повторите пароль"
+						label={t("profile.confirmPassword")}
 						required
 					/>
 
@@ -82,7 +85,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 						className="text-base mt-10"
 						type="submit"
 					>
-						Сохранить
+						{t("profile.save")}
 					</Button>
 
 					<Button
@@ -92,7 +95,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 						className="text-base"
 						type="button"
 					>
-						Выйти
+						{t("profile.signOut")}
 					</Button>
 				</form>
 			</FormProvider>

@@ -60,6 +60,24 @@
 		"from": "from",
 		"currency": "$"
 	},
+	"toastMessages": {
+		"paidOrderSuccess": "Order successfully paid! Information has been sent to your email.",
+		"emailVerified": "Email successfully verified!",
+		"success": {
+			"updated": "Data updated 📝",
+			"register": "Registration successful 📝. Please confirm your email",
+			"login": "You have successfully logged in",
+			"order": "Order successfully created! 📝 Redirecting to payment...",
+			"product_added": "{{name}} added to cart"
+		},
+		"error": {
+			"updated": "Error updating data",
+			"register": "Invalid email or password",
+			"login": "Failed to log in",
+			"order": "Failed to create order",
+			"product_added": "Failed to add product to cart"
+		}
+	},
 	"message": {
 		"firstName": {
 			"minLength": "First name must be at least 2 characters long"
@@ -76,15 +94,7 @@
 		"address": {
 			"invalidCity": "Fill in the city field",
 			"invalidWarehouse": "Select a department"
-		},
-		"success": {
-			"orderCreated": "Order successfully created! 📝 Redirecting to payment..."
-		},
-		"error": {
-			"orderFailed": "Failed to create order"
-		},
-		"product_added": "{{name}} added to cart",
-		"add_to_cart_failed": "Failed to add product to cart"
+		}
 	},
 	"checkout": {
 		"title": "Checkout",
@@ -109,5 +119,50 @@
 			"noWarehouseFound": "No warehouse found.",
 			"commentPlaceholder": "Order Comment"
 		}
+	},
+	"auth": {
+		"login": "Login",
+		"register": "Register",
+		"login_title": "Log in to your account",
+		"register_title": "Create an account",
+		"login_description": "Enter your email to log into your account",
+		"register_description": "Enter your details to create a new account",
+		"email": "E-Mail",
+		"password": "Password",
+		"full_name": "Full Name",
+		"confirm_password": "Confirm Password",
+		"login_button": "Log In",
+		"register_button": "Register",
+		"validation": {
+			"password": "Please enter a valid password",
+			"email": "Please enter a valid email",
+			"full_name": "Please enter your first and last name",
+			"confirm_password": "Passwords do not match"
+		}
+	},
+	"profile": {
+		"personalData": "Personal Data | #",
+		"email": "E-Mail",
+		"fullName": "Full Name",
+		"newPassword": "New Password",
+		"confirmPassword": "Confirm Password",
+		"save": "Save",
+		"signOut": "Sign Out"
+	},
+	"unauthorized": {
+		"title": "Access Denied",
+		"text": "Only authorized users can view this page",
+		"goHome": "Go to Home",
+		"refresh": "Refresh"
+	},
+	"sever": {
+		"errorFetchingCart": "Failed to retrieve cart",
+		"errorCreatingCart": "Failed to create cart",
+		"errorTokenNotFound": "Cart token not found",
+		"errorItemNotFound": "Cart item not found",
+		"errorUpdatingCart": "Failed to update cart",
+		"errorDeletingCart": "Failed to delete cart",
+		"invalidCode": "Invalid code",
+		"serverError": "An error occurred"
 	}
 }

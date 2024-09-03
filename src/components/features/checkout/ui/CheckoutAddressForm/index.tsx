@@ -33,14 +33,16 @@ export const CheckoutAddressForm: React.FC<CheckoutAddressFormProps> = ({
 							errorCity={
 								fieldState.error &&
 								(fieldState.error as any).cityRef && (
-									<ErrorText text={(fieldState.error as any).cityRef.message} />
+									<ErrorText
+										text={t((fieldState.error as any).cityRef.message)}
+									/>
 								)
 							}
 							errorWarehouse={
 								fieldState.error &&
 								(fieldState.error as any).warehouseRef && (
 									<ErrorText
-										text={(fieldState.error as any).warehouseRef.message}
+										text={t((fieldState.error as any).warehouseRef.message)}
 									/>
 								)
 							}

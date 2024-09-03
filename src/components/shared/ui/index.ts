@@ -14,7 +14,6 @@ export * from "./clear-button";
 export * from "./command";
 export * from "./dialog";
 export * from "./error-text";
-export * from "./info-block";
 export * from "./input";
 export * from "./nova-poshta-input";
 export * from "./popover";

@@ -2,14 +2,17 @@ import { prisma } from "@/prisma/prisma-client";
 import { type NextRequest, NextResponse } from "next/server";
 
 import crypto from "crypto";
+import initTranslations from "@/libs/i18n";
 import type { Locale } from "@/@types/prisma";
 import { getCart, getCartId, createCart, findOrCreateCart } from "@/libs/api";
 import type { CreateCartItemValues } from "@/components/entities/cart";
 
 export async function GET(req: NextRequest) {
+	const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
+	const { t } = await initTranslations({ locale });
+
 	try {
 		const token = req.cookies.get("cartToken")?.value;
-		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 
 		if (!token) {
 			return NextResponse.json({ items: [] });
@@ -21,16 +24,18 @@ export async function GET(req: NextRequest) {
 	} catch (error) {
 		console.log("[CART_GET] Server error", error);
 		return NextResponse.json(
-			{ message: "Не удалось получить корзину" },
+			{ message: t("sever.errorFetchingCart") },
 			{ status: 500 },
 		);
 	}
 }
 
 export async function POST(req: NextRequest) {
+	const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
+	const { t } = await initTranslations({ locale });
+
 	try {
 		let token = req.cookies.get("cartToken")?.value;
-		const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 
 		let id: number;
 		if (!token) {
@@ -54,7 +59,6 @@ export async function POST(req: NextRequest) {
 			},
 		});
 
-		// Если товар был найден, делаем +1
 		if (findCartItem) {
 			await prisma.cartItem.update({
 				where: {
@@ -83,7 +87,7 @@ export async function POST(req: NextRequest) {
 	} catch (error) {
 		console.log("[CART_POST] Server error", error);
 		return NextResponse.json(
-			{ message: "Не удалось создать корзину" },
+			{ message: t("sever.errorCreatingCart") },
 			{ status: 500 },
 		);
 	}
