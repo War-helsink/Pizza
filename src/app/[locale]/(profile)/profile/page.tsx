@@ -1,7 +1,22 @@
+import type { Metadata } from "next";
+import type { Locale } from "@/@types/prisma";
+
+import initTranslations from "@/libs/i18n";
 import { redirect } from "next/navigation";
 import { prisma } from "@/prisma/prisma-client";
-import { ProfileForm } from "@/components/widgets/profile";
 import { getUserSession } from "@/libs/get-user-session";
+import { ProfileForm } from "@/components/widgets/profile";
+
+export async function generateMetadata({
+	params: { locale },
+}: { params: { locale: Locale } }): Promise<Metadata> {
+	const { t } = await initTranslations({ locale });
+
+	return {
+		title: t("metadata:title.profile"),
+		description: t("metadata:description.profile"),
+	};
+}
 
 export default async function ProfilePage() {
 	const session = await getUserSession();

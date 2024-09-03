@@ -6,7 +6,7 @@
 	},
 	"header": {
 		"logoAlt": "Логотип",
-		"title": "Next Pizza",
+		"title": "Pizza",
 		"subtitle": "смачніше вже нікуди",
 		"login": "Увійти",
 		"profile": "Профіль"
@@ -163,6 +163,21 @@
 		"errorUpdatingCart": "Не вдалося оновити корзину",
 		"errorDeletingCart": "Не вдалося видалити корзину",
 		"invalidCode": "Невірний код",
-		"serverError": "Сталася помилка"
+		"serverError": "Сталася помилка",
+		"cartTokenNotFound": "Токен кошика не знайдено",
+		"cartNotFound": "Кошик не знайдено",
+		"cartEmpty": "Кошик порожній",
+		"userNotFound": "Користувача не знайдено",
+		"emailNotVerified": "Пошта не підтверджена",
+		"userExists": "Користувач вже існує",
+		"registrationConfirmation": "Pizza / Підтвердження реєстрації",
+		"userUpdateError": "Помилка оновлення користувача",
+		"payOrderSubject": "Pizza / Сплатіть замовлення #{{orderId}}"
+	},
+	"template": {
+		"payOrderTitle": "Замовлення #{{orderId}}",
+		"payOrderMessage": "Сплатіть замовлення на суму <b>{{totalPrice}} ₽</b>. Перейдіть <a href=\"{{paymentUrl}}\">тут</a> для оплати замовлення.",
+		"verificationCode": "Код підтвердження: <h2>{{code}}</h2>",
+		"verificationLink": "Підтвердити реєстрацію"
 	}
 }

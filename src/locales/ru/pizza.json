@@ -6,7 +6,7 @@
 	},
 	"header": {
 		"logoAlt": "Логотип",
-		"title": "Next Pizza",
+		"title": "Pizza",
 		"subtitle": "вкусней уже некуда",
 		"login": "Войти",
 		"profile": "Профиль"
@@ -163,6 +163,21 @@
 		"errorUpdatingCart": "Не удалось обновить корзину",
 		"errorDeletingCart": "Не удалось удалить корзину",
 		"invalidCode": "Неверный код",
-		"serverError": "Произошла ошибка"
+		"serverError": "Произошла ошибка",
+		"cartTokenNotFound": "Токен корзины не найден",
+		"cartNotFound": "Корзина не найдена",
+		"cartEmpty": "Корзина пуста",
+		"userNotFound": "Пользователь не найден",
+		"emailNotVerified": "Почта не подтверждена",
+		"userExists": "Пользователь уже существует",
+		"registrationConfirmation": "Pizza / Подтверждение регистрации",
+		"userUpdateError": "Ошибка обновления пользователя",
+		"payOrderSubject": "Pizza / Оплатите заказ #{{orderId}}"
+	},
+	"template": {
+		"payOrderTitle": "Заказ #{{orderId}}",
+		"payOrderMessage": "Оплатите заказ на сумму <b>{{totalPrice}} ₽</b>. Перейдите <a href=\"{{paymentUrl}}\">по этой ссылке</a> для оплаты заказа.",
+		"verificationCode": "Код подтверждения: <h2>{{code}}</h2>",
+		"verificationLink": "Подтвердить регистрацию"
 	}
 }

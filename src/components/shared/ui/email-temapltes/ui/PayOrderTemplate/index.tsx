@@ -1,6 +1,9 @@
+import type { TFunction } from "i18next";
+
 export interface PayOrderTemplateProps {
+	translation: TFunction;
 	orderId: number;
-	totalPrice: number
+	totalPrice: number;
 	paymentUrl?: string;
 }
 
@@ -8,13 +11,16 @@ export const PayOrderTemplate: React.FC<PayOrderTemplateProps> = ({
 	orderId,
 	totalPrice,
 	paymentUrl,
+	translation
 }) => (
 	<div>
-		<h1>Заказ #{orderId}</h1>
+		<h1>{translation("template.payOrderTitle", { orderId })}</h1>
 
-		<p>
-			Оплатите заказ на сумму <b>{totalPrice} ₽</b>. Перейдите
-			<a href={paymentUrl}>по этой ссылке</a> для оплаты заказа.
-		</p>
+		<p dangerouslySetInnerHTML={{
+			__html: translation("template.payOrderMessage", {
+				totalPrice,
+				paymentUrl
+			})
+		}} />
 	</div>
 );

@@ -6,7 +6,7 @@
 	},
 	"header": {
 		"logoAlt": "Logo",
-		"title": "Next Pizza",
+		"title": "Pizza",
 		"subtitle": "can't get any tastier",
 		"login": "Login",
 		"profile": "Profile"
@@ -163,6 +163,21 @@
 		"errorUpdatingCart": "Failed to update cart",
 		"errorDeletingCart": "Failed to delete cart",
 		"invalidCode": "Invalid code",
-		"serverError": "An error occurred"
+		"serverError": "An error occurred",
+		"cartTokenNotFound": "Cart token not found",
+		"cartNotFound": "Cart not found",
+		"cartEmpty": "Cart is empty",
+		"userNotFound": "User not found",
+		"emailNotVerified": "Email not verified",
+		"userExists": "User already exists",
+		"registrationConfirmation": "Pizza / Registration Confirmation",
+		"userUpdateError": "User update error",
+		"payOrderSubject": "Pizza / Pay for Order #{{orderId}}"
+	},
+	"template": {
+		"payOrderTitle": "Order #{{orderId}}",
+		"payOrderMessage": "Pay for the order of <b>{{totalPrice}} ₽</b>. Go <a href=\"{{paymentUrl}}\">here</a> to pay for the order.",
+		"verificationCode": "Verification code: <h2>{{code}}</h2>",
+		"verificationLink": "Confirm registration"
 	}
 }

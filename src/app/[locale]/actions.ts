@@ -1,6 +1,8 @@
 "use server";
 
 import { cookies } from "next/headers";
+import initTranslations from "@/libs/i18n";
+import type { Locale } from "@/@types/prisma";
 import { sendEmail } from "@/libs/send-email";
 import { prisma } from "@/prisma/prisma-client";
 import { OrderStatus, type Prisma } from "@prisma/client";
@@ -17,9 +19,11 @@ export async function createOrder(data: CheckoutFormValues) {
 	try {
 		const cookieStore = cookies();
 		const cartToken = cookieStore.get("cartToken")?.value;
+		const locale = (cookieStore.get("NEXT_LOCALE")?.value || "uk") as Locale;
+		const { t } = await initTranslations({ locale });
 
 		if (!cartToken) {
-			throw new Error("Cart token not found");
+			throw new Error(t("sever.cartTokenNotFound"));
 		}
 
 		const userCart = await prisma.cart.findFirst({
@@ -42,11 +46,11 @@ export async function createOrder(data: CheckoutFormValues) {
 		});
 
 		if (!userCart) {
-			throw new Error("Cart not found");
+			throw new Error(t("sever.cartNotFound"));
 		}
 
 		if (data.totalPrice === 0) {
-			throw new Error("Cart is empty");
+			throw new Error(t("sever.cartEmpty"));
 		}
 
 		const order = await prisma.order.create({
@@ -71,8 +75,9 @@ export async function createOrder(data: CheckoutFormValues) {
 
 		await sendEmail(
 			data.email,
-			`Next Pizza / Оплатите заказ #${order.id}`,
+			t("sever.payOrderSubject", { orderId: order.id }),
 			PayOrderTemplate({
+				translation: t,
 				orderId: order.id,
 				totalPrice: order.totalPrice,
 			}),
@@ -81,11 +86,16 @@ export async function createOrder(data: CheckoutFormValues) {
 		return "/";
 	} catch (err) {
 		console.error("[CreateOrder] Server error", err);
+		throw err;
 	}
 }
 
 export async function registerUser(body: Prisma.UserCreateInput) {
 	try {
+		const cookieStore = cookies();
+		const locale = (cookieStore.get("NEXT_LOCALE")?.value || "uk") as Locale;
+		const { t } = await initTranslations({ locale });
+
 		const user = await prisma.user.findFirst({
 			where: {
 				email: body.email,
@@ -94,10 +104,10 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 		if (user) {
 			if (!user.verified) {
-				throw new Error("Почта не подтверждена");
+				throw new Error(t("sever.emailNotVerified"));
 			}
 
-			throw new Error("Пользователь уже существует");
+			throw new Error(t("sever.userExists"));
 		}
 
 		const createdUser = await prisma.user.create({
@@ -119,9 +129,10 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 		await sendEmail(
 			createdUser.email,
-			"Next Pizza / 📝 Подтверждение регистрации",
+			t("sever.registrationConfirmation"),
 			VerificationUserTemplate({
 				code,
+				translation: t,
 			}),
 		);
 	} catch (err) {
@@ -132,10 +143,14 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 export async function updateUserInfo(body: Prisma.UserUpdateInput) {
 	try {
+		const cookieStore = cookies();
+		const locale = (cookieStore.get("NEXT_LOCALE")?.value || "uk") as Locale;
+		const { t } = await initTranslations({ locale });
+
 		const currentUser = await getUserSession();
 
 		if (!currentUser) {
-			throw new Error("Пользователь не найден");
+			throw new Error(t("sever.userNotFound"));
 		}
 
 		const findUser = await prisma.user.findFirst({

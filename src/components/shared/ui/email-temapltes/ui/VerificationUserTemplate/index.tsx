@@ -1,21 +1,24 @@
+import type { TFunction } from "i18next";
+
 export interface VerificationUserTemplateProps {
 	code: string;
+	translation: TFunction;
 }
 
 const VERCEL_URL = process.env.VERCEL_URL;
 
 export const VerificationUserTemplate: React.FC<
 	VerificationUserTemplateProps
-> = ({ code }) => {
+> = ({ code, translation }) => {
 	return (
 		<div>
-			<p>
-				Код подтверждения: <h2>{code}</h2>
-			</p>
+			<p dangerouslySetInnerHTML={{
+				__html: translation("template.verificationCode", { code })
+			}} />
 
 			<p>
 				<a href={`${VERCEL_URL}/api/auth/verify?code=${code}`}>
-					Подтвердить регистрацию
+					{translation("template.verificationLink")}
 				</a>
 			</p>
 		</div>
