@@ -12,7 +12,7 @@ interface InfoBlockProps {
 	imageUrl?: string;
 }
 
-export const InfoBlock: React.FC<Props> = ({
+export const InfoBlock: React.FC<InfoBlockProps> = ({
 	className,
 	title,
 	text,

@@ -31,15 +31,19 @@ export const productItemsConvert: (
 	return productItems.map((productItem) => productItemConvert(productItem));
 };
 
-export const productItemConvert: <
-	T extends keyof ProductItemVariantType = "base",
->(
-	productItem: ProductItemPrisma,
-) => ProductItem<T> = (productItem) => {
+export const productItemConvert: <T extends keyof ProductItemVariantType = "base">(productItem: ProductItemPrisma) => ProductItem<T> = (productItem) => {
 	const { prices, product, ...args } = productItem;
+
+	if (product) {
+		return {
+			...args,
+			price: prices ? prices[0].price : 0,
+			product: productConvert(product),
+		};
+	}
+
 	return {
-		product: product ? productConvert(product) : undefined,
 		price: prices ? prices[0].price : 0,
 		...args,
-	};
+	} as any;
 };

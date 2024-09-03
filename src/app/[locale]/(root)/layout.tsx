@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Header } from "@/components/widgets/header";
 
 export default function HomeLayout({
@@ -9,7 +10,9 @@ export default function HomeLayout({
 }>) {
 	return (
 		<div className="flex flex-col min-h-dvh">
-			<Header />
+			<Suspense>
+				<Header />
+			</Suspense>
 			<main className="flex-grow">
 				{children}
 				{modal}

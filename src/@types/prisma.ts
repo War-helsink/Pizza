@@ -64,7 +64,7 @@ export interface CartPrisma extends Cart {
 
 export interface CartItemPrisma extends CartItem {
 	ingredients?: IngredientPrisma[];
-	productItem?: ProductItemPrisma;
+	productItem: ProductItemPrisma;
 }
 
 export type Locale = $Enums.Locale;

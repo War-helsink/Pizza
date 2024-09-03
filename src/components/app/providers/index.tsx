@@ -28,7 +28,7 @@ export const Providers: React.FC<ProvidersProps> = ({
 					</TranslationsProvider>
 				</StoreProvider>
 			</SessionProvider>
-			<NextTopLoader />
+			<NextTopLoader showSpinner={false} />
 			<Toaster />
 		</>
 	);

@@ -29,7 +29,7 @@ export const cartItemConvert: (cartItem: CartItemPrisma) => CartItem = (
 	const { ingredients, productItem, ...args } = cartItem;
 
 	return {
-		productItem: productItem ? productItemConvert<"full">(productItem) : undefined,
+		productItem: productItemConvert<"full">(productItem),
 		ingredients: ingredients ? ingredientsConvert(ingredients) : [],
 		...args,
 	};
