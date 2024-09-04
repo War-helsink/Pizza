@@ -175,9 +175,14 @@
 		"payOrderSubject": "Pizza / Pay for Order #{{orderId}}"
 	},
 	"template": {
+		"title": {
+			"payOrder": ""
+		},
+		"notificatioån": "Email Notification.",
 		"payOrderTitle": "Order #{{orderId}}",
-		"payOrderMessage": "Pay for the order of <b>{{totalPrice}} ₽</b>. Go <a href=\"{{paymentUrl}}\">here</a> to pay for the order.",
-		"verificationCode": "Verification code: <h2>{{code}}</h2>",
-		"verificationLink": "Confirm registration"
+		"payOrderMessage": "Pay for the order of {{totalPrice}} $.",
+		"verificationCode": "Verification code:",
+		"verificationLink": "Confirm registration",
+		"goToSite": "Go to website"
 	}
 }

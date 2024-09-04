@@ -1,23 +1,34 @@
-import { Resend } from "resend";
+import type { SendMailOptions } from "nodemailer";
+import { createTransport } from "nodemailer";
+import { render } from "@react-email/components";
 
-export const sendEmail = async (
+const EMAIL = process.env.EMAIL;
+const PASSWORD_EMAIL = process.env.PASSWORD_EMAIL;
+
+export async function sendEmail(
 	to: string,
 	subject: string,
-	template: React.ReactNode,
-) => {
-	const resend = new Resend(process.env.RESEND_API_KEY);
-
-	const { data, error } = await resend.emails.send({
-		from: "onboarding@resend.dev",
-		to,
-		subject,
-		text: "",
-		react: template,
+	template: React.ReactElement,
+) {
+	const transporter = createTransport({
+		service: "Gmail",
+		auth: {
+			user: EMAIL,
+			pass: PASSWORD_EMAIL,
+		},
 	});
 
-	if (error) {
-		throw error;
-	}
+	const mailOptions: SendMailOptions = {
+		from: EMAIL,
+		to: to,
+		subject: subject,
+		text: await render(template, {
+			plainText: true,
+		}),
+		html: await render(template),
+	};
 
-	return data;
-};
+	return await transporter.sendMail(mailOptions).catch((err) => {
+		console.error("[SendMessage] Server error", err);
+	});
+}

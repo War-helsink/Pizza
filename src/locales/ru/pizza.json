@@ -175,9 +175,14 @@
 		"payOrderSubject": "Pizza / Оплатите заказ #{{orderId}}"
 	},
 	"template": {
+		"title": {
+			"payOrder": ""
+		},
+		"notification": "Уведомление по электронной почте.",
 		"payOrderTitle": "Заказ #{{orderId}}",
-		"payOrderMessage": "Оплатите заказ на сумму <b>{{totalPrice}} ₽</b>. Перейдите <a href=\"{{paymentUrl}}\">по этой ссылке</a> для оплаты заказа.",
-		"verificationCode": "Код подтверждения: <h2>{{code}}</h2>",
-		"verificationLink": "Подтвердить регистрацию"
+		"payOrderMessage": "Оплатите заказ на сумму {{totalPrice}} ₽.",
+		"verificationCode": "Код подтверждения:",
+		"verificationLink": "Подтвердить регистрацию",
+		"goToSite": "Перейти на сайт"
 	}
 }

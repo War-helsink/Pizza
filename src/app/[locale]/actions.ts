@@ -9,10 +9,7 @@ import { OrderStatus, type Prisma } from "@prisma/client";
 import { hashSync } from "bcrypt";
 import { getUserSession } from "@/libs/get-user-session";
 
-import {
-	PayOrderTemplate,
-	VerificationUserTemplate,
-} from "@/components/shared/ui";
+import { PayOrderTemplate, VerificationUserTemplate } from "@/templates";
 import type { CheckoutFormValues } from "@/config/checkout-form-schema";
 
 export async function createOrder(data: CheckoutFormValues) {
@@ -77,10 +74,11 @@ export async function createOrder(data: CheckoutFormValues) {
 			data.email,
 			t("sever.payOrderSubject", { orderId: order.id }),
 			PayOrderTemplate({
+				lang: locale,
 				translation: t,
 				orderId: order.id,
 				totalPrice: order.totalPrice,
-			}),
+			}) as React.ReactElement,
 		);
 
 		return "/";
@@ -131,9 +129,10 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 			createdUser.email,
 			t("sever.registrationConfirmation"),
 			VerificationUserTemplate({
+				lang: locale,
 				code,
 				translation: t,
-			}),
+			}) as React.ReactElement,
 		);
 	} catch (err) {
 		console.error("Error [CREATE_USER]", err);

@@ -1,7 +1,6 @@
 export * from "./container";
 export * from "./count-button";
 export * from "./count-icon-button";
-export * from "./email-temapltes";
 export * from "./form";
 export * from "./group-variants";
 export * from "./pizza-image";
