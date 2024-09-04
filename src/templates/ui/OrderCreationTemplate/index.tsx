@@ -11,7 +11,7 @@ import {
 
 import { Header } from "../Header";
 
-export interface PayOrderTemplateProps {
+export interface OrderCreationTemplateProps {
 	translation: TFunction;
 	lang: Locale;
 	orderId: number;
@@ -21,7 +21,7 @@ export interface PayOrderTemplateProps {
 
 const VERCEL_URL = process.env.VERCEL_URL;
 
-export const PayOrderTemplate: React.FC<PayOrderTemplateProps> = ({
+export const OrderCreationTemplate: React.FC<OrderCreationTemplateProps> = ({
 	lang,
 	orderId,
 	totalPrice,
@@ -29,7 +29,7 @@ export const PayOrderTemplate: React.FC<PayOrderTemplateProps> = ({
 	translation,
 }) => (
 	<Html lang={lang}>
-		<Header title="" />
+		<Header title={translation("template.title.orderCreation")} />
 		<Preview>{translation("template.notification")}</Preview>
 		<Body style={{ backgroundColor: "#f4f4f4", padding: "20px" }}>
 			<Container

@@ -172,11 +172,12 @@
 		"userExists": "User already exists",
 		"registrationConfirmation": "Pizza / Registration Confirmation",
 		"userUpdateError": "User update error",
-		"payOrderSubject": "Pizza / Pay for Order #{{orderId}}"
+		"orderCreationSubject": "Pizza / Pay for Order #{{orderId}}"
 	},
 	"template": {
 		"title": {
-			"payOrder": ""
+			"orderCreation": "Your order has been created",
+			"verificationUser": "User verification"
 		},
 		"notificatioån": "Email Notification.",
 		"payOrderTitle": "Order #{{orderId}}",

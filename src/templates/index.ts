@@ -1,3 +1,3 @@
 export { VerificationUserTemplate } from "./ui/VerificationUserTemplate";
-export { PayOrderTemplate } from "./ui/PayOrderTemplate";
+export { OrderCreationTemplate } from "./ui/OrderCreationTemplate";
 export { Header } from "./ui/Header";

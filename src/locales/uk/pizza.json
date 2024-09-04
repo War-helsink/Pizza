@@ -172,11 +172,12 @@
 		"userExists": "Користувач вже існує",
 		"registrationConfirmation": "Pizza / Підтвердження реєстрації",
 		"userUpdateError": "Помилка оновлення користувача",
-		"payOrderSubject": "Pizza / Сплатіть замовлення #{{orderId}}"
+		"orderCreationSubject": "Pizza / Сплатіть замовлення #{{orderId}}"
 	},
 	"template": {
 		"title": {
-			"payOrder": ""
+			"orderCreation": "Ваше замовлення створено",
+			"verificationUser": "Перевірка користувача"
 		},
 		"notification": "Сповіщення електронною поштою.",
 		"payOrderTitle": "Замовлення #{{orderId}}",

@@ -13,7 +13,6 @@ import {
 import { Header } from "../Header";
 
 export interface VerificationUserTemplateProps {
-	url: string;
 	lang: Locale;
 	code: string;
 	translation: TFunction;
@@ -23,10 +22,10 @@ const VERCEL_URL = process.env.VERCEL_URL;
 
 export const VerificationUserTemplate: React.FC<
 	VerificationUserTemplateProps
-> = ({ code, url, translation, lang }) => {
+> = ({ code, translation, lang }) => {
 	return (
 		<Html lang={lang}>
-			<Header title="" />
+			<Header title={translation("template.title.verificationUser")}  />
 			<Preview>{translation("template.notification")}</Preview>
 			<Body style={{ backgroundColor: "#f4f4f4", padding: "20px" }}>
 				<Container
