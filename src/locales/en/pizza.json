@@ -177,13 +177,23 @@
 	"template": {
 		"title": {
 			"orderCreation": "Your order has been created",
-			"verificationUser": "User verification"
+			"verificationUser": "Verify your email address"
 		},
+		"letter": {
+			"orderCreation": {
+				"title": "Order #{{orderId}}",
+				"message": "Pay for the order of {{totalPrice}} $."
+			},
+			"verifyEmail": {
+				"title": "Verify your email address",
+				"verify": "Verification code",
+				"message": "Thank you for starting the process of creating a new account. We want to make sure it is really you. Please follow this link with the verification code. If you do not want to create an account, you can ignore this message.",
+				"caution": "Pizza Web Services will never email you and ask you to disclose or verify your password, credit card, or banking account number.",
+				"footer": "This message was produced and distributed by Pizza Web Services. © 2024, Pizza Web Services, Inc.. All rights reserved. Pizza is a registered trademark."
+			}
+		},
+
 		"notificatioån": "Email Notification.",
-		"payOrderTitle": "Order #{{orderId}}",
-		"payOrderMessage": "Pay for the order of {{totalPrice}} $.",
-		"verificationCode": "Verification code:",
-		"verificationLink": "Confirm registration",
 		"goToSite": "Go to website"
 	}
 }

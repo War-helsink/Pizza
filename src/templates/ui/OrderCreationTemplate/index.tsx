@@ -9,7 +9,7 @@ import {
 	Button,
 } from "@react-email/components";
 
-import { Header } from "../Header";
+import { HeaderTemplate } from "../HeaderTemplate";
 
 export interface OrderCreationTemplateProps {
 	translation: TFunction;
@@ -29,38 +29,22 @@ export const OrderCreationTemplate: React.FC<OrderCreationTemplateProps> = ({
 	translation,
 }) => (
 	<Html lang={lang}>
-		<Header title={translation("template.title.orderCreation")} />
+		<HeaderTemplate title={translation("template.title.orderCreation")} />
 		<Preview>{translation("template.notification")}</Preview>
-		<Body style={{ backgroundColor: "#f4f4f4", padding: "20px" }}>
-			<Container
-				style={{
-					maxWidth: "600px",
-					margin: "0 auto",
-					backgroundColor: "#ffffff",
-					padding: "40px",
-				}}
-			>
+		<Body style={BodyStyle}>
+			<Container style={ContainerStyle}>
 				<Text>
-					<h1>{translation("template.payOrderTitle", { orderId })}</h1>
+					<h1>{translation("template.letter.orderCreation.title", { orderId })}</h1>
 
 					<p>
-						{translation("template.payOrderMessage", {
+						{translation("template.letter.orderCreation.message", {
 							totalPrice,
 							paymentUrl,
 						})}
 					</p>
 				</Text>
-				<div style={{ textAlign: "center", marginTop: "20px" }}>
-					<Button
-						href={`${VERCEL_URL}/`}
-						style={{
-							padding: "10px 20px",
-							backgroundColor: "#007bff",
-							color: "#ffffff",
-							textDecoration: "none",
-							borderRadius: "5px",
-						}}
-					>
+				<div style={ButtonsStyle}>
+					<Button href={`${VERCEL_URL}/`} style={ButtonStyle}>
 						{translation("template.goToSite")}
 					</Button>
 				</div>
@@ -68,3 +52,27 @@ export const OrderCreationTemplate: React.FC<OrderCreationTemplateProps> = ({
 		</Body>
 	</Html>
 );
+
+const BodyStyle: React.CSSProperties = {
+	backgroundColor: "#f4f4f4",
+	padding: "20px",
+};
+const ContainerStyle: React.CSSProperties = {
+	maxWidth: "600px",
+	margin: "0 auto",
+	backgroundColor: "#ffffff",
+	padding: "40px",
+};
+
+const ButtonsStyle: React.CSSProperties = {
+	textAlign: "center",
+	marginTop: "20px",
+};
+
+const ButtonStyle: React.CSSProperties = {
+	padding: "10px 20px",
+	backgroundColor: "#007bff",
+	color: "#ffffff",
+	textDecoration: "none",
+	borderRadius: "5px",
+};

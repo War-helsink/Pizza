@@ -1,2 +1,2 @@
-rm -R dist
+rm -R .next
 npm run build

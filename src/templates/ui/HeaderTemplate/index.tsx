@@ -1,10 +1,10 @@
 import { Head, Font } from "@react-email/components";
 
-export interface HeaderProps extends React.PropsWithChildren {
+export interface HeaderTemplateProps extends React.PropsWithChildren {
 	title: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ title, children }) => {
+export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ title, children }) => {
 	return (
 		<Head>
 			<title>{title}</title>

@@ -9,7 +9,7 @@ import { OrderStatus, type Prisma } from "@prisma/client";
 import { hashSync } from "bcrypt";
 import { getUserSession } from "@/libs/get-user-session";
 
-import { OrderCreationTemplate, VerificationUserTemplate } from "@/templates";
+import { OrderCreationTemplate, VerifyEmailTemplate } from "@/templates";
 import type { CheckoutFormValues } from "@/config/checkout-form-schema";
 
 export async function createOrder(data: CheckoutFormValues) {
@@ -128,7 +128,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 		await sendEmail(
 			createdUser.email,
 			t("sever.registrationConfirmation"),
-			VerificationUserTemplate({
+			VerifyEmailTemplate({
 				lang: locale,
 				code,
 				translation: t,
