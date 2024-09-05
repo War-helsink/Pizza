@@ -86,28 +86,17 @@ model ProductItem {
   pizzaType Int?
 
   cartItems CartItem[]
-  prices    ProductItemPrice[]
+  price     Int
 
   product   Product @relation(fields: [productId], references: [id])
   productId Int
-}
-
-model ProductItemPrice {
-  id     Int    @id @default(autoincrement())
-  locale Locale
-  price  Int
-
-  productItem   ProductItem @relation(fields: [productItemId], references: [id])
-  productItemId Int
-
-  @@unique([productItemId, locale])
 }
 
 model Ingredient {
   id Int @id @default(autoincrement())
 
   translations IngredientTranslation[]
-  prices       IngredientPrice[]
+  price        Int
   imageUrl     String
 
   products  Product[]
@@ -121,17 +110,6 @@ model IngredientTranslation {
   id     Int    @id @default(autoincrement())
   locale Locale
   name   String
-
-  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
-  ingredientId Int
-
-  @@unique([ingredientId, locale])
-}
-
-model IngredientPrice {
-  id     Int    @id @default(autoincrement())
-  locale Locale
-  price  Int
 
   ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
   ingredientId Int

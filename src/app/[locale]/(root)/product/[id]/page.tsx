@@ -66,22 +66,9 @@ export default async function ProductPage({
 							locale: locale,
 						},
 					},
-					prices: {
-						where: {
-							locale: locale,
-						},
-					},
 				},
 			},
-			items: {
-				include: {
-					prices: {
-						where: {
-							locale: locale,
-						},
-					},
-				},
-			},
+			items: true
 		},
 	});
 

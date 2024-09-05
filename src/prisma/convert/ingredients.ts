@@ -10,10 +10,9 @@ export const ingredientsConvert: (
 export const ingredientConvert: (ingredient: IngredientPrisma) => Ingredient = (
 	ingredient,
 ) => {
-	const { translations, prices, ...args } = ingredient;
+	const { translations, ...args } = ingredient;
 	return {
 		name: translations ? translations[0].name : "",
-		price: prices ? prices[0].price : 0,
 		...args,
 	};
 };

@@ -26,14 +26,6 @@ export const findOrCreateCart = async (token: string, locale: Locale) => {
 									},
 								},
 							},
-							prices: {
-								where: {
-									locale: locale,
-								},
-								select: {
-									price: true,
-								},
-							},
 						},
 					},
 					ingredients: {
@@ -44,14 +36,6 @@ export const findOrCreateCart = async (token: string, locale: Locale) => {
 								},
 								select: {
 									name: true,
-								},
-							},
-							prices: {
-								where: {
-									locale: locale,
-								},
-								select: {
-									price: true,
 								},
 							},
 						},
@@ -86,14 +70,6 @@ export const findOrCreateCart = async (token: string, locale: Locale) => {
 										},
 									},
 								},
-								prices: {
-									where: {
-										locale: locale,
-									},
-									select: {
-										price: true,
-									},
-								},
 							},
 						},
 						ingredients: {
@@ -104,14 +80,6 @@ export const findOrCreateCart = async (token: string, locale: Locale) => {
 									},
 									select: {
 										name: true,
-									},
-								},
-								prices: {
-									where: {
-										locale: locale,
-									},
-									select: {
-										price: true,
 									},
 								},
 							},

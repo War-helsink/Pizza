@@ -23,22 +23,9 @@ export default async function ProductModalPage({
 							locale: locale,
 						},
 					},
-					prices: {
-						where: {
-							locale: locale,
-						},
-					},
 				},
 			},
-			items: {
-				include: {
-					prices: {
-						where: {
-							locale: locale,
-						},
-					},
-				},
-			},
+			items: true
 		},
 	});
 

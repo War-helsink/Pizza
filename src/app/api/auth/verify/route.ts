@@ -4,6 +4,9 @@ import { type NextRequest, NextResponse } from "next/server";
 import initTranslations from "@/libs/i18n";
 import type { Locale } from "@/@types/prisma";
 
+import { sendEmail } from "@/libs/send-email";
+import { CreateAccountTemplate } from "@/templates";
+
 export async function GET(req: NextRequest) {
 	const locale = (req.cookies.get("NEXT_LOCALE")?.value || "uk") as Locale;
 	const code = req.nextUrl.searchParams.get("code");
@@ -30,7 +33,7 @@ export async function GET(req: NextRequest) {
 			);
 		}
 
-		await prisma.user.update({
+		const user = await prisma.user.update({
 			where: {
 				id: verificationCode.userId,
 			},
@@ -44,6 +47,17 @@ export async function GET(req: NextRequest) {
 				id: verificationCode.id,
 			},
 		});
+
+		sendEmail(
+			user.email,
+			t("sever.createAccountSubject"),
+			CreateAccountTemplate({
+				lang: locale,
+				translation: t,
+			}) as React.ReactElement,
+		).catch(error=>{
+			console.log("[SEND_EMAIL] Server error", error)
+		})
 
 		return NextResponse.redirect(new URL("/?verified", req.url));
 	} catch (error) {

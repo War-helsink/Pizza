@@ -38,24 +38,14 @@ export interface ProductTranslationPrisma {
 
 export interface ProductItemPrisma extends ProductItem {
 	product?: ProductPrisma;
-	prices?: ProductItemPricePrisma[];
-}
-
-export interface ProductItemPricePrisma {
-	price: number;
 }
 
 export interface IngredientPrisma extends Ingredient {
 	translations?: IngredientTranslationPrisma[];
-	prices?: IngredientPricePrisma[];
 }
 
 export interface IngredientTranslationPrisma {
 	name: string;
-}
-
-export interface IngredientPricePrisma {
-	price: number;
 }
 
 export interface CartPrisma extends Cart {

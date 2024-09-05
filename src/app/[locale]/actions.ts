@@ -70,7 +70,7 @@ export async function createOrder(data: CheckoutFormValues) {
 			},
 		});
 
-		await sendEmail(
+		sendEmail(
 			data.email,
 			t("sever.orderCreationSubject", { orderId: order.id }),
 			OrderCreationTemplate({
@@ -79,7 +79,9 @@ export async function createOrder(data: CheckoutFormValues) {
 				orderId: order.id,
 				totalPrice: order.totalPrice,
 			}) as React.ReactElement,
-		);
+		).catch(error=>{
+			console.log("[SEND_EMAIL] Server error", error)
+		})
 
 		return "/";
 	} catch (err) {
@@ -127,7 +129,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 		await sendEmail(
 			createdUser.email,
-			t("sever.registrationConfirmation"),
+			t("sever.registrationConfirmationSubject"),
 			VerifyEmailTemplate({
 				lang: locale,
 				code,

@@ -36,14 +36,6 @@ export const getCart = async (token: string, locale: Locale) => {
 									},
 								},
 							},
-							prices: {
-								where: {
-									locale: locale,
-								},
-								select: {
-									price: true,
-								},
-							},
 						},
 					},
 					ingredients: {
@@ -54,14 +46,6 @@ export const getCart = async (token: string, locale: Locale) => {
 								},
 								select: {
 									name: true,
-								},
-							},
-							prices: {
-								where: {
-									locale: locale,
-								},
-								select: {
-									price: true,
 								},
 							},
 						},

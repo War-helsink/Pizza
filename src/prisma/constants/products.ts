@@ -163,154 +163,96 @@ export const productTranslations: Prisma.ProductTranslationCreateManyInput[] = [
 ];
 
 export const productItems: Prisma.ProductItemCreateManyInput[] = [
-	{ productId: 1 },
-	{ productId: 2 },
-	{ productId: 3 },
-	{ productId: 4 },
-	{ productId: 5 },
-	{ productId: 6 },
-	{ productId: 7 },
-	{ productId: 8 },
-	{ productId: 9 },
-	{ productId: 10 },
-	{ productId: 11 },
-	{ productId: 12 },
-	{ productId: 13 },
-	{ productId: 14 },
-	{ productId: 15 },
-	{ productId: 16 },
-	{ productId: 17 },
+	{ productId: 1, price: randomDecimalNumber(190, 600) },
+	{ productId: 2, price: randomDecimalNumber(190, 600) },
+	{ productId: 3, price: randomDecimalNumber(190, 600) },
+	{ productId: 4, price: randomDecimalNumber(190, 600) },
+	{ productId: 5, price: randomDecimalNumber(190, 600) },
+	{ productId: 6, price: randomDecimalNumber(190, 600) },
+	{ productId: 7, price: randomDecimalNumber(190, 600) },
+	{ productId: 8, price: randomDecimalNumber(190, 600) },
+	{ productId: 9, price: randomDecimalNumber(190, 600) },
+	{ productId: 10, price: randomDecimalNumber(190, 600) },
+	{ productId: 11, price: randomDecimalNumber(190, 600) },
+	{ productId: 12, price: randomDecimalNumber(190, 600) },
+	{ productId: 13, price: randomDecimalNumber(190, 600) },
+	{ productId: 14, price: randomDecimalNumber(190, 600) },
+	{ productId: 15, price: randomDecimalNumber(190, 600) },
+	{ productId: 16, price: randomDecimalNumber(190, 600) },
+	{ productId: 17, price: randomDecimalNumber(190, 600) },
 
-	{ productId: 18, pizzaType: 1, size: 20 },
-	{ productId: 18, pizzaType: 2, size: 30 },
-	{ productId: 18, pizzaType: 2, size: 40 },
+	{
+		productId: 18,
+		pizzaType: 1,
+		size: 20,
+		price: randomDecimalNumber(190, 600),
+	},
+	{
+		productId: 18,
+		pizzaType: 2,
+		size: 30,
+		price: randomDecimalNumber(190, 600),
+	},
+	{
+		productId: 18,
+		pizzaType: 2,
+		size: 40,
+		price: randomDecimalNumber(190, 600),
+	},
 
-	{ productId: 19, pizzaType: 1, size: 20 },
-	{ productId: 19, pizzaType: 1, size: 30 },
-	{ productId: 19, pizzaType: 1, size: 40 },
-	{ productId: 19, pizzaType: 2, size: 20 },
-	{ productId: 19, pizzaType: 2, size: 30 },
-	{ productId: 19, pizzaType: 2, size: 40 },
+	{
+		productId: 19,
+		pizzaType: 1,
+		size: 20,
+		price: randomDecimalNumber(190, 600),
+	},
+	{
+		productId: 19,
+		pizzaType: 1,
+		size: 30,
+		price: randomDecimalNumber(190, 600),
+	},
+	{
+		productId: 19,
+		pizzaType: 1,
+		size: 40,
+		price: randomDecimalNumber(190, 600),
+	},
+	{
+		productId: 19,
+		pizzaType: 2,
+		size: 20,
+		price: randomDecimalNumber(190, 600),
+	},
+	{
+		productId: 19,
+		pizzaType: 2,
+		size: 30,
+		price: randomDecimalNumber(190, 600),
+	},
+	{
+		productId: 19,
+		pizzaType: 2,
+		size: 40,
+		price: randomDecimalNumber(190, 600),
+	},
 
-	{ productId: 20, pizzaType: 1, size: 20 },
-	{ productId: 20, pizzaType: 2, size: 30 },
-	{ productId: 20, pizzaType: 2, size: 40 },
-];
-
-export const productItemPrices: Prisma.ProductItemPriceCreateManyInput[] = [
-	{ productItemId: 1, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 1, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 1, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 2, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 2, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 2, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 3, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 3, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 3, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 4, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 4, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 4, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 5, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 5, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 5, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 6, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 6, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 6, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 7, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 7, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 7, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 8, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 8, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 8, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 9, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 9, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 9, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 10, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 10, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 10, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 11, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 11, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 11, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 12, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 12, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 12, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 13, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 13, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 13, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 14, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 14, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 14, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 15, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 15, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 15, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 16, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 16, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 16, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 17, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 17, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 17, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 18, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 18, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 18, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 19, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 19, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 19, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 20, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 20, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 20, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 21, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 21, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 21, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 22, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 22, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 22, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 23, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 23, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 23, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 24, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 24, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 24, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 25, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 25, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 25, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 26, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 26, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 26, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 27, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 27, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 27, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 28, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 28, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 28, locale: "uk", price: randomDecimalNumber(190, 600) },
-
-	{ productItemId: 29, locale: "en", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 29, locale: "ru", price: randomDecimalNumber(190, 600) },
-	{ productItemId: 29, locale: "uk", price: randomDecimalNumber(190, 600) },
+	{
+		productId: 20,
+		pizzaType: 1,
+		size: 20,
+		price: randomDecimalNumber(190, 600),
+	},
+	{
+		productId: 20,
+		pizzaType: 2,
+		size: 30,
+		price: randomDecimalNumber(190, 600),
+	},
+	{
+		productId: 20,
+		pizzaType: 2,
+		size: 40,
+		price: randomDecimalNumber(190, 600),
+	},
 ];

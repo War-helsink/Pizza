@@ -55,14 +55,9 @@ export const findPizzas = async (params: GetSearchParams, locale: Locale) => {
 							pizzaType: {
 								in: pizzaTypes,
 							},
-							prices: {
-								some: {
-									locale,
-									price: {
-										gte: minPrice,
-										lte: maxPrice,
-									},
-								},
+							price: {
+								gte: minPrice,
+								lte: maxPrice,
 							},
 						},
 					},
@@ -79,14 +74,6 @@ export const findPizzas = async (params: GetSearchParams, locale: Locale) => {
 									name: true,
 								},
 							},
-							prices: {
-								where: {
-									locale,
-								},
-								select: {
-									price: true,
-								},
-							},
 						},
 					},
 
@@ -100,19 +87,14 @@ export const findPizzas = async (params: GetSearchParams, locale: Locale) => {
 					},
 
 					items: {
-						include: {
-							prices: {
-								where: {
-									locale,
-									price: {
-										gte: minPrice,
-										lte: maxPrice,
-									},
-								},
-								select: {
-									price: true,
-								},
+						where: {
+							price: {
+								gte: minPrice,
+								lte: maxPrice,
 							},
+						},
+						orderBy: {
+							price: "asc",
 						},
 					},
 				},

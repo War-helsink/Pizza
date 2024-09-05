@@ -15,14 +15,6 @@ export async function GET(req: NextRequest) {
 					name: true,
 				},
 			},
-			prices: {
-				where: {
-					locale: locale,
-				},
-				select: {
-					price: true,
-				},
-			},
 		},
 	});
 

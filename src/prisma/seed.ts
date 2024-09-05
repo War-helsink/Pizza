@@ -2,12 +2,10 @@ import {
 	categories,
 	categoryTranslations,
 	ingredients,
-	ingredientPrices,
 	ingredientTranslations,
 	products,
 	productTranslations,
 	productItems,
-	productItemPrices,
 } from "./constants";
 import { prisma } from "./prisma-client";
 
@@ -22,10 +20,6 @@ async function up() {
 
 	await prisma.ingredient.createMany({
 		data: ingredients,
-	});
-
-	await prisma.ingredientPrice.createMany({
-		data: ingredientPrices,
 	});
 
 	await prisma.ingredientTranslation.createMany({
@@ -98,10 +92,6 @@ async function up() {
 		data: productItems,
 	});
 
-	await prisma.productItemPrice.createMany({
-		data: productItemPrices,
-	});
-
 	await prisma.story.createMany({
 		data: [
 			{
@@ -172,13 +162,11 @@ async function down() {
 
 	await prisma.$executeRaw`TRUNCATE TABLE "Ingredient" RESTART IDENTITY CASCADE`;
 	await prisma.$executeRaw`TRUNCATE TABLE "IngredientTranslation" RESTART IDENTITY CASCADE`;
-	await prisma.$executeRaw`TRUNCATE TABLE "IngredientPrice" RESTART IDENTITY CASCADE`;
 
 	await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`;
 	await prisma.$executeRaw`TRUNCATE TABLE "ProductTranslation" RESTART IDENTITY CASCADE`;
 
 	await prisma.$executeRaw`TRUNCATE TABLE "ProductItem" RESTART IDENTITY CASCADE`;
-	await prisma.$executeRaw`TRUNCATE TABLE "ProductItemPrice" RESTART IDENTITY CASCADE`;
 
 	await prisma.$executeRaw`TRUNCATE TABLE "Story" RESTART IDENTITY CASCADE`;
 	await prisma.$executeRaw`TRUNCATE TABLE "StoryItem" RESTART IDENTITY CASCADE`;
