@@ -70,7 +70,7 @@ export async function createOrder(data: CheckoutFormValues) {
 			},
 		});
 
-		sendEmail(
+		await sendEmail(
 			data.email,
 			t("sever.orderCreationSubject", { orderId: order.id }),
 			OrderCreationTemplate({

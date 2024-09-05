@@ -48,7 +48,7 @@ export async function GET(req: NextRequest) {
 			},
 		});
 
-		sendEmail(
+		await sendEmail(
 			user.email,
 			t("sever.createAccountSubject"),
 			CreateAccountTemplate({
