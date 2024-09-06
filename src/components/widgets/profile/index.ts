@@ -1,1 +1,1 @@
-export { ProfileForm } from "./ui/ProfileForm"
+export { ProfileTabs } from "./ui/ProfileTabs";

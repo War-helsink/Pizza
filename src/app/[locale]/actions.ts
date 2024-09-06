@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import initTranslations from "@/libs/i18n";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import { sendEmail } from "@/libs/send-email";
 import { prisma } from "@/prisma/prisma-client";
 import { OrderStatus, type Prisma } from "@prisma/client";
@@ -12,7 +12,7 @@ import { getUserSession } from "@/libs/get-user-session";
 import { OrderCreationTemplate, VerifyEmailTemplate } from "@/templates";
 import type { CheckoutFormValues } from "@/config/checkout-form-schema";
 
-export async function createOrder(data: CheckoutFormValues) {
+export async function createOrder(formValues: CheckoutFormValues) {
 	try {
 		const cookieStore = cookies();
 		const cartToken = cookieStore.get("cartToken")?.value;
@@ -24,21 +24,43 @@ export async function createOrder(data: CheckoutFormValues) {
 		}
 
 		const userCart = await prisma.cart.findFirst({
+			where: {
+				token: cartToken,
+			},
 			include: {
 				user: true,
 				items: {
 					include: {
-						ingredients: true,
+						ingredients: {
+							include: {
+								translations: {
+									where: {
+										locale: locale,
+									},
+									select: {
+										name: true,
+									},
+								},
+							},
+						},
 						productItem: {
 							include: {
-								product: true,
+								product: {
+									include: {
+										translations: {
+											where: {
+												locale: locale,
+											},
+											select: {
+												name: true,
+											},
+										},
+									},
+								},
 							},
 						},
 					},
 				},
-			},
-			where: {
-				token: cartToken,
 			},
 		});
 
@@ -46,21 +68,22 @@ export async function createOrder(data: CheckoutFormValues) {
 			throw new Error(t("sever.cartNotFound"));
 		}
 
-		if (data.totalPrice === 0) {
+		if (formValues.totalPrice === 0) {
 			throw new Error(t("sever.cartEmpty"));
 		}
 
 		const order = await prisma.order.create({
 			data: {
+				userId: userCart.user ? userCart.user.id : null,
 				token: cartToken,
-				fullName: `${data.firstName} ${data.lastName}`,
-				email: data.email,
-				phone: data.phone,
+				fullName: `${formValues.firstName} ${formValues.lastName}`,
+				email: formValues.email,
+				phone: formValues.phone,
 				address: "",
-				comment: data.comment,
-				totalPrice: data.totalPrice,
+				comment: formValues.comment,
+				totalPrice: formValues.totalPrice,
 				status: OrderStatus.PENDING,
-				items: JSON.stringify(userCart.items),
+				items: userCart.items,
 			},
 		});
 
@@ -71,7 +94,7 @@ export async function createOrder(data: CheckoutFormValues) {
 		});
 
 		await sendEmail(
-			data.email,
+			formValues.email,
 			t("sever.orderCreationSubject", { orderId: order.id }),
 			OrderCreationTemplate({
 				lang: locale,
@@ -79,9 +102,9 @@ export async function createOrder(data: CheckoutFormValues) {
 				orderId: order.id,
 				totalPrice: order.totalPrice,
 			}) as React.ReactElement,
-		).catch(error=>{
-			console.log("[SEND_EMAIL] Server error", error)
-		})
+		).catch((error) => {
+			console.log("[SEND_EMAIL] Server error", error);
+		});
 
 		return "/";
 	} catch (err) {
@@ -93,6 +116,7 @@ export async function createOrder(data: CheckoutFormValues) {
 export async function registerUser(body: Prisma.UserCreateInput) {
 	try {
 		const cookieStore = cookies();
+		const cartToken = cookieStore.get("cartToken")?.value;
 		const locale = (cookieStore.get("NEXT_LOCALE")?.value || "uk") as Locale;
 		const { t } = await initTranslations({ locale });
 
@@ -117,6 +141,26 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 				password: hashSync(body.password, 10),
 			},
 		});
+
+		if (cartToken) {
+			await prisma.cart.update({
+				where: {
+					token: cartToken,
+				},
+				data: {
+					userId: createdUser.id,
+				},
+			});
+
+			await prisma.order.updateMany({
+				where: {
+					token: cartToken,
+				},
+				data: {
+					userId: createdUser.id,
+				},
+			});
+		}
 
 		const code = Math.floor(100000 + Math.random() * 900000).toString();
 

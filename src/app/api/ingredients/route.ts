@@ -1,4 +1,4 @@
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import { prisma } from "@/prisma/prisma-client";
 import { type NextRequest, NextResponse } from "next/server";
 

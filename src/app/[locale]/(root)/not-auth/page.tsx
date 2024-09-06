@@ -1,5 +1,5 @@
 import initTranslations from "@/libs/i18n";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import { Button, Title } from "@/components/shared/ui";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";

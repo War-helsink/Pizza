@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 
 import { prisma } from "@/prisma/prisma-client";
 import { productConvert } from "@/prisma/convert";

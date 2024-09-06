@@ -1,6 +1,6 @@
 import { getCart } from "@/libs/api";
 import initTranslations from "@/libs/i18n";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import { prisma } from "@/prisma/prisma-client";
 
 import { type NextRequest, NextResponse } from "next/server";

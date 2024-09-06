@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 
 import initTranslations from "@/libs/i18n";
 import { redirect } from "next/navigation";
 import { prisma } from "@/prisma/prisma-client";
 import { getUserSession } from "@/libs/get-user-session";
-import { ProfileForm } from "@/components/widgets/profile";
+import { ProfileTabs } from "@/components/widgets/profile";
 
 export async function generateMetadata({
 	params: { locale },
@@ -33,5 +33,5 @@ export default async function ProfilePage() {
 		return redirect("/not-auth");
 	}
 
-	return <ProfileForm data={user} />;
+	return <ProfileTabs user={user} />;
 }

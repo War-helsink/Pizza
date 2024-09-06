@@ -1,7 +1,6 @@
 "use client";
 
 import toast from "react-hot-toast";
-import { signOut } from "next-auth/react";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
@@ -14,14 +13,14 @@ import { Container, Title, FormInput, Button } from "@/components/shared/ui";
 
 import type { ProfileFormProps } from "../../model/props";
 
-export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
+export const ProfileForm: React.FC<ProfileFormProps> = ({ user }) => {
 	const { t } = useTranslation();
 
 	const form = useForm({
 		resolver: zodResolver(formRegisterSchema),
 		defaultValues: {
-			fullName: data.fullName,
-			email: data.email,
+			fullName: user.fullName,
+			email: user.email,
 			password: "",
 			confirmPassword: "",
 		},
@@ -45,16 +44,10 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 		}
 	};
 
-	const onClickSignOut = () => {
-		signOut({
-			callbackUrl: "/",
-		});
-	};
-
 	return (
 		<Container className="my-10">
 			<Title
-				text={`${t("profile.personalData")}${data.id}`}
+				text={`${t("profile.personalData")}${user.id}`}
 				size="md"
 				className="font-bold"
 			/>
@@ -86,16 +79,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 						type="submit"
 					>
 						{t("profile.save")}
-					</Button>
-
-					<Button
-						onClick={onClickSignOut}
-						variant="secondary"
-						disabled={form.formState.isSubmitting}
-						className="text-base"
-						type="button"
-					>
-						{t("profile.signOut")}
 					</Button>
 				</form>
 			</FormProvider>

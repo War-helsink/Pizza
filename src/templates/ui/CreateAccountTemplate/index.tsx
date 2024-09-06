@@ -1,4 +1,4 @@
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import type { TFunction } from "i18next";
 
 import { Section, Heading, Hr, Text, Button } from "@react-email/components";
@@ -63,7 +63,7 @@ const hr = {
 };
 
 const paragraph = {
-	color: "#525f7f",
+	color: "#333",
 
 	fontSize: "16px",
 	lineHeight: "24px",

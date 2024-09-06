@@ -1,4 +1,4 @@
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import type { TFunction } from "i18next";
 
 import {
@@ -98,6 +98,7 @@ const verifyText = {
 
 const codeText = {
 	...text,
+	color: "#007bff",
 	fontWeight: "bold",
 	fontSize: "36px",
 	margin: "10px 0",

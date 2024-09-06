@@ -1,4 +1,4 @@
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import type { TFunction } from "i18next";
 import {
 	Html,

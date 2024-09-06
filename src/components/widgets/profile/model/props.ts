@@ -1,5 +1,13 @@
-import type { User } from "@prisma/client";
+import type { User } from "@/@types/entities";
 
 export interface ProfileFormProps {
-	data: User;
+	user: User;
+}
+
+export interface ProfileTabsProps {
+	user: User;
+}
+
+export interface ProfileOrderProps {
+	userId: number;
 }

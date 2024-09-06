@@ -4,7 +4,7 @@ import { I18nextProvider } from "react-i18next";
 import initTranslations from "@/libs/i18n";
 import { createInstance } from "i18next";
 import type { Resource } from "i18next";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 
 export interface TranslationsProviderProps extends React.PropsWithChildren {
 	locale: Locale;

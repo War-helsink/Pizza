@@ -56,7 +56,3 @@ export interface CartItemPrisma extends CartItem {
 	ingredients?: IngredientPrisma[];
 	productItem: ProductItemPrisma;
 }
-
-export type Locale = $Enums.Locale;
-export type UserRole = $Enums.UserRole;
-export type OrderStatus = $Enums.OrderStatus;

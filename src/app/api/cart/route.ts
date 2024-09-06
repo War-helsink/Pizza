@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import crypto from "crypto";
 import initTranslations from "@/libs/i18n";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import { getCart, getCartId, createCart, findOrCreateCart } from "@/libs/api";
 import type { CreateCartItemValues } from "@/components/entities/cart";
 

@@ -1,5 +1,5 @@
 import { prisma } from "@/prisma/prisma-client";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import { categoriesConvert } from "@/prisma/convert";
 
 export interface GetSearchParams {

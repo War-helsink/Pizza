@@ -1,4 +1,4 @@
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import type { GetSearchParams } from "@/libs/api";
 
 export interface Props {

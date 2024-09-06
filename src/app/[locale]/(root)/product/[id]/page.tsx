@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import initTranslations from "@/libs/i18n";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 
 import { prisma } from "@/prisma/prisma-client";
 import { notFound } from "next/navigation";

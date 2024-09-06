@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import initTranslations from "@/libs/i18n";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 
 import { Suspense } from "react";
 import { Container } from "@/components/shared/ui";

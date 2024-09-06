@@ -2,7 +2,7 @@ import { prisma } from "@/prisma/prisma-client";
 import { type NextRequest, NextResponse } from "next/server";
 
 import initTranslations from "@/libs/i18n";
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 
 import { sendEmail } from "@/libs/send-email";
 import { CreateAccountTemplate } from "@/templates";

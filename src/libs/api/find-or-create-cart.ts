@@ -1,4 +1,4 @@
-import type { Locale } from "@/@types/prisma";
+import type { Locale } from "@prisma/client";
 import { prisma } from "@/prisma/prisma-client";
 
 export const findOrCreateCart = async (token: string, locale: Locale) => {

@@ -39,7 +39,7 @@ export const LanguageButton: FC = () => {
 
 	return (
 		<Select onValueChange={handleChange} value={currentLocale}>
-			<SelectTrigger className="border-0 text-primary">
+			<SelectTrigger className="border-0 text-primary bg-secondary">
 				<Languages />
 			</SelectTrigger>
 			<SelectContent>
