@@ -44,7 +44,7 @@ export const ChoosePizzaForm: React.FC<ChoosePizzaFormProps> = ({
 		ingredients,
 		selectedIngredients,
 	);
-	const textDetaills = t("product.textDetaills", { size, name: t(key) });
+	const textDetails = t("product.textDetails", { size, name: t(key) });
 
 	const handleClickAdd = () => {
 		if (currentItemId) {
@@ -61,7 +61,7 @@ export const ChoosePizzaForm: React.FC<ChoosePizzaFormProps> = ({
 			<div className="w-[490px] bg-[#f7f6f5] p-7">
 				<Title text={name} size="md" className="font-extrabold mb-1" />
 
-				<p className="text-gray-400">{textDetaills}</p>
+				<p className="text-gray-400">{textDetails}</p>
 
 				<div className="flex flex-col gap-4 mt-5">
 					<GroupVariants

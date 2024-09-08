@@ -18,7 +18,7 @@ export const RegisterForm: React.FC = () => {
 		resolver: zodResolver(formRegisterSchema),
 		defaultValues: {
 			email: "",
-			fullName: "",
+			firstName: "",
 			password: "",
 			confirmPassword: "",
 		},
@@ -27,8 +27,11 @@ export const RegisterForm: React.FC = () => {
 	const onSubmit = async (data: TFormRegisterValues) => {
 		try {
 			await registerUser({
+				firstName: "",
+				lastName: "",
+				secondName: "",
+				phone: "",
 				email: data.email,
-				fullName: data.fullName,
 				password: data.password,
 			});
 
@@ -50,7 +53,7 @@ export const RegisterForm: React.FC = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				<FormInput name="email" label={t("auth.email")} required />
-				<FormInput name="fullName" label={t("auth.full_name")} required />
+				<FormInput name="firstName" label={t("auth.firstName")} required />
 				<FormInput
 					name="password"
 					label={t("auth.password")}
@@ -69,7 +72,7 @@ export const RegisterForm: React.FC = () => {
 					className="h-12 text-base"
 					type="submit"
 				>
-					{t("auth.register_button")}
+					{t("auth.registerButton")}
 				</Button>
 			</form>
 		</FormProvider>

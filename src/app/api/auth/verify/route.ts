@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
 	try {
 		if (!code) {
 			return NextResponse.json(
-				{ error: t("sever.invalidCode") },
+				{ error: t("server.invalidCode") },
 				{ status: 400 },
 			);
 		}
@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
 
 		if (!verificationCode) {
 			return NextResponse.json(
-				{ error: t("sever.invalidCode") },
+				{ error: t("server.invalidCode") },
 				{ status: 400 },
 			);
 		}
@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
 
 		await sendEmail(
 			user.email,
-			t("sever.createAccountSubject"),
+			t("server.createAccountSubject"),
 			CreateAccountTemplate({
 				lang: locale,
 				translation: t,
@@ -63,7 +63,7 @@ export async function GET(req: NextRequest) {
 	} catch (error) {
 		console.log("[VERIFY_GET] Server error", error);
 		return NextResponse.json(
-			{ error: t("sever.serverError") },
+			{ error: t("server.error") },
 			{ status: 400 },
 		);
 	}

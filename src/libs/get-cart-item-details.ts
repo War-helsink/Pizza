@@ -13,12 +13,12 @@ export const getCartItemDetails = (
 
 	if (pizzaSize && pizzaType) {
 		const key = mapPizzaType[pizzaType];
-		const textDetaills = translation("product.textDetaills", {
+		const textDetails = translation("product.textDetails", {
 			size: pizzaSize,
 			name: translation(key),
 		});
 
-		details.push(textDetaills);
+		details.push(textDetails);
 	}
 
 	if (ingredients) {

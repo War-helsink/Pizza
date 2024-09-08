@@ -65,7 +65,7 @@ export const authOptions: AuthOptions = {
 				return {
 					id: findUser.id,
 					email: findUser.email,
-					name: findUser.fullName,
+					name: `${findUser.firstName} ${findUser.lastName} ${findUser.secondName}`,
 					role: findUser.role,
 				};
 			},
@@ -88,38 +88,23 @@ export const authOptions: AuthOptions = {
 
 				const findUser = await prisma.user.findFirst({
 					where: {
-						OR: [
-							{
-								provider: account?.provider,
-								providerId: account?.providerAccountId,
-							},
-							{ email: user.email },
-						],
+						email: user.email,
 					},
 				});
 
 				if (findUser) {
-					await prisma.user.update({
-						where: {
-							id: findUser.id,
-						},
-						data: {
-							provider: account?.provider,
-							providerId: account?.providerAccountId,
-						},
-					});
-
 					return true;
 				}
 
 				await prisma.user.create({
 					data: {
 						email: user.email,
-						fullName: user.name || `User #${user.id}`,
+						firstName: user.name || `User #${user.id}`,
+						lastName: "",
+						secondName: "",
+						phone: "",
 						password: hashSync(user.id.toString(), 10),
 						verified: new Date(),
-						provider: account?.provider,
-						providerId: account?.providerAccountId,
 					},
 				});
 
@@ -143,7 +128,9 @@ export const authOptions: AuthOptions = {
 			if (findUser) {
 				token.id = String(findUser.id);
 				token.email = findUser.email;
-				token.fullName = findUser.fullName;
+				token.firstName = findUser.firstName;
+				token.lastName = findUser.lastName;
+				token.secondName = findUser.secondName;
 				token.role = findUser.role;
 			}
 

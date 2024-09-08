@@ -6,6 +6,4 @@ export interface Props {
 	searchParams: GetSearchParams;
 }
 
-export interface RootLayoutProps extends Props {
-	children: React.ReactNode;
-}
+export type RootLayoutProps = Props & React.PropsWithChildren

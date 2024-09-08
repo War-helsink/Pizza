@@ -20,7 +20,7 @@ export const AuthButton: React.FC<AuthButtonProps> = ({ className }) => {
 			{!session ? (
 				<AuthModal />
 			) : (
-				<Link href="/profile">
+				<Link href="/profile/order-history">
 					<Button variant="secondary" className="flex items-center gap-2">
 						<CircleUser size={18} />
 						{t("header.profile")}

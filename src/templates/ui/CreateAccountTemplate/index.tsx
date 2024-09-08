@@ -36,7 +36,7 @@ export const CreateAccountTemplate: React.FC<CreateAccountTemplateProps> = ({
 				</Text>
 
 				<div style={buttons}>
-					<Button style={button} href={`${VERCEL_URL}/profile`}>
+					<Button style={button} href={`${VERCEL_URL}/profile/order-history`}>
 						{translation("template.letter.createAccount.button")}
 					</Button>
 				</div>

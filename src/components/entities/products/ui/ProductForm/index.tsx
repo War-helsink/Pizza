@@ -25,11 +25,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 				productItemId: itemId,
 				ingredients,
 			});
-			toast.success(t("toastMessages.success.product_added", { name: product.name }));
+			toast.success(t("toastMessages.success.productAdded", { name: product.name }));
 
 			_onSubmit?.();
 		} catch (err) {
-			toast.error(t("toastMessages.error.product_added"));
+			toast.error(t("toastMessages.error.productAdded"));
 			console.error(err);
 		}
 	};

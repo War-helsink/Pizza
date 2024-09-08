@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
 	} catch (error) {
 		console.log("[CART_GET] Server error", error);
 		return NextResponse.json(
-			{ message: t("sever.errorFetchingCart") },
+			{ message: t("server.errorFetchingCart") },
 			{ status: 500 },
 		);
 	}
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
 	} catch (error) {
 		console.log("[CART_POST] Server error", error);
 		return NextResponse.json(
-			{ message: t("sever.errorCreatingCart") },
+			{ message: t("server.errorCreatingCart") },
 			{ status: 500 },
 		);
 	}

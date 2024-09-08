@@ -3,14 +3,24 @@
 		"default": "Pizza | Home",
 		"product": "Pizza | {{productName}}",
 		"pizza": "Pizza {{productName}} - order with home and office delivery",
-		"profile": "Pizza | Personal Account",
+		"profile": {
+			"order-history": "Pizza | Order history",
+			"addresses": "Pizza | Delivery addresses",
+			"account": "Pizza | Personal data",
+			"password": "Pizza | Change password"
+		},
 		"checkout": "Pizza | Cart"
 	},
 	"description": {
 		"default": "Pizza delivery to your home and office from ❤️ &quot; ☝️ Permanent promotions, Discounts. Order delicious pizza online.",
 		"product": "{{productName}} at a bargain price with home and office delivery ➤ Payment by card ✔ Fast delivery Order now!",
 		"pizza": "Pizza Delivery {{productName}} ⭐️ Large portions, Fast and Free delivery to your office or home",
-		"profile": "Personal account of the client on the Pizza website",
+		"profile": {
+			"order-history": "User order history.",
+			"addresses": "User's delivery addresses.",
+			"account": "User's personal data.",
+			"password": "Change user password."
+		},
 		"checkout": "Order creation page."
 	},
 	"openGraph": {

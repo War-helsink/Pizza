@@ -37,13 +37,13 @@ export const AuthModal: React.FC = () => {
 				<DialogHeader>
 					<DialogTitle>
 						{type === "login"
-							? t("auth.login_title")
-							: t("auth.register_title")}
+							? t("auth.loginTitle")
+							: t("auth.registerTitle")}
 					</DialogTitle>
 					<DialogDescription>
 						{type === "login"
-							? t("auth.login_description")
-							: t("auth.register_description")}
+							? t("auth.loginDescription")
+							: t("auth.registerDescription")}
 					</DialogDescription>
 				</DialogHeader>
 

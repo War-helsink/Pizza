@@ -54,7 +54,7 @@
 		"large": "Large",
 		"thinCrust": "Subtle",
 		"traditional": "Traditional",
-		"textDetaills": "{{size}} cm, {{name}} dough",
+		"textDetails": "{{size}} cm, {{name}} dough",
 		"addCartPrice": "Add to cart for {{price}} ₴",
 		"addCart": "Add",
 		"from": "from",
@@ -67,15 +67,15 @@
 			"updated": "Data updated 📝",
 			"register": "Registration successful 📝. Please confirm your email",
 			"login": "You have successfully logged in",
-			"order": "Order successfully created! 📝 Redirecting to payment...",
-			"product_added": "{{name}} added to cart"
+			"order": "Order successfully created! 📝",
+			"productAdded": "{{name}} added to cart"
 		},
 		"error": {
 			"updated": "Error updating data",
 			"register": "Invalid email or password",
 			"login": "Failed to log in",
 			"order": "Failed to create order",
-			"product_added": "Failed to add product to cart"
+			"productAdded": "Failed to add product to cart"
 		}
 	},
 	"message": {
@@ -123,31 +123,58 @@
 	"auth": {
 		"login": "Login",
 		"register": "Register",
-		"login_title": "Log in to your account",
-		"register_title": "Create an account",
-		"login_description": "Enter your email to log into your account",
-		"register_description": "Enter your details to create a new account",
+		"loginTitle": "Log in to your account",
+		"registerTitle": "Create an account",
+		"loginDescription": "Enter your email to log into your account",
+		"registerDescription": "Enter your details to create a new account",
 		"email": "E-Mail",
 		"password": "Password",
-		"full_name": "Full Name",
-		"confirm_password": "Confirm Password",
-		"login_button": "Log In",
-		"register_button": "Register",
+		"firstName": "Full Name",
+		"confirmPassword": "Confirm Password",
+		"loginButton": "Log In",
+		"registerButton": "Register",
 		"validation": {
 			"password": "Please enter a valid password",
 			"email": "Please enter a valid email",
-			"full_name": "Please enter your first and last name",
-			"confirm_password": "Passwords do not match"
+			"firstName": "Please enter your first name",
+			"confirmPassword": "Passwords do not match"
 		}
 	},
 	"profile": {
-		"personalData": "Personal Data | #",
-		"email": "E-Mail",
-		"fullName": "Full Name",
-		"newPassword": "New Password",
-		"confirmPassword": "Confirm Password",
 		"save": "Save",
-		"signOut": "Sign Out"
+		"signOut": "Sign Out",
+		"title": {
+			"order-history": "Order history",
+			"addresses": "Delivery addresses",
+			"account": "Personal data",
+			"password": "Change password"
+		},
+		"nav": {
+			"home": "Home",
+			"specialOffice": "Personal account"
+		},
+		"order-history": {
+			"caption": {
+				"next": "Next",
+				"previous": "Previous"
+			},
+			"date": "Order Date",
+			"orderNumber": "Order Number",
+			"status": "Status",
+			"total": "Total Amount"
+		},
+		"account": {
+			"firstName": "First Name",
+			"secondName": "Middle Name",
+			"lastName": "Last Name",
+			"phone": "Phone Number",
+			"email": "Email"
+		},
+		"password": {
+			"current": "Current Password",
+			"new": "New Password",
+			"confirm": "Confirm Password"
+		}
 	},
 	"unauthorized": {
 		"title": "Access Denied",
@@ -155,7 +182,7 @@
 		"goHome": "Go to Home",
 		"refresh": "Refresh"
 	},
-	"sever": {
+	"server": {
 		"errorFetchingCart": "Failed to retrieve cart",
 		"errorCreatingCart": "Failed to create cart",
 		"errorTokenNotFound": "Cart token not found",
@@ -163,7 +190,7 @@
 		"errorUpdatingCart": "Failed to update cart",
 		"errorDeletingCart": "Failed to delete cart",
 		"invalidCode": "Invalid code",
-		"serverError": "An error occurred",
+		"error": "An error occurred",
 		"cartTokenNotFound": "Cart token not found",
 		"cartNotFound": "Cart not found",
 		"cartEmpty": "Cart is empty",
@@ -171,6 +198,7 @@
 		"emailNotVerified": "Email not verified",
 		"userExists": "User already exists",
 		"userUpdateError": "User update error",
+		"confirmPassword": "Passwords do not match",
 		"registrationConfirmationSubject": "Pizza / Registration Confirmation",
 		"createAccountSubject": "Pizza / Your personal account has been created",
 		"orderCreationSubject": "Pizza / Pay for Order #{{orderId}}"

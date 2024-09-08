@@ -6,8 +6,9 @@ import type { Locale } from "@prisma/client";
 import { sendEmail } from "@/libs/send-email";
 import { prisma } from "@/prisma/prisma-client";
 import { OrderStatus, type Prisma } from "@prisma/client";
-import { hashSync } from "bcrypt";
+import { hashSync, compare } from "bcrypt";
 import { getUserSession } from "@/libs/get-user-session";
+import type { TFormPasswordValues } from "@/components/features/auth";
 
 import { OrderCreationTemplate, VerifyEmailTemplate } from "@/templates";
 import type { CheckoutFormValues } from "@/config/checkout-form-schema";
@@ -20,7 +21,7 @@ export async function createOrder(formValues: CheckoutFormValues) {
 		const { t } = await initTranslations({ locale });
 
 		if (!cartToken) {
-			throw new Error(t("sever.cartTokenNotFound"));
+			throw new Error(t("server.cartTokenNotFound"));
 		}
 
 		const userCart = await prisma.cart.findFirst({
@@ -65,11 +66,11 @@ export async function createOrder(formValues: CheckoutFormValues) {
 		});
 
 		if (!userCart) {
-			throw new Error(t("sever.cartNotFound"));
+			throw new Error(t("server.cartNotFound"));
 		}
 
 		if (formValues.totalPrice === 0) {
-			throw new Error(t("sever.cartEmpty"));
+			throw new Error(t("server.cartEmpty"));
 		}
 
 		const order = await prisma.order.create({
@@ -95,7 +96,7 @@ export async function createOrder(formValues: CheckoutFormValues) {
 
 		await sendEmail(
 			formValues.email,
-			t("sever.orderCreationSubject", { orderId: order.id }),
+			t("server.orderCreationSubject", { orderId: order.id }),
 			OrderCreationTemplate({
 				lang: locale,
 				translation: t,
@@ -128,15 +129,18 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 		if (user) {
 			if (!user.verified) {
-				throw new Error(t("sever.emailNotVerified"));
+				throw new Error(t("server.emailNotVerified"));
 			}
 
-			throw new Error(t("sever.userExists"));
+			throw new Error(t("server.userExists"));
 		}
 
 		const createdUser = await prisma.user.create({
 			data: {
-				fullName: body.fullName,
+				firstName: body.firstName,
+				secondName: body.secondName,
+				lastName: body.lastName,
+				phone: body.phone,
 				email: body.email,
 				password: hashSync(body.password, 10),
 			},
@@ -173,7 +177,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 		await sendEmail(
 			createdUser.email,
-			t("sever.registrationConfirmationSubject"),
+			t("server.registrationConfirmationSubject"),
 			VerifyEmailTemplate({
 				lang: locale,
 				code,
@@ -195,25 +199,64 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
 		const currentUser = await getUserSession();
 
 		if (!currentUser) {
-			throw new Error(t("sever.userNotFound"));
+			throw new Error(t("server.userNotFound"));
 		}
-
-		const findUser = await prisma.user.findFirst({
-			where: {
-				id: Number(currentUser.id),
-			},
-		});
 
 		await prisma.user.update({
 			where: {
 				id: Number(currentUser.id),
 			},
 			data: {
-				fullName: body.fullName,
+				firstName: body.firstName,
+				secondName: body.secondName,
+				lastName: body.lastName,
+				phone: body.phone,
 				email: body.email,
-				password: body.password
-					? hashSync(body.password as string, 10)
-					: findUser?.password,
+			},
+		});
+	} catch (err) {
+		console.error("Error [UPDATE_USER]", err);
+		throw err;
+	}
+}
+
+export async function updateUserPassword(data: TFormPasswordValues) {
+	try {
+		const cookieStore = cookies();
+		const locale = (cookieStore.get("NEXT_LOCALE")?.value || "uk") as Locale;
+		const { t } = await initTranslations({ locale });
+
+		const currentUser = await getUserSession();
+
+		if (!currentUser) {
+			throw new Error(t("server.userNotFound"));
+		}
+
+		const user = await prisma.user.findFirst({
+			where: {
+				id: Number(currentUser.id),
+			},
+			select: {
+				password: true,
+			},
+		});
+
+		if (!user) {
+			throw new Error(t("server.userNotFound"));
+		}
+
+		const isPasswordValid = await compare(data.password, user.password);
+
+		if (!isPasswordValid) {
+			throw new Error(t("server.confirmPassword"));
+		}
+
+		await prisma.user.update({
+			where: {
+				id: Number(currentUser.id),
+			},
+			data: {
+				password: hashSync(data.newPassword, 10),
 			},
 		});
 	} catch (err) {

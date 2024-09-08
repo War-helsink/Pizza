@@ -61,7 +61,7 @@ export const LoginForm: React.FC = () => {
 					className="h-12 text-base"
 					type="submit"
 				>
-					{t("auth.login_button")}
+					{t("auth.loginButton")}
 				</Button>
 			</form>
 		</FormProvider>

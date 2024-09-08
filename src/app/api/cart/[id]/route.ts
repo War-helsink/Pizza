@@ -18,7 +18,7 @@ export async function PATCH(
 		const token = req.cookies.get("cartToken")?.value;
 
 		if (!token) {
-			return NextResponse.json({ error: t("sever.errorTokenNotFound") });
+			return NextResponse.json({ error: t("server.errorTokenNotFound") });
 		}
 
 		const cartItem = await prisma.cartItem.findFirst({
@@ -28,7 +28,7 @@ export async function PATCH(
 		});
 
 		if (!cartItem) {
-			return NextResponse.json({ error: t("sever.errorItemNotFound") });
+			return NextResponse.json({ error: t("server.errorItemNotFound") });
 		}
 
 		await prisma.cartItem.update({
@@ -46,7 +46,7 @@ export async function PATCH(
 	} catch (error) {
 		console.log("[CART_PATCH] Server error", error);
 		return NextResponse.json(
-			{ message: t("sever.errorUpdatingCart") },
+			{ message: t("server.errorUpdatingCart") },
 			{ status: 500 },
 		);
 	}
@@ -64,7 +64,7 @@ export async function DELETE(
 		const token = req.cookies.get("cartToken")?.value;
 
 		if (!token) {
-			return NextResponse.json({ error: t("sever.errorTokenNotFound") });
+			return NextResponse.json({ error: t("server.errorTokenNotFound") });
 		}
 
 		const cartItem = await prisma.cartItem.findFirst({
@@ -74,7 +74,7 @@ export async function DELETE(
 		});
 
 		if (!cartItem) {
-			return NextResponse.json({ error: t("sever.errorItemNotFound") });
+			return NextResponse.json({ error: t("server.errorItemNotFound") });
 		}
 
 		await prisma.cartItem.delete({
@@ -89,7 +89,7 @@ export async function DELETE(
 	} catch (error) {
 		console.log("[CART_DELETE] Server error", error);
 		return NextResponse.json(
-			{ message: t("sever.errorDeletingCart") },
+			{ message: t("server.errorDeletingCart") },
 			{ status: 500 },
 		);
 	}
