@@ -62,7 +62,7 @@ export const RegisterForm: React.FC = () => {
 				/>
 				<FormInput
 					name="confirmPassword"
-					label={t("auth.confirm_password")}
+					label={t("auth.confirmPassword")}
 					type="password"
 					required
 				/>

@@ -8,4 +8,5 @@ export interface ProfileAccountFormProps {
 export interface ProfileOrderHistoryProps {
 	translation: TFunction;
 	userId: number;
+	page?: string;
 }

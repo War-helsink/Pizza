@@ -1,5 +1,6 @@
 "use server";
 
+import crypto from "crypto";
 import { cookies } from "next/headers";
 import initTranslations from "@/libs/i18n";
 import type { Locale } from "@prisma/client";
@@ -9,6 +10,7 @@ import { OrderStatus, type Prisma } from "@prisma/client";
 import { hashSync, compare } from "bcrypt";
 import { getUserSession } from "@/libs/get-user-session";
 import type { TFormPasswordValues } from "@/components/features/auth";
+import { createCart } from "@/libs/api";
 
 import { OrderCreationTemplate, VerifyEmailTemplate } from "@/templates";
 import type { CheckoutFormValues } from "@/config/checkout-form-schema";
@@ -121,7 +123,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 		const locale = (cookieStore.get("NEXT_LOCALE")?.value || "uk") as Locale;
 		const { t } = await initTranslations({ locale });
 
-		const user = await prisma.user.findFirst({
+		const user = await prisma.user.findUnique({
 			where: {
 				email: body.email,
 			},
@@ -147,23 +149,43 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 		});
 
 		if (cartToken) {
-			await prisma.cart.update({
+			const cart = await prisma.cart.findUnique({
 				where: {
 					token: cartToken,
-				},
-				data: {
-					userId: createdUser.id,
 				},
 			});
 
-			await prisma.order.updateMany({
-				where: {
-					token: cartToken,
-				},
-				data: {
-					userId: createdUser.id,
-				},
-			});
+			if (cart === null || cart.userId === null) {
+				await prisma.cart.update({
+					where: {
+						token: cartToken,
+					},
+					data: {
+						userId: createdUser.id,
+					},
+				});
+
+				await prisma.order.updateMany({
+					where: {
+						token: cartToken,
+					},
+					data: {
+						userId: createdUser.id,
+					},
+				});
+			} else {
+				const token = crypto.randomUUID();
+				const id = await createCart(token);
+				await prisma.cart.update({
+					where: {
+						id: id,
+					},
+					data: {
+						userId: createdUser.id,
+					},
+				});
+				cookieStore.set("cartToken", token);
+			}
 		}
 
 		const code = Math.floor(100000 + Math.random() * 900000).toString();

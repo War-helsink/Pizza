@@ -18,16 +18,12 @@ export async function generateMetadata({
 }
 
 export default async function CheckoutLayout({
-	params: { locale },
 	children,
-}: { params: { locale: Locale } } & React.PropsWithChildren) {
-	const { t } = await initTranslations({ locale });
-
+}: React.PropsWithChildren) {
 	return (
 		<div className="h-screen bg-[#F4F1EE] flex flex-col">
 			<Suspense>
 				<Header
-					translation={t}
 					hasSearch={false}
 					hasCart={false}
 					className="border-b-gray-200"

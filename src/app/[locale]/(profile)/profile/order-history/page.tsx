@@ -23,7 +23,8 @@ export async function generateMetadata({
 
 export default async function ProfileOrderHistoryPage({
 	params: { locale },
-}: { params: { locale: Locale } }) {
+	searchParams: { page },
+}: { params: { locale: Locale }; searchParams: { page?: string } }) {
 	const session = await getUserSession();
 
 	if (!session) {
@@ -48,7 +49,11 @@ export default async function ProfileOrderHistoryPage({
 				className="font-bold"
 				text={translation("profile.title.order-history")}
 			/>
-			<ProfileOrderHistory userId={user.id} translation={translation} />
+			<ProfileOrderHistory
+				page={page}
+				userId={user.id}
+				translation={translation}
+			/>
 		</Container>
 	);
 }

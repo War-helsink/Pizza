@@ -47,10 +47,11 @@ export default function CheckoutPage() {
 
 	useEffect(() => {
 		if (session?.user) {
-			const [firstName, lastName] = session.user.name.split(" ");
+			const [firstName, _, lastName] = session.user.name.split(" ");
 			form.setValue("firstName", firstName);
 			form.setValue("lastName", lastName);
 			form.setValue("email", session.user.email);
+			form.setValue("phone", session.user.phone);
 		}
 	}, [session, form]);
 

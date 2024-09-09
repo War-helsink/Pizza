@@ -1,4 +1,5 @@
 import type { AuthOptions } from "next-auth";
+import { cookies } from "next/headers";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -21,6 +22,7 @@ export const authOptions: AuthOptions = {
 					id: profile.id,
 					name: profile.name || profile.login,
 					email: profile.email,
+					phone: profile.phone || "",
 					image: profile.avatar_url,
 					role: "USER" as UserRole,
 				};
@@ -65,7 +67,8 @@ export const authOptions: AuthOptions = {
 				return {
 					id: findUser.id,
 					email: findUser.email,
-					name: `${findUser.firstName} ${findUser.lastName} ${findUser.secondName}`,
+					phone: findUser.phone,
+					name: `${findUser.firstName} ${findUser.secondName} ${findUser.lastName}`,
 					role: findUser.role,
 				};
 			},
@@ -78,7 +81,27 @@ export const authOptions: AuthOptions = {
 	callbacks: {
 		async signIn({ user, account }) {
 			try {
+				const cookieStore = cookies();
+
+				const findUser = await prisma.user.findFirst({
+					where: {
+						email: user.email as string,
+					},
+					include: {
+						cart: true,
+					},
+				});
+
 				if (account?.provider === "credentials") {
+					if (!findUser) {
+						return false;
+					}
+
+					cookieStore.set(
+						"cartToken",
+						findUser.cart ? findUser.cart.token : "",
+					);
+
 					return true;
 				}
 
@@ -86,13 +109,12 @@ export const authOptions: AuthOptions = {
 					return false;
 				}
 
-				const findUser = await prisma.user.findFirst({
-					where: {
-						email: user.email,
-					},
-				});
-
 				if (findUser) {
+					cookieStore.set(
+						"cartToken",
+						findUser.cart ? findUser.cart.token : "",
+					);
+
 					return true;
 				}
 
@@ -127,10 +149,9 @@ export const authOptions: AuthOptions = {
 
 			if (findUser) {
 				token.id = String(findUser.id);
+				token.name = `${findUser.firstName} ${findUser.secondName} ${findUser.lastName}`;
 				token.email = findUser.email;
-				token.firstName = findUser.firstName;
-				token.lastName = findUser.lastName;
-				token.secondName = findUser.secondName;
+				token.phone = findUser.phone;
 				token.role = findUser.role;
 			}
 
@@ -139,6 +160,7 @@ export const authOptions: AuthOptions = {
 		session({ session, token }) {
 			if (session?.user) {
 				session.user.id = token.id;
+				session.user.phone = token.phone;
 				session.user.role = token.role;
 			}
 

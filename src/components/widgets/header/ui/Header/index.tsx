@@ -1,7 +1,13 @@
+"use client";
+
 import { cn } from "@/libs/utils";
+import toast from "react-hot-toast";
 
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { AuthButton } from "@/components/features/auth";
 import { CartButton } from "@/components/features/cart";
@@ -12,34 +18,34 @@ import { Container } from "@/components/shared/ui";
 import type { HeaderProps } from "../../model/props";
 
 export const Header: React.FC<HeaderProps> = ({
-	translation,
 	hasSearch = true,
 	hasCart = true,
 	className,
 }) => {
-	// const router = useRouter();
-	// const searchParams = useSearchParams();
+	const { t } = useTranslation();
+	const router = useRouter();
+	const searchParams = useSearchParams();
 
-	// useEffect(() => {
-	// 	let toastMessage = "";
+	useEffect(() => {
+		let toastMessage = "";
 
-	// 	if (searchParams.has("paid")) {
-	// 		toastMessage = t("toastMessages.paidOrderSuccess");
-	// 	}
+		if (searchParams.has("paid")) {
+			toastMessage = t("toastMessages.paidOrderSuccess");
+		}
 
-	// 	if (searchParams.has("verified")) {
-	// 		toastMessage = t("toastMessages.emailVerified");
-	// 	}
+		if (searchParams.has("verified")) {
+			toastMessage = t("toastMessages.emailVerified");
+		}
 
-	// 	if (toastMessage) {
-	// 		setTimeout(() => {
-	// 			router.replace("/");
-	// 			toast.success(toastMessage, {
-	// 				duration: 3000,
-	// 			});
-	// 		}, 1000);
-	// 	}
-	// }, [t, router, searchParams]);
+		if (toastMessage) {
+			setTimeout(() => {
+				router.replace("/");
+				toast.success(toastMessage, {
+					duration: 3000,
+				});
+			}, 1000);
+		}
+	}, [t, router, searchParams]);
 
 	return (
 		<header className={cn("border border-b", className)}>
@@ -50,14 +56,14 @@ export const Header: React.FC<HeaderProps> = ({
 							src="/icon512.png"
 							width={35}
 							height={35}
-							alt={translation("header.logoAlt")}
+							alt={t("header.logoAlt")}
 						/>
 						<div>
 							<h1 className="text-2xl uppercase font-black">
-								{translation("header.title")}
+								{t("header.title")}
 							</h1>
 							<p className="text-sm text-gray-400 leading-3">
-								{translation("header.subtitle")}
+								{t("header.subtitle")}
 							</p>
 						</div>
 					</div>
