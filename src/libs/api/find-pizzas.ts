@@ -83,6 +83,7 @@ export const findPizzas = async (params: GetSearchParams, locale: Locale) => {
 						},
 						select: {
 							name: true,
+							locale: true,
 						},
 					},
 

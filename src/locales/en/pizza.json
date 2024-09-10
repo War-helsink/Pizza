@@ -219,10 +219,7 @@
 		"emailNotVerified": "Email not verified",
 		"userExists": "User already exists",
 		"userUpdateError": "User update error",
-		"confirmPassword": "Passwords do not match",
-		"registrationConfirmationSubject": "Pizza / Registration Confirmation",
-		"createAccountSubject": "Pizza / Your personal account has been created",
-		"orderCreationSubject": "Pizza / Pay for Order #{{orderId}}"
+		"confirmPassword": "Passwords do not match"
 	},
 	"template": {
 		"title": {
@@ -233,7 +230,7 @@
 		"letter": {
 			"orderCreation": {
 				"title": "Order #{{orderId}}",
-				"message": "Pay for the order of {{totalPrice}} ₴."
+				"total": "Total"
 			},
 			"verifyEmail": {
 				"title": "Verify your email address",
@@ -247,6 +244,11 @@
 				"information": "You can view your payments and various other information about your account right on your dashboard.",
 				"button": "View your account information"
 			}
+		},
+		"subject":{
+			"verifyEmail": "Pizza / Registration Confirmation",
+			"createAccount": "Pizza / Your personal account has been created",
+			"orderCreation": "Pizza / Your order has been created #{{orderId}}"
 		},
 		"footer": "This message was produced and distributed by Pizza Web Services. © 2024, Pizza Web Services, Inc.. All rights reserved. Pizza is a registered trademark.",
 		"notification": "Email Notification.",

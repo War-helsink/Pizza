@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
 
 		await sendEmail(
 			user.email,
-			t("server.createAccountSubject"),
+			t("template.subject.createAccount"),
 			CreateAccountTemplate({
 				lang: locale,
 				translation: t,

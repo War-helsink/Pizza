@@ -31,20 +31,20 @@ export default async function UnauthorizedPage({ params: { locale } }: Props) {
 								{t("unauthorized.goHome")}
 							</Button>
 						</Link>
-						<a href="">
-							<Button
-								variant="outline"
-								className="text-gray-500 border-gray-400 hover:bg-gray-50"
-							>
-								{t("unauthorized.refresh")}
-							</Button>
-						</a>
+
+						<Button
+							variant="outline"
+							className="text-gray-500 border-gray-400 hover:bg-gray-50"
+						>
+							{t("unauthorized.refresh")}
+						</Button>
 					</div>
 				</div>
 
 				<img
 					src={"/assets/images/lock.png"}
 					alt={t("unauthorized.title")}
+					loading="lazy"
 					width={300}
 				/>
 			</div>

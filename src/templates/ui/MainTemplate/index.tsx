@@ -49,6 +49,8 @@ const main = {
 const container = {
 	padding: "20px",
 	margin: "0 auto",
+	width: "660px",
+	maxWidth: "100%",
 };
 
 const coverSection = { backgroundColor: "#fff" };

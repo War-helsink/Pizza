@@ -72,6 +72,7 @@ export const AuthModal: React.FC = () => {
 						<img
 							className="w-6 h-6"
 							src="https://github.githubassets.com/favicons/favicon.svg"
+							loading="lazy"
 						/>
 						GitHub
 					</Button>
@@ -90,6 +91,7 @@ export const AuthModal: React.FC = () => {
 						<img
 							className="w-6 h-6"
 							src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg"
+							loading="lazy"
 						/>
 						Google
 					</Button>

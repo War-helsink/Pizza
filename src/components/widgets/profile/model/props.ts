@@ -1,7 +1,6 @@
 import type { TFunction } from "i18next";
 import type { User } from "@/@types/entities";
-import type { Order } from "@prisma/client";
-import type { Locale } from "@prisma/client";
+import type { Order, Locale } from "@prisma/client";
 
 export interface ProfileAccountFormProps {
 	user: User;

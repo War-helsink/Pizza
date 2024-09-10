@@ -17,7 +17,7 @@ export const ProfileOrder: React.FC<ProfileOrderProps> = ({
 	locale,
 	order,
 }) => {
-	const orderInfo = [
+	const orderInfos = [
 		{
 			label: translation("profile.order.data"),
 			value: formatDate(order.createdAt),
@@ -50,8 +50,8 @@ export const ProfileOrder: React.FC<ProfileOrderProps> = ({
 				{translation("profile.order.title")}
 			</div>
 			<div className="border-t border-b py-4 text-sm">
-				{orderInfo.map((info) => (
-					<div key={info.label} className="flex items-center py-3">
+				{orderInfos.map((info, index) => (
+					<div key={index} className="flex items-center py-3">
 						<div className="min-w-52 opacity-50">{info.label}</div>
 						<div className="">{info.value}</div>
 					</div>
@@ -64,14 +64,9 @@ export const ProfileOrder: React.FC<ProfileOrderProps> = ({
 			<Table>
 				<TableHeader>
 					<TableRow>
-						<TableHead colSpan={2}>
-							{translation("profile.order.table.name")}
-						</TableHead>
-						<TableHead colSpan={1}>
-							{" "}
-							{translation("profile.order.table.quantity")}
-						</TableHead>
-						<TableHead colSpan={1} className="text-right">
+						<TableHead>{translation("profile.order.table.name")}</TableHead>
+						<TableHead>{translation("profile.order.table.quantity")}</TableHead>
+						<TableHead className="text-right">
 							{translation("profile.order.table.price")}
 						</TableHead>
 					</TableRow>
@@ -79,11 +74,17 @@ export const ProfileOrder: React.FC<ProfileOrderProps> = ({
 				<TableBody>
 					{(order.items as any[]).map((item) => (
 						<TableRow key={item.productItem.product.id}>
-							<TableCell colSpan={2}>
+							<TableCell>
 								<Link
 									href={`/product/${item.productItem.product.id}`}
-									className="underline"
+									className="w-fit flex items-center gap-2 text-lg underline hover:text-primary"
 								>
+									<img
+										className="w-[60px] h-[60px]"
+										src={item.productItem.product.imageUrl}
+										loading="lazy"
+										alt=""
+									/>
 									{
 										item.productItem.product.translations.find(
 											(item: any) => item.locale === locale,
@@ -91,8 +92,8 @@ export const ProfileOrder: React.FC<ProfileOrderProps> = ({
 									}
 								</Link>
 							</TableCell>
-							<TableCell colSpan={1}>{item.quantity}</TableCell>
-							<TableCell colSpan={1} className="text-right">
+							<TableCell>{item.quantity}</TableCell>
+							<TableCell className="text-right">
 								{`${translation("product.currency")} ${calcCartItemTotalPrice(item)}`}
 							</TableCell>
 						</TableRow>

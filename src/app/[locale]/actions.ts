@@ -11,6 +11,7 @@ import { hashSync, compare } from "bcrypt";
 import { getUserSession } from "@/libs/get-user-session";
 import type { TFormPasswordValues } from "@/components/features/auth";
 import { createCart } from "@/libs/api";
+import { cartItemsConvert } from "@/prisma/convert";
 
 import { OrderCreationTemplate, VerifyEmailTemplate } from "@/templates";
 import type { CheckoutFormValues } from "@/config/checkout-form-schema";
@@ -18,6 +19,7 @@ import type { CheckoutFormValues } from "@/config/checkout-form-schema";
 export async function createOrder(formValues: CheckoutFormValues) {
 	try {
 		const cookieStore = cookies();
+		const currentUser = await getUserSession();
 		const cartToken = cookieStore.get("cartToken")?.value;
 		const locale = (cookieStore.get("NEXT_LOCALE")?.value || "uk") as Locale;
 		const { t } = await initTranslations({ locale });
@@ -103,12 +105,14 @@ export async function createOrder(formValues: CheckoutFormValues) {
 
 		await sendEmail(
 			formValues.email,
-			t("server.orderCreationSubject", { orderId: order.id }),
+			t("template.subject.orderCreation", { orderId: order.id }),
 			OrderCreationTemplate({
 				lang: locale,
+				items: userCart.items as any,
 				translation: t,
-				orderId: order.id,
+				order,
 				totalPrice: order.totalPrice,
+				isAuthenticated: !!currentUser,
 			}) as React.ReactElement,
 		).catch((error) => {
 			console.log("[SEND_EMAIL] Server error", error);
@@ -191,7 +195,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 				});
 				cookieStore.set("cartToken", token);
 			}
-		}else{
+		} else {
 			const token = crypto.randomUUID();
 			const id = await createCart(token);
 			await prisma.cart.update({
@@ -216,7 +220,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 		await sendEmail(
 			createdUser.email,
-			t("server.registrationConfirmationSubject"),
+			t("template.subject.verifyEmail"),
 			VerifyEmailTemplate({
 				lang: locale,
 				code,

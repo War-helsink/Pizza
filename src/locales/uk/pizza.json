@@ -219,10 +219,7 @@
 		"emailNotVerified": "Пошта не підтверджена",
 		"userExists": "Користувач вже існує",
 		"userUpdateError": "Помилка оновлення користувача",
-		"confirmPassword": "Паролі не співпадають",
-		"registrationConfirmationSubject": "Pizza / Підтвердження реєстрації",
-		"createAccountSubject": "Pizza / Створено ваш особистий кабінет",
-		"orderCreationSubject": "Pizza / Сплатіть замовлення #{{orderId}}"
+		"confirmPassword": "Паролі не співпадають"
 	},
 	"template": {
 		"title": {
@@ -233,7 +230,7 @@
 		"letter": {
 			"orderCreation": {
 				"title": "Замовлення #{{orderId}}",
-				"message": "Сплатіть замовлення на суму {{totalPrice}} ₴."
+				"total": "Підсумок"
 			},
 			"verifyEmail": {
 				"title": "Підтвердьте адресу електронної пошти",
@@ -247,6 +244,11 @@
 				"information": "Ви можете переглядати свої платежі та різноманітну іншу інформацію про свій обліковий запис прямо на інформаційній панелі.",
 				"button": "Перегляньте інформацію вашого кабінету"
 			}
+		},
+		"subject": {
+			"verifyEmail": "Pizza / Підтвердження реєстрації",
+			"createAccount": "Pizza / Створено ваш особистий кабінет",
+			"orderCreation": "Pizza / Ваше замовлення створено #{{orderId}}"
 		},
 		"footer": "Це повідомлення було створено та розповсюджено Pizza Web Services. © 2024, Pizza Web Services, Inc. Усі права захищено. Pizza є зареєстрованою торговою маркою.",
 		"notification": "Сповіщення електронною поштою.",

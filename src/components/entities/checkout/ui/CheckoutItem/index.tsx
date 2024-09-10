@@ -31,7 +31,7 @@ export const CheckoutItem: React.FC<CheckoutItemProps> = ({
 			)}
 		>
 			<div className="flex items-center gap-5 flex-1">
-				<img className="w-[60px] h-[60px]" src={imageUrl} />
+				<img className="w-[60px] h-[60px]" src={imageUrl} loading="lazy" />
 
 				<div>
 					<div className="flex items-center justify-between">

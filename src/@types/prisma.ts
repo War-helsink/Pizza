@@ -8,6 +8,7 @@ import type {
 	CartItem,
 	Order,
 	VerificationCode,
+	Locale,
 } from "@prisma/client";
 
 export interface UserPrisma extends User {
@@ -33,6 +34,7 @@ export interface ProductPrisma extends Product {
 
 export interface ProductTranslationPrisma {
 	name: string;
+	locale: Locale;
 }
 
 export interface ProductItemPrisma extends ProductItem {
@@ -45,6 +47,7 @@ export interface IngredientPrisma extends Ingredient {
 
 export interface IngredientTranslationPrisma {
 	name: string;
+	locale: Locale;
 }
 
 export interface CartPrisma extends Cart {

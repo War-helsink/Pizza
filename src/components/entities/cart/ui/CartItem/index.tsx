@@ -28,7 +28,7 @@ export const CartItem: React.FC<CartItemProps> = ({
 				className,
 			)}
 		>
-			<img className="w-[60px] h-[60px]" src={imageUrl} />
+			<img className="w-[60px] h-[60px]" src={imageUrl} loading="lazy" />
 
 			<div className="flex-1">
 				<div>
