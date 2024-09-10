@@ -7,6 +7,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "@/prisma/prisma-client";
 import { compare, hashSync } from "bcrypt";
 import type { UserRole } from "@prisma/client";
+import { createCart } from "@/libs/api";
 
 export const authOptions: AuthOptions = {
 	providers: [
@@ -118,7 +119,9 @@ export const authOptions: AuthOptions = {
 					return true;
 				}
 
-				await prisma.user.create({
+				const cartToken = cookieStore.get("cartToken")?.value;
+
+				const createdUser = await prisma.user.create({
 					data: {
 						email: user.email,
 						firstName: user.name || `User #${user.id}`,
@@ -129,6 +132,57 @@ export const authOptions: AuthOptions = {
 						verified: new Date(),
 					},
 				});
+
+				if (cartToken) {
+					const cart = await prisma.cart.findUnique({
+						where: {
+							token: cartToken,
+						},
+					});
+					if (cart === null || cart.userId === null) {
+						await prisma.cart.update({
+							where: {
+								token: cartToken,
+							},
+							data: {
+								userId: createdUser.id,
+							},
+						});
+
+						await prisma.order.updateMany({
+							where: {
+								token: cartToken,
+							},
+							data: {
+								userId: createdUser.id,
+							},
+						});
+					} else {
+						const token = crypto.randomUUID();
+						const id = await createCart(token);
+						await prisma.cart.update({
+							where: {
+								id: id,
+							},
+							data: {
+								userId: createdUser.id,
+							},
+						});
+						cookieStore.set("cartToken", token);
+					}
+				} else {
+					const token = crypto.randomUUID();
+					const id = await createCart(token);
+					await prisma.cart.update({
+						where: {
+							id: id,
+						},
+						data: {
+							userId: createdUser.id,
+						},
+					});
+					cookieStore.set("cartToken", token);
+				}
 
 				return true;
 			} catch (error) {

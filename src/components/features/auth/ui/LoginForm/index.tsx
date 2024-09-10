@@ -9,7 +9,9 @@ import { useTranslation } from "react-i18next";
 import { Button, FormInput } from "@/components/shared/ui";
 import { type TFormLoginValues, formLoginSchema } from "../../lib/schemas";
 
-export const LoginForm: React.FC = () => {
+import type { LoginFormProps } from "../../model/props";
+
+export const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
 	const { t } = useTranslation();
 
 	const form = useForm<TFormLoginValues>({
@@ -34,6 +36,8 @@ export const LoginForm: React.FC = () => {
 			toast.success(t("toastMessages.success.login"), {
 				icon: "✅",
 			});
+
+			onClose?.();
 		} catch (error) {
 			console.error("Error [LOGIN]", error);
 			toast.error(t("toastMessages.error.login"), {

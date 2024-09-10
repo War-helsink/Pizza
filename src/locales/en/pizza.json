@@ -144,6 +144,7 @@
 		"save": "Save",
 		"signOut": "Sign Out",
 		"title": {
+			"admin": "Admin Panel",
 			"order-history": "Order history",
 			"order": "Order № {{id}}",
 			"addresses": "Delivery addresses",

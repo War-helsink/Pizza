@@ -36,81 +36,83 @@ export const ProfileOrderHistory: React.FC<ProfileOrderHistoryProps> = async ({
 	return (
 		<Table>
 			<TableCaption>
-				<Pagination>
-					<PaginationContent>
-						<PaginationItem>
-							<PaginationPrevious
-								href={
-									currentPage === 1
-										? undefined
-										: `/profile/order-history?page=${currentPage - 1}`
-								}
-								text={translation("profile.order-history.caption.previous")}
-							/>
-						</PaginationItem>
-
-						{currentPage - 3 > 1 && (
+				{totalOrders > 0 && (
+					<Pagination>
+						<PaginationContent>
 							<PaginationItem>
-								<PaginationLink href="/profile/order-history?page=1">
-									1
-								</PaginationLink>
+								<PaginationPrevious
+									href={
+										currentPage === 1
+											? undefined
+											: `/profile/order-history?page=${currentPage - 1}`
+									}
+									text={translation("profile.order-history.caption.previous")}
+								/>
 							</PaginationItem>
-						)}
 
-						{currentPage - 3 > 2 && (
-							<PaginationItem>
-								<PaginationEllipsis />
-							</PaginationItem>
-						)}
-
-						{[...Array(totalPages)].map((_, index) => {
-							if (currentPage + 3 < index + 1) {
-								return null;
-							}
-
-							if (currentPage - 3 > index + 1) {
-								return null;
-							}
-
-							return (
-								<PaginationItem key={index}>
-									<PaginationLink
-										isActive={currentPage === index + 1}
-										href={`/profile/order-history?page=${index + 1}`}
-									>
-										{index + 1}
+							{currentPage - 3 > 1 && (
+								<PaginationItem>
+									<PaginationLink href="/profile/order-history?page=1">
+										1
 									</PaginationLink>
 								</PaginationItem>
-							);
-						})}
+							)}
 
-						{currentPage + 3 < totalPages - 1 && (
-							<PaginationItem>
-								<PaginationEllipsis />
-							</PaginationItem>
-						)}
+							{currentPage - 3 > 2 && (
+								<PaginationItem>
+									<PaginationEllipsis />
+								</PaginationItem>
+							)}
 
-						{currentPage + 3 < totalPages && (
-							<PaginationItem>
-								<PaginationLink
-									href={`/profile/order-history?page=${totalPages}`}
-								>
-									{totalPages}
-								</PaginationLink>
-							</PaginationItem>
-						)}
-						<PaginationItem>
-							<PaginationNext
-								href={
-									currentPage === totalPages
-										? undefined
-										: `/profile/order-history?page=${currentPage + 1}`
+							{[...Array(totalPages)].map((_, index) => {
+								if (currentPage + 3 < index + 1) {
+									return null;
 								}
-								text={translation("profile.order-history.caption.next")}
-							/>
-						</PaginationItem>
-					</PaginationContent>
-				</Pagination>
+
+								if (currentPage - 3 > index + 1) {
+									return null;
+								}
+
+								return (
+									<PaginationItem key={index}>
+										<PaginationLink
+											isActive={currentPage === index + 1}
+											href={`/profile/order-history?page=${index + 1}`}
+										>
+											{index + 1}
+										</PaginationLink>
+									</PaginationItem>
+								);
+							})}
+
+							{currentPage + 3 < totalPages - 1 && (
+								<PaginationItem>
+									<PaginationEllipsis />
+								</PaginationItem>
+							)}
+
+							{currentPage + 3 < totalPages && (
+								<PaginationItem>
+									<PaginationLink
+										href={`/profile/order-history?page=${totalPages}`}
+									>
+										{totalPages}
+									</PaginationLink>
+								</PaginationItem>
+							)}
+							<PaginationItem>
+								<PaginationNext
+									href={
+										currentPage === totalPages
+											? undefined
+											: `/profile/order-history?page=${currentPage + 1}`
+									}
+									text={translation("profile.order-history.caption.next")}
+								/>
+							</PaginationItem>
+						</PaginationContent>
+					</Pagination>
+				)}
 			</TableCaption>
 			<TableHeader>
 				<TableRow>

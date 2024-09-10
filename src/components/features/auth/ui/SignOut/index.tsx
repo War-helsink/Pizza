@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/libs/utils";
+import { removeCookie } from "react-use-cookie";
 import { signOut } from "next-auth/react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/shared/ui";
@@ -11,6 +12,8 @@ export const SignOut: React.FC<
 	const { t } = useTranslation();
 
 	const onClickSignOut = () => {
+		removeCookie("cartToken");
+
 		signOut({
 			callbackUrl: "/",
 		});

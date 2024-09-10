@@ -191,6 +191,18 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 				});
 				cookieStore.set("cartToken", token);
 			}
+		}else{
+			const token = crypto.randomUUID();
+			const id = await createCart(token);
+			await prisma.cart.update({
+				where: {
+					id: id,
+				},
+				data: {
+					userId: createdUser.id,
+				},
+			});
+			cookieStore.set("cartToken", token);
 		}
 
 		const code = Math.floor(100000 + Math.random() * 900000).toString();

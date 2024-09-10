@@ -3,7 +3,6 @@ import type { Locale } from "@prisma/client";
 
 import initTranslations from "@/libs/i18n";
 import { redirect } from "next/navigation";
-import { prisma } from "@/prisma/prisma-client";
 import { getUserSession } from "@/libs/get-user-session";
 import { getOrder } from "@/libs/api";
 import { ProfileOrder } from "@/components/widgets/profile";

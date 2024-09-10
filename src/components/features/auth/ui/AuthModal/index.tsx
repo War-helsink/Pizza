@@ -19,14 +19,19 @@ import { RegisterForm } from "../RegisterForm";
 
 export const AuthModal: React.FC = () => {
 	const { t } = useTranslation();
+	const [openModal, setOpenModal] = useState(false);
 	const [type, setType] = useState<"login" | "register">("login");
 
 	const onSwitchType = () => {
 		setType(type === "login" ? "register" : "login");
 	};
 
+	const handleClose = () => {
+		setOpenModal(true);
+	};
+
 	return (
-		<Dialog>
+		<Dialog open={openModal} onOpenChange={setOpenModal}>
 			<DialogTrigger asChild>
 				<Button variant="outline" className="flex items-center gap-1">
 					<User size={16} />
@@ -36,9 +41,7 @@ export const AuthModal: React.FC = () => {
 			<DialogContent className="w-[450px] bg-white p-10">
 				<DialogHeader>
 					<DialogTitle>
-						{type === "login"
-							? t("auth.loginTitle")
-							: t("auth.registerTitle")}
+						{type === "login" ? t("auth.loginTitle") : t("auth.registerTitle")}
 					</DialogTitle>
 					<DialogDescription>
 						{type === "login"
@@ -47,7 +50,11 @@ export const AuthModal: React.FC = () => {
 					</DialogDescription>
 				</DialogHeader>
 
-				{type === "login" ? <LoginForm /> : <RegisterForm />}
+				{type === "login" ? (
+					<LoginForm onClose={handleClose} />
+				) : (
+					<RegisterForm onClose={handleClose} />
+				)}
 
 				<hr />
 				<div className="flex gap-2">

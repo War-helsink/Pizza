@@ -11,7 +11,9 @@ import {
 } from "../../lib/schemas";
 import { Button, FormInput } from "@/components/shared/ui";
 
-export const RegisterForm: React.FC = () => {
+import type { RegisterFormProps } from "../../model/props";
+
+export const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
 	const { t } = useTranslation();
 
 	const form = useForm<TFormRegisterValues>({
@@ -38,6 +40,8 @@ export const RegisterForm: React.FC = () => {
 			toast.success(t("toastMessages.success.register"), {
 				icon: "✅",
 			});
+
+			onClose?.();
 		} catch (error) {
 			console.error("Error [REGISTER]", error);
 			toast.error(t("toastMessages.error.register"), {

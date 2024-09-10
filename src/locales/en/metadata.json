@@ -4,6 +4,7 @@
 		"product": "Pizza | {{productName}}",
 		"pizza": "Pizza {{productName}} - order with home and office delivery",
 		"profile": {
+			"admin": "Pizza | Admin Panel",
 			"order-history": "Pizza | Order history",
 			"order": "Pizza | Order № {{id}}",
 			"addresses": "Pizza | Delivery addresses",
@@ -17,6 +18,7 @@
 		"product": "{{productName}} at a bargain price with home and office delivery ➤ Payment by card ✔ Fast delivery Order now!",
 		"pizza": "Pizza Delivery {{productName}} ⭐️ Large portions, Fast and Free delivery to your office or home",
 		"profile": {
+			"admin": "Admin Panel.",
 			"order-history": "User order history.",
 			"order": "Order information № {{id}}.",
 			"addresses": "User's delivery addresses.",
