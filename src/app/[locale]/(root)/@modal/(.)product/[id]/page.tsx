@@ -8,7 +8,7 @@ import { ChooseProductModal } from "@/components/features/products";
 export default async function ProductModalPage({
 	params: { id, locale },
 }: { params: { id: string; locale: Locale } }) {
-	const product = await prisma.product.findFirst({
+	const product = await prisma.product.findUnique({
 		where: { id: Number(id) },
 		include: {
 			translations: {

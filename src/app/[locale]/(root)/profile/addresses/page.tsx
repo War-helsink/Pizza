@@ -8,7 +8,6 @@ import { getUserSession } from "@/libs/get-user-session";
 
 import { Container, Title } from "@/components/shared/ui";
 import { ProfileNav } from "@/components/features/profile";
-import { ProfileOrderHistory } from "@/components/widgets/profile";
 
 export async function generateMetadata({
 	params: { locale },
@@ -16,22 +15,21 @@ export async function generateMetadata({
 	const { t } = await initTranslations({ locale });
 
 	return {
-		title: t("metadata:title.profile.order-history"),
-		description: t("metadata:description.profile.order-history"),
+		title: t("metadata:title.profile.addresses"),
+		description: t("metadata:description.profile.addresses"),
 	};
 }
 
-export default async function ProfileOrderHistoryPage({
+export default async function ProfileAddressesPage({
 	params: { locale },
-	searchParams: { page },
-}: { params: { locale: Locale }; searchParams: { page?: string } }) {
+}: { params: { locale: Locale } }) {
 	const session = await getUserSession();
 
 	if (!session) {
 		return redirect("/not-auth");
 	}
 
-	const user = await prisma.user.findFirst({
+	const user = await prisma.user.findUnique({
 		where: { id: Number(session.id) },
 	});
 
@@ -43,16 +41,11 @@ export default async function ProfileOrderHistoryPage({
 
 	return (
 		<Container className="my-10 flex flex-col gap-4">
-			<ProfileNav activePath="order-history" translation={translation} />
+			<ProfileNav activePath="addresses" translation={translation} />
 			<Title
 				size="md"
 				className="font-bold"
-				text={translation("profile.title.order-history")}
-			/>
-			<ProfileOrderHistory
-				page={page}
-				userId={user.id}
-				translation={translation}
+				text={translation("profile.title.addresses")}
 			/>
 		</Container>
 	);

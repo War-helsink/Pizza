@@ -5,6 +5,7 @@
 		"pizza": "Pizza {{productName}} - order with home and office delivery",
 		"profile": {
 			"order-history": "Pizza | Order history",
+			"order": "Pizza | Order № {{id}}",
 			"addresses": "Pizza | Delivery addresses",
 			"account": "Pizza | Personal data",
 			"password": "Pizza | Change password"
@@ -17,6 +18,7 @@
 		"pizza": "Pizza Delivery {{productName}} ⭐️ Large portions, Fast and Free delivery to your office or home",
 		"profile": {
 			"order-history": "User order history.",
+			"order": "Order information № {{id}}.",
 			"addresses": "User's delivery addresses.",
 			"account": "User's personal data.",
 			"password": "Change user password."

@@ -26,35 +26,40 @@ export async function createOrder(formValues: CheckoutFormValues) {
 			throw new Error(t("server.cartTokenNotFound"));
 		}
 
-		const userCart = await prisma.cart.findFirst({
+		const userCart = await prisma.cart.findUnique({
 			where: {
 				token: cartToken,
 			},
 			include: {
 				user: true,
 				items: {
-					include: {
+					select: {
+						quantity: true,
 						ingredients: {
-							include: {
+							select: {
+								id: true,
+								price: true,
+								imageUrl: true,
 								translations: {
-									where: {
-										locale: locale,
-									},
 									select: {
+										locale: true,
 										name: true,
 									},
 								},
 							},
 						},
 						productItem: {
-							include: {
+							select: {
+								size: true,
+								pizzaType: true,
+								price: true,
 								product: {
-									include: {
+									select: {
+										id: true,
+										imageUrl: true,
 										translations: {
-											where: {
-												locale: locale,
-											},
 											select: {
+												locale: true,
 												name: true,
 											},
 										},
@@ -254,7 +259,7 @@ export async function updateUserPassword(data: TFormPasswordValues) {
 			throw new Error(t("server.userNotFound"));
 		}
 
-		const user = await prisma.user.findFirst({
+		const user = await prisma.user.findUnique({
 			where: {
 				id: Number(currentUser.id),
 			},

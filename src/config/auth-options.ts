@@ -43,7 +43,7 @@ export const authOptions: AuthOptions = {
 					email: credentials.email,
 				};
 
-				const findUser = await prisma.user.findFirst({
+				const findUser = await prisma.user.findUnique({
 					where: values,
 				});
 
@@ -83,7 +83,7 @@ export const authOptions: AuthOptions = {
 			try {
 				const cookieStore = cookies();
 
-				const findUser = await prisma.user.findFirst({
+				const findUser = await prisma.user.findUnique({
 					where: {
 						email: user.email as string,
 					},
@@ -141,7 +141,7 @@ export const authOptions: AuthOptions = {
 				return token;
 			}
 
-			const findUser = await prisma.user.findFirst({
+			const findUser = await prisma.user.findUnique({
 				where: {
 					email: token.email,
 				},

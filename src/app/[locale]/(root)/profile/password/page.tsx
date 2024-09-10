@@ -30,7 +30,7 @@ export default async function ProfilePasswordPage({
 		return redirect("/not-auth");
 	}
 
-	const user = await prisma.user.findFirst({
+	const user = await prisma.user.findUnique({
 		where: { id: Number(session.id) },
 	});
 

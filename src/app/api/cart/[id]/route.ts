@@ -21,7 +21,7 @@ export async function PATCH(
 			return NextResponse.json({ error: t("server.errorTokenNotFound") });
 		}
 
-		const cartItem = await prisma.cartItem.findFirst({
+		const cartItem = await prisma.cartItem.findUnique({
 			where: {
 				id,
 			},
@@ -67,7 +67,7 @@ export async function DELETE(
 			return NextResponse.json({ error: t("server.errorTokenNotFound") });
 		}
 
-		const cartItem = await prisma.cartItem.findFirst({
+		const cartItem = await prisma.cartItem.findUnique({
 			where: {
 				id: id,
 			},

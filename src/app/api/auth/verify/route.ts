@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
 			);
 		}
 
-		const verificationCode = await prisma.verificationCode.findFirst({
+		const verificationCode = await prisma.verificationCode.findUnique({
 			where: {
 				code,
 			},

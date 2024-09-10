@@ -13,7 +13,7 @@ export async function generateMetadata({
 }: { params: { id: string; locale: Locale } }): Promise<Metadata> {
 	const { t } = await initTranslations({ locale });
 
-	const product = await prisma.product.findFirst({
+	const product = await prisma.product.findUnique({
 		where: { id: Number(id) },
 		include: {
 			translations: {
@@ -51,7 +51,7 @@ export async function generateMetadata({
 export default async function ProductPage({
 	params: { id, locale },
 }: { params: { id: string; locale: Locale } }) {
-	const product = await prisma.product.findFirst({
+	const product = await prisma.product.findUnique({
 		where: { id: Number(id) },
 		include: {
 			translations: {

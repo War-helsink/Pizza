@@ -8,6 +8,7 @@ import { getUserSession } from "@/libs/get-user-session";
 
 import { Container, Title } from "@/components/shared/ui";
 import { ProfileNav } from "@/components/features/profile";
+import { ProfileAccountForm } from "@/components/widgets/profile";
 
 export async function generateMetadata({
 	params: { locale },
@@ -15,12 +16,12 @@ export async function generateMetadata({
 	const { t } = await initTranslations({ locale });
 
 	return {
-		title: t("metadata:title.profile.addresses"),
-		description: t("metadata:description.profile.addresses"),
+		title: t("metadata:title.profile.account"),
+		description: t("metadata:description.profile.account"),
 	};
 }
 
-export default async function ProfileAddressesPage({
+export default async function ProfileAccountPage({
 	params: { locale },
 }: { params: { locale: Locale } }) {
 	const session = await getUserSession();
@@ -29,7 +30,7 @@ export default async function ProfileAddressesPage({
 		return redirect("/not-auth");
 	}
 
-	const user = await prisma.user.findFirst({
+	const user = await prisma.user.findUnique({
 		where: { id: Number(session.id) },
 	});
 
@@ -41,12 +42,13 @@ export default async function ProfileAddressesPage({
 
 	return (
 		<Container className="my-10 flex flex-col gap-4">
-			<ProfileNav activePath="addresses" translation={translation} />
+			<ProfileNav activePath="account" translation={translation} />
 			<Title
 				size="md"
 				className="font-bold"
-				text={translation("profile.title.addresses")}
+				text={translation("profile.title.account")}
 			/>
+			<ProfileAccountForm user={user} />
 		</Container>
 	);
 }

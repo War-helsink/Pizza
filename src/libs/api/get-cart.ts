@@ -2,7 +2,7 @@ import type { Locale } from "@prisma/client";
 import { prisma } from "@/prisma/prisma-client";
 
 export const getCartId = async (token: string) => {
-	const userCart = await prisma.cart.findFirst({
+	const userCart = await prisma.cart.findUnique({
 		where: {
 			token,
 		},
@@ -12,7 +12,7 @@ export const getCartId = async (token: string) => {
 };
 
 export const getCart = async (token: string, locale: Locale) => {
-	return await prisma.cart.findFirst({
+	return await prisma.cart.findUnique({
 		where: {
 			token,
 		},

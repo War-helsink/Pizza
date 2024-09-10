@@ -9,7 +9,6 @@ import type {
 	Order,
 	VerificationCode,
 } from "@prisma/client";
-import type { $Enums } from "@prisma/client";
 
 export interface UserPrisma extends User {
 	cart?: CartPrisma;

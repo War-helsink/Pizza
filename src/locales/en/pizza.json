@@ -145,6 +145,7 @@
 		"signOut": "Sign Out",
 		"title": {
 			"order-history": "Order history",
+			"order": "Order № {{id}}",
 			"addresses": "Delivery addresses",
 			"account": "Personal data",
 			"password": "Change password"
@@ -162,6 +163,25 @@
 			"orderNumber": "Order Number",
 			"status": "Status",
 			"total": "Total Amount"
+		},
+		"order": {
+			"data": "Date of issue",
+			"email": "E-mail",
+			"title": "Order information",
+			"address": "Delivery address",
+			"recipient": "Recipient",
+			"composition": "Order composition",
+			"amountAndStatus": "Amount and status",
+			"delivery": {
+				"method": "Delivery method",
+				"NovaPoshta": "🚚 Delivery to the New Post office"
+			},
+			"table": {
+				"name": "Name",
+				"price": "Price",
+				"quantity": "Quantity",
+				"summary": "Summary: ₴ {{totalPrice}}"
+			}
 		},
 		"account": {
 			"firstName": "First Name",
@@ -228,7 +248,7 @@
 			}
 		},
 		"footer": "This message was produced and distributed by Pizza Web Services. © 2024, Pizza Web Services, Inc.. All rights reserved. Pizza is a registered trademark.",
-		"notificatioån": "Email Notification.",
+		"notification": "Email Notification.",
 		"goToSite": "Go to website"
 	}
 }
