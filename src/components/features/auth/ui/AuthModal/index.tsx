@@ -27,7 +27,7 @@ export const AuthModal: React.FC = () => {
 	};
 
 	const handleClose = () => {
-		setOpenModal(true);
+		setOpenModal(false);
 	};
 
 	return (

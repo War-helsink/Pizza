@@ -12,6 +12,7 @@ import { HeaderTemplate } from "../HeaderTemplate";
 import { FooterTemplate } from "../FooterTemplate";
 
 export interface MainTemplateProps extends React.PropsWithChildren {
+	styleContainer?: React.CSSProperties;
 	lang: Locale;
 	textHeader: string;
 	textPreview: string;
@@ -20,6 +21,7 @@ export interface MainTemplateProps extends React.PropsWithChildren {
 }
 
 export const MainTemplate: React.FC<MainTemplateProps> = ({
+	styleContainer,
 	lang,
 	textHeader,
 	textPreview,
@@ -32,7 +34,11 @@ export const MainTemplate: React.FC<MainTemplateProps> = ({
 			<HeaderTemplate title={textHeader}>{childrenHeader}</HeaderTemplate>
 			<Preview>{textPreview}</Preview>
 			<Body style={main}>
-				<Container style={container}>
+				<Container
+					style={
+						styleContainer ? { ...styleContainer, ...container } : container
+					}
+				>
 					<Section style={coverSection}>{children}</Section>
 					<FooterTemplate translation={translation} />
 				</Container>
@@ -49,8 +55,6 @@ const main = {
 const container = {
 	padding: "20px",
 	margin: "0 auto",
-	width: "660px",
-	maxWidth: "100%",
 };
 
 const coverSection = { backgroundColor: "#fff" };

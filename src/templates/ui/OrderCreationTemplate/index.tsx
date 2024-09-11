@@ -59,6 +59,7 @@ export const OrderCreationTemplate: React.FC<OrderCreationTemplateProps> = ({
 	return (
 		<MainTemplate
 			lang={lang}
+			styleContainer={{ width: 660, maxWidth: "100%" }}
 			translation={translation}
 			textHeader={translation("template.title.orderCreation")}
 			textPreview={translation("template.notification")}
