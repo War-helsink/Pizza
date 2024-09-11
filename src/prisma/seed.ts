@@ -59,9 +59,9 @@ async function up() {
 			categoryId: 1,
 			translations: {
 				create: [
-					{ locale: "en", name: "Cheese" },
-					{ locale: "uk", name: "Сирна" },
-					{ locale: "ru", name: "Сырная" },
+					{ locale: "en", name: "Four cheeses" },
+					{ locale: "uk", name: "Чотири сири" },
+					{ locale: "ru", name: "Четыре сыра" },
 				],
 			},
 			ingredients: {

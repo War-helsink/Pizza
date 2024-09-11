@@ -1,9 +1,5 @@
 import type { Prisma } from "@prisma/client";
 
-const randomDecimalNumber = (min: number, max: number) => {
-	return Math.floor(Math.random() * (max - min) * 10 + min * 10) / 10;
-};
-
 export const products: Prisma.ProductCreateManyInput[] = [
 	{
 		imageUrl:
@@ -163,96 +159,96 @@ export const productTranslations: Prisma.ProductTranslationCreateManyInput[] = [
 ];
 
 export const productItems: Prisma.ProductItemCreateManyInput[] = [
-	{ productId: 1, price: randomDecimalNumber(190, 600) },
-	{ productId: 2, price: randomDecimalNumber(190, 600) },
-	{ productId: 3, price: randomDecimalNumber(190, 600) },
-	{ productId: 4, price: randomDecimalNumber(190, 600) },
-	{ productId: 5, price: randomDecimalNumber(190, 600) },
-	{ productId: 6, price: randomDecimalNumber(190, 600) },
-	{ productId: 7, price: randomDecimalNumber(190, 600) },
-	{ productId: 8, price: randomDecimalNumber(190, 600) },
-	{ productId: 9, price: randomDecimalNumber(190, 600) },
-	{ productId: 10, price: randomDecimalNumber(190, 600) },
-	{ productId: 11, price: randomDecimalNumber(190, 600) },
-	{ productId: 12, price: randomDecimalNumber(190, 600) },
-	{ productId: 13, price: randomDecimalNumber(190, 600) },
-	{ productId: 14, price: randomDecimalNumber(190, 600) },
-	{ productId: 15, price: randomDecimalNumber(190, 600) },
-	{ productId: 16, price: randomDecimalNumber(190, 600) },
-	{ productId: 17, price: randomDecimalNumber(190, 600) },
+	{ productId: 1, price: 60 },
+	{ productId: 2, price: 50 },
+	{ productId: 3, price: 40 },
+	{ productId: 4, price: 125 },
+	{ productId: 5, price: 145 },
+	{ productId: 6, price: 80 },
+	{ productId: 7, price: 125 },
+	{ productId: 8, price: 125 },
+	{ productId: 9, price: 50 },
+	{ productId: 10, price: 55 },
+	{ productId: 11, price: 55 },
+	{ productId: 12, price: 45 },
+	{ productId: 13, price: 50 },
+	{ productId: 14, price: 50 },
+	{ productId: 15, price: 50 },
+	{ productId: 16, price: 30 },
+	{ productId: 17, price: 40 },
 
 	{
 		productId: 18,
 		pizzaType: 1,
 		size: 20,
-		price: randomDecimalNumber(190, 600),
+		price: 190,
 	},
 	{
 		productId: 18,
 		pizzaType: 2,
 		size: 30,
-		price: randomDecimalNumber(190, 600),
+		price: 235,
 	},
 	{
 		productId: 18,
 		pizzaType: 2,
 		size: 40,
-		price: randomDecimalNumber(190, 600),
+		price: 300,
 	},
 
 	{
 		productId: 19,
 		pizzaType: 1,
 		size: 20,
-		price: randomDecimalNumber(190, 600),
+		price: 200,
 	},
 	{
 		productId: 19,
 		pizzaType: 1,
 		size: 30,
-		price: randomDecimalNumber(190, 600),
+		price: 270,
 	},
 	{
 		productId: 19,
 		pizzaType: 1,
 		size: 40,
-		price: randomDecimalNumber(190, 600),
+		price: 330,
 	},
 	{
 		productId: 19,
 		pizzaType: 2,
 		size: 20,
-		price: randomDecimalNumber(190, 600),
+		price: 200,
 	},
 	{
 		productId: 19,
 		pizzaType: 2,
 		size: 30,
-		price: randomDecimalNumber(190, 600),
+		price: 270,
 	},
 	{
 		productId: 19,
 		pizzaType: 2,
 		size: 40,
-		price: randomDecimalNumber(190, 600),
+		price: 330,
 	},
 
 	{
 		productId: 20,
 		pizzaType: 1,
 		size: 20,
-		price: randomDecimalNumber(190, 600),
+		price: 220,
 	},
 	{
 		productId: 20,
 		pizzaType: 2,
 		size: 30,
-		price: randomDecimalNumber(190, 600),
+		price: 290,
 	},
 	{
 		productId: 20,
 		pizzaType: 2,
 		size: 40,
-		price: randomDecimalNumber(190, 600),
+		price: 355,
 	},
 ];
