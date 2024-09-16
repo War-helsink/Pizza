@@ -25,7 +25,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 				productItemId: itemId,
 				ingredients,
 			});
-			toast.success(t("toastMessages.success.productAdded", { name: product.name }));
+			toast.success(
+				t("toastMessages.success.productAdded", { name: product.name }),
+			);
 
 			_onSubmit?.();
 		} catch (err) {

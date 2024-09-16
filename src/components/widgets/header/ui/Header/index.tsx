@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
 							<h1 className="text-lg lg:text-2xl uppercase font-black">
 								{t("header.title")}
 							</h1>
-							<p className="hidden lg:block text-sm text-gray-400 leading-3">
+							<p className="max-w-14 lg:max-w-none text-[10px] lg:text-sm text-gray-400 leading-3">
 								{t("header.subtitle")}
 							</p>
 						</div>

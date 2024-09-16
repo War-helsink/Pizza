@@ -47,7 +47,7 @@ export const Stories: React.FC<StoriesProps> = ({ className }) => {
 					: [...Array(6)].map((_, index) => (
 							<Skeleton
 								key={index}
-								className="w-[200px] h-[250px] bg-gray-200"
+								className="min-w-[200px] h-[250px] bg-gray-200"
 							/>
 						))}
 
