@@ -27,7 +27,7 @@ export const Stories: React.FC<StoriesProps> = ({ className }) => {
 		<>
 			<Container
 				className={cn(
-					"flex items-center justify-between gap-2 my-10",
+					"flex items-center justify-between gap-2 my-10 overflow-x-auto scrollbar-hidden",
 					className,
 				)}
 			>

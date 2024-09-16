@@ -11,13 +11,13 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
 	return (
 		<Container>
 			<div className="flex pb-14 gap-[60px]">
-				<div className="w-[250px]">
-				<Suspense>
-					<Filters />
+				<div className="w-[250px] hidden lg:block">
+					<Suspense>
+						<Filters />
 					</Suspense>
 				</div>
 				<div className="flex-1">
-					<div className="flex flex-col gap-16">
+					<div className="flex flex-col gap-20">
 						{categories.map((category) => (
 							<ProductsGroupList
 								key={category.id}

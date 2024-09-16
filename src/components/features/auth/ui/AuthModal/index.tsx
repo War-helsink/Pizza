@@ -35,7 +35,7 @@ export const AuthModal: React.FC = () => {
 			<DialogTrigger asChild>
 				<Button variant="outline" className="flex items-center gap-1">
 					<User size={16} />
-					{t("header.login")}
+					<span className="hidden lg:block">{t("header.login")}</span>
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="w-[450px] bg-white p-10">

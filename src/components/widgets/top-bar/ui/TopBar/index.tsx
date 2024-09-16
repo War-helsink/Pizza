@@ -17,8 +17,8 @@ export const TopBar: FC<TopBarProps> = ({ className, categories }) => {
 			)}
 		>
 			<Container className="flex items-center justify-between">
-				<Categories categories={categories} />
-				<SortPopup />
+				<Categories categories={categories} className="overflow-x-auto scrollbar-hidden" />
+				<SortPopup  className="hidden lg:inline-flex" />
 			</Container>
 		</div>
 	);

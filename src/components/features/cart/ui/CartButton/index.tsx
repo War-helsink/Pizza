@@ -17,11 +17,11 @@ export const CartButton: React.FC<CartButtonProps> = ({ className }) => {
 	return (
 		<Cart>
 			<Button className={cn("group relative", className)} isLoading={isLoading}>
-				<b>
+				<b className="hidden lg:block">
 					{totalAmount} {t("product.currency")}
 				</b>
-				<span className="h-full w-[1px] bg-white/30 mx-3" />
-				<div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0">
+				<span className="hidden lg:block h-full w-[1px] bg-white/30 mx-3" />
+				<div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0 relative">
 					<ShoppingCart size={16} className="relative" strokeWidth={2} />
 					<b>{items.length}</b>
 				</div>

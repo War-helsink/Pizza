@@ -51,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
 		<header className={cn("border-b", className)}>
 			<Container className="flex items-center justify-between py-8">
 				<Link href="/">
-					<div className="flex items-center gap-4">
+					<div className="w-max flex items-center gap-2">
 						<Image
 							src="/icon512.png"
 							width={35}
@@ -59,10 +59,10 @@ export const Header: React.FC<HeaderProps> = ({
 							alt={t("header.logoAlt")}
 						/>
 						<div>
-							<h1 className="text-2xl uppercase font-black">
+							<h1 className="text-lg lg:text-2xl uppercase font-black">
 								{t("header.title")}
 							</h1>
-							<p className="text-sm text-gray-400 leading-3">
+							<p className="hidden lg:block text-sm text-gray-400 leading-3">
 								{t("header.subtitle")}
 							</p>
 						</div>
@@ -71,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
 
 				{hasSearch && (
 					<div className="mx-10 flex-1">
-						<SearchInput />
+						<SearchInput className="hidden lg:flex" />
 					</div>
 				)}
 

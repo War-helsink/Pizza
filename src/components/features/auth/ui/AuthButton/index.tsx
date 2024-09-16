@@ -29,7 +29,7 @@ export const AuthButton: React.FC<AuthButtonProps> = ({ className }) => {
 				>
 					<Button variant="secondary" className="flex items-center gap-2">
 						<CircleUser size={18} />
-						{t("header.profile")}
+						<span className="hidden lg:block">{t("header.profile")}</span>
 					</Button>
 				</Link>
 			)}
