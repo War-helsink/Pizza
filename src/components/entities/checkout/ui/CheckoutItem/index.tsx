@@ -23,39 +23,37 @@ export const CheckoutItem: React.FC<CheckoutItemProps> = ({
 	return (
 		<div
 			className={cn(
-				"flex items-center justify-between",
+				"flex items-center justify-between gap-5",
 				{
 					"opacity-50 pointer-events-none": disabled,
 				},
 				className,
 			)}
 		>
-			<div className="flex items-center gap-5 flex-1">
-				<img className="w-[60px] h-[60px]" src={imageUrl} loading="lazy" />
-
+			<img className="w-[60px] h-[60px]" src={imageUrl} loading="lazy" alt="" />
+			<div className="grid grid-cols-[1fr_0.5fr] lg:grid-cols-3 justify-items-start lg:justify-items-end items-center gap-5 flex-1">
 				<div>
 					<div className="flex items-center justify-between">
 						<h2 className="text-lg font-bold flex-1 leading-6">{name}</h2>
 					</div>
 					{details && (
-						<p className="text-xs text-gray-400 w-[90%]">{details}</p>
+						<p className="hidden lg:block text-xs text-gray-400 w-[90%]">{details}</p>
 					)}
 				</div>
-			</div>
 
-			<h2 className="font-bold">
-				{price} {t("product.currency")}
-			</h2>
+				<h2 className="font-bold">
+					{price} {t("product.currency")}
+				</h2>
 
-			<div className="flex items-center gap-5 ml-20">
 				<CountButton onClick={onClickCountButton} value={quantity} />
-				<button type="button" onClick={onClickRemove}>
-					<X
-						className="text-gray-400 cursor-pointer hover:text-gray-600"
-						size={20}
-					/>
-				</button>
 			</div>
+
+			<button type="button" onClick={onClickRemove}>
+				<X
+					className="text-gray-400 cursor-pointer hover:text-gray-600"
+					size={20}
+				/>
+			</button>
 		</div>
 	);
 };

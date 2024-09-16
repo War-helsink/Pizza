@@ -110,8 +110,8 @@ export const NovaPoshtaInput: React.FC<NovaPoshtaInputProps> = ({
 					>
 						{cities.map((city) => (
 							<li
-								onClick={() => handleCitySelect(city)}
 								key={city.Ref}
+								onClick={() => handleCitySelect(city)}
 								className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 cursor-pointer"
 							>
 								<span>{city.Description}</span>
@@ -137,8 +137,8 @@ export const NovaPoshtaInput: React.FC<NovaPoshtaInputProps> = ({
 							: t("checkout.form.selectWarehouse")}
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent className="w-full">
-					<Command className="w-full">
+				<PopoverContent className="max-w-full lg:w-full">
+					<Command>
 						<CommandInput placeholder={t("checkout.form.searchWarehouse")} />
 						<CommandList>
 							<CommandEmpty>{t("checkout.form.noWarehouseFound")}</CommandEmpty>
