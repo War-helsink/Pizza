@@ -30,7 +30,7 @@ export default async function CheckoutLayout({
 				/>
 			</Suspense>
 			<main className="flex-grow relative overflow-y-auto">
-				<Container>{children}</Container>
+				{children}
 			</main>
 		</div>
 	);

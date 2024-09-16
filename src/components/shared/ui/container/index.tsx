@@ -6,7 +6,7 @@ interface Props extends React.PropsWithChildren {
 
 export const Container: React.FC<Props> = ({ className, children }) => {
 	return (
-		<div className={cn("max-w-full px-3 lg:px-0 lg:max-w-[1280px] mx-auto overflow-hidden", className)}>
+		<div className={cn("max-w-full px-3 lg:max-w-[1280px] mx-auto overflow-hidden", className)}>
 			{children}
 		</div>
 	);

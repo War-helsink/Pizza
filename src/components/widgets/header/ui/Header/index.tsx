@@ -71,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
 
 				{hasSearch && (
 					<div className="mx-10 flex-1">
-						<SearchInput className="hidden lg:flex" />
+						<SearchInput className="hidden sm:flex" />
 					</div>
 				)}
 

@@ -87,7 +87,7 @@ export default function CheckoutPage() {
 	};
 
 	return (
-		<Container className="mt-10 px-0">
+		<Container className="mt-10">
 			<Title
 				text={t("checkout.title")}
 				className="font-extrabold mb-8 text-[36px]"

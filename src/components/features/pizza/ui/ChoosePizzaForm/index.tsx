@@ -77,8 +77,8 @@ export const ChoosePizzaForm: React.FC<ChoosePizzaFormProps> = ({
 					/>
 				</div>
 
-				<div className="bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-5">
-					<div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+				<div className="bg-gray-50 p-5 rounded-md overflow-auto scrollbar mt-5">
+					<div className="grid grid-cols-[repeat(auto-fit,minmax(128px,1fr))] justify-items-center gap-y-4 gap-x-1">
 						{ingredients.map((ingredient) => (
 							<IngredientItem
 								key={ingredient.id}
