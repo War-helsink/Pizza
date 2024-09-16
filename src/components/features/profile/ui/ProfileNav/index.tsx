@@ -48,9 +48,9 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
 					</BreadcrumbList>
 				</Breadcrumb>
 
-				<SignOut />
+				<SignOut className="hidden sm:block" />
 			</div>
-			<nav className="w-full grid grid-cols-4 items-center justify-center rounded-md bg-secondary p-1 text-muted-foreground">
+			<nav className="w-full grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-1 items-center rounded-md bg-secondary p-1 text-muted-foreground">
 				{paths.map((path) => (
 					<Link key={path} href={`/profile/${path}`}>
 						<Button

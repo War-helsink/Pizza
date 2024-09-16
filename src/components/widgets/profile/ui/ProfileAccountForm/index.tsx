@@ -61,7 +61,7 @@ export const ProfileAccountForm: React.FC<ProfileAccountFormProps> = ({
 				className="w-full flex flex-col gap-5"
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
-				<div className="w-full grid grid-cols-3 gap-10">
+				<div className="w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10">
 					<FormInput name="firstName" label={t("profile.account.firstName")} />
 					<FormInput
 						name="secondName"
