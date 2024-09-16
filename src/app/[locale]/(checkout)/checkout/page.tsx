@@ -87,15 +87,15 @@ export default function CheckoutPage() {
 	};
 
 	return (
-		<Container className="mt-10">
+		<Container className="mt-10 px-0">
 			<Title
 				text={t("checkout.title")}
 				className="font-extrabold mb-8 text-[36px]"
 			/>
 			<FormProvider {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>
-					<div className="flex gap-10">
-						<div className="flex flex-col gap-10 flex-1 mb-20">
+					<div className="flex flex-col lg:flex-row gap-10">
+						<div className="flex flex-col gap-10 flex-1 lg:mb-20">
 							<CheckoutCart
 								onClickCountButton={onClickCountButton}
 								removeCartItem={removeCartItem}
@@ -111,7 +111,7 @@ export default function CheckoutPage() {
 							/>
 						</div>
 
-						<div className="w-[450px]">
+						<div className="w-full lg:w-[450px] mb-20 lg:mb-0">
 							<CheckoutSidebar
 								control={form.control}
 								totalAmount={totalAmount}
