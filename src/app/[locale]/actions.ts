@@ -107,7 +107,7 @@ export async function createOrder(formValues: CheckoutFormValues) {
 			t("template.subject.orderCreation", { orderId: order.id }),
 			OrderCreationTemplate({
 				lang: locale,
-				items: userCart.items.map((item)=>({...item, productItem: {product: {...item.productItem.product, imageUrl: `${process.env.VERCEL_URL}${item.productItem.product.imageUrl}`}} })) as any,
+				items: userCart.items.map((item)=>({...item, productItem: {...item.productItem, product: {...item.productItem.product, imageUrl: `${(process.env.VERCEL_URL as string).replace('http://', 'https://') }${item.productItem.product.imageUrl}`}} })) as any,
 				translation: t,
 				order,
 				totalPrice: order.totalPrice,
