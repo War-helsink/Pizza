@@ -3,87 +3,87 @@ import type { Prisma } from "@prisma/client";
 export const ingredients: Prisma.IngredientCreateManyInput[] = [
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/99f5cb91225b4875bd06a26d2e842106.png",
+			"/assets/ingredients/99f5cb91225b4875bd06a26d2e842106.png",
 		price: 40,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/cdea869ef287426386ed634e6099a5ba.png",
+			"/assets/ingredients/cdea869ef287426386ed634e6099a5ba.png",
 		price: 20,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA69C1FE796",
+			"/assets/ingredients/000D3A22FA54A81411E9AFA69C1FE796.png",
 		price: 20,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/11ee95b6bfdf98fb88a113db92d7b3df.png",
+			"/assets/ingredients/11ee95b6bfdf98fb88a113db92d7b3df.png",
 		price: 16,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA5B328D35A",
+			"/assets/ingredients/000D3A39D824A82E11E9AFA5B328D35A.png",
 		price: 20,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA67259A324",
+			"/assets/ingredients/000D3A22FA54A81411E9AFA67259A324.png",
 		price: 16,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA61B9A8D61",
+			"/assets/ingredients/000D3A39D824A82E11E9AFA61B9A8D61.png",
 		price: 20,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA6258199C3",
+			"/assets/ingredients/000D3A22FA54A81411E9AFA6258199C3.png",
 		price: 16,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA62D5D6027",
+			"/assets/ingredients/000D3A22FA54A81411E9AFA62D5D6027.png",
 		price: 20,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9EA89958D782B",
+			"/assets/ingredients/000D3A21DA51A81211E9EA89958D782B.png",
 		price: 16,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA7AC1A1D67",
+			"/assets/ingredients/000D3A39D824A82E11E9AFA7AC1A1D67.png",
 		price: 16,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA60AE6464C",
+			"/assets/ingredients/000D3A22FA54A81411E9AFA60AE6464C.png",
 		price: 16,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9AFA6795BA2A0",
+			"/assets/ingredients/000D3A21DA51A81211E9AFA6795BA2A0.png",
 		price: 16,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/370dac9ed21e4bffaf9bc2618d258734.png",
+			"/assets/ingredients/370dac9ed21e4bffaf9bc2618d258734.png",
 		price: 12,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA63F774C1B",
+			"/assets/ingredients/000D3A22FA54A81411E9AFA63F774C1B.png",
 		price: 16,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA6B0FFC349",
+			"/assets/ingredients/000D3A39D824A82E11E9AFA6B0FFC349.png",
 		price: 20,
 	},
 	{
 		imageUrl:
-			"https://cdn.dodostatic.net/static/Img/Ingredients/b2f3a5d5afe44516a93cfc0d2ee60088.png",
+			"/assets/ingredients/b2f3a5d5afe44516a93cfc0d2ee60088.png",
 		price: 20,
 	},
 ].map((obj, index) => ({ id: index + 1, ...obj }));

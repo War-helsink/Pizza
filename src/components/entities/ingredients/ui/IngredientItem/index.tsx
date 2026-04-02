@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { useTranslation } from "react-i18next";
 import { cn } from "@/libs/utils";
 import { CircleCheck } from "lucide-react";
@@ -28,7 +29,7 @@ export const IngredientItem: React.FC<IngredientItemProps> = ({
 			{active && (
 				<CircleCheck className="absolute top-2 right-2 text-primary" />
 			)}
-			<img width={110} height={110} src={imageUrl} alt="pizza" loading="lazy" />
+			<Image width={110} height={110} src={imageUrl} alt={name} loading="lazy" />
 			<span className="text-xs mb-1">{name}</span>
 			<span className="font-bold">
 				{price} {t("product.currency")}

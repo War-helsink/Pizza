@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { cn } from "@/libs/utils";
 import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -30,7 +31,7 @@ export const CheckoutItem: React.FC<CheckoutItemProps> = ({
 				className,
 			)}
 		>
-			<img className="w-[60px] h-[60px]" src={imageUrl} loading="lazy" alt="" />
+			<Image className="w-[60px] h-[60px]" src={imageUrl} loading="lazy" alt={name} width={60} height={60} />
 			<div className="grid grid-cols-[1fr_0.5fr] lg:grid-cols-3 justify-items-start lg:justify-items-end items-center gap-5 flex-1">
 				<div>
 					<div className="flex items-center justify-between">

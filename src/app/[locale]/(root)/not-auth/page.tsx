@@ -3,6 +3,7 @@ import type { Locale } from "@prisma/client";
 import { Button, Title } from "@/components/shared/ui";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from 'next/image';
 
 export interface Props {
 	params: { locale: Locale };
@@ -41,11 +42,12 @@ export default async function UnauthorizedPage({ params: { locale } }: Props) {
 					</div>
 				</div>
 
-				<img
+				<Image
 					src={"/assets/images/lock.png"}
 					alt={t("unauthorized.title")}
 					loading="lazy"
 					width={300}
+					height={350}
 				/>
 			</div>
 		</div>

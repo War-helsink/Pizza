@@ -11,7 +11,6 @@ import { hashSync, compare } from "bcrypt";
 import { getUserSession } from "@/libs/get-user-session";
 import type { TFormPasswordValues } from "@/components/features/auth";
 import { createCart } from "@/libs/api";
-import { cartItemsConvert } from "@/prisma/convert";
 
 import { OrderCreationTemplate, VerifyEmailTemplate } from "@/templates";
 import type { CheckoutFormValues } from "@/config/checkout-form-schema";
@@ -108,7 +107,7 @@ export async function createOrder(formValues: CheckoutFormValues) {
 			t("template.subject.orderCreation", { orderId: order.id }),
 			OrderCreationTemplate({
 				lang: locale,
-				items: userCart.items as any,
+				items: userCart.items.map((item)=>({...item, productItem: {product: {...item.productItem.product, imageUrl: `${process.env.VERCEL_URL}${item.productItem.product.imageUrl}`}} })) as any,
 				translation: t,
 				order,
 				totalPrice: order.totalPrice,

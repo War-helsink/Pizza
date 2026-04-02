@@ -1,4 +1,5 @@
 import { cn } from "@/libs/utils";
+import Image from 'next/image';
 import { Trash2Icon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { CountButton } from "@/components/shared/ui";
@@ -28,7 +29,7 @@ export const CartItem: React.FC<CartItemProps> = ({
 				className,
 			)}
 		>
-			<img className="w-[60px] h-[60px]" src={imageUrl} loading="lazy" />
+			<Image className="w-[60px] h-[60px]" src={imageUrl} loading="lazy" alt={name} width={60} height={60} />
 
 			<div className="flex-1">
 				<div>
